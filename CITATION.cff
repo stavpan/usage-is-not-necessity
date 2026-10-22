@@ -1,0 +1,72 @@
+cff-version: 1.2.0
+message: "If you use this software or its coded data, please cite it as below."
+title: "world-impact: an uncertainty-aware, multi-criteria basis for ranking world-historical developments"
+abstract: >-
+  A coded matrix of documented world-historical developments against 18 outcome
+  domains, with axes derived rather than assumed, measurement uncertainty
+  propagated from an ordinal graded-response model through to a stochastic
+  multi-criteria ranking, two nested null models for the structure claim, and an
+  enabling graph for mediated effects. Ships its own negative results, including
+  a demonstrable ceiling in the coding rubric and a retracted effective-rank
+  claim.
+type: software
+authors:
+  - family-names: Panagiotidis
+    given-names: Stavros
+    email: panagist32@gmail.com
+version: 0.1.0
+date-released: "2026-10-22"
+license: MIT
+keywords:
+  - macrohistory
+  - cliometrics
+  - multi-criteria decision analysis
+  - item response theory
+  - sensitivity analysis
+  - tensor decomposition
+  - reproducibility
+references:
+  - type: article
+    title: "SMAA — Stochastic multiobjective acceptability analysis"
+    authors:
+      - family-names: Lahdelma
+        given-names: R.
+      - family-names: Hokkanen
+        given-names: J.
+      - family-names: Salminen
+        given-names: P.
+    year: 1998
+    journal: European Journal of Operational Research
+    volume: 106
+    issue: 1
+    start: 137
+    end: 143
+  - type: article
+    title: "Quantitative historical analysis uncovers a single dimension of complexity that structures global variation in human social organization"
+    authors:
+      - family-names: Turchin
+        given-names: P.
+    year: 2018
+    journal: PNAS
+    volume: 115
+    issue: 2
+    start: E144
+    end: E151
+  - type: book
+    title: "The Measure of Civilization: How Social Development Decides the Fate of Nations"
+    authors:
+      - family-names: Morris
+        given-names: I.
+    year: 2013
+    publisher:
+      name: Princeton University Press
+  - type: book
+    title: "An overview of innovation"
+    authors:
+      - family-names: Kline
+        given-names: S. J.
+      - family-names: Rosenberg
+        given-names: N.
+    year: 1986
+    publisher:
+      name: National Academy Press

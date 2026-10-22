@@ -1,0 +1,87 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: lint, types, tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: prefix-dev/setup-pixi@v0.8.1
+        with:
+          pixi-version: v0.72.2
+          cache: true
+          environments: dev
+
+      - name: Lint
+        run: pixi run -e dev lint
+
+      - name: Type check
+        run: pixi run -e dev typecheck
+
+      - name: Tests (no network)
+        run: pixi run -e dev pytest -m "not network" --cov=world_impact --cov-report=term-missing
+
+      - name: Validate the coding matrix
+        run: pixi run -e dev validate
+
+  reproducibility:
+    name: pipeline reproduces its own numbers
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+      - uses: prefix-dev/setup-pixi@v0.8.1
+        with:
+          pixi-version: v0.72.2
+          cache: true
+          environments: dev
+
+      - name: Run twice and diff the results
+        # A pipeline that is not bit-reproducible under a fixed seed is not a
+        # result, it is a sample. The reference panel is excluded here because it
+        # depends on upstream data revisions at OWID, which cannot be pinned.
+        run: |
+          pixi run -e dev world-impact analyse --quick --no-reference --out /tmp/a.json
+          pixi run -e dev world-impact analyse --quick --no-reference --out /tmp/b.json
+          diff <(jq -S 'del(.meta.settings)' /tmp/a.json) \
+               <(jq -S 'del(.meta.settings)' /tmp/b.json)
+
+      - name: Build the report
+        run: |
+          pixi run -e dev world-impact report --results /tmp/a.json --out /tmp/report.md
+          test -s /tmp/report.md
+          grep -q "Limitations" /tmp/report.md
+
+      - name: Figures render
+        run: pixi run -e dev world-impact figures-cmd --out /tmp/figs
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: |
+            /tmp/report.md
+            /tmp/a.json
+            /tmp/figs
+
+  docs:
+    name: docs build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: prefix-dev/setup-pixi@v0.8.1
+        with:
+          pixi-version: v0.72.2
+          cache: true
+          environments: docs
+      - run: pixi run -e docs docs-build

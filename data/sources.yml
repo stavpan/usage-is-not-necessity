@@ -1,0 +1,316 @@
+# Bibliography. Every `sources:` key used in developments.yml must appear here;
+# `world-impact validate` enforces that, and `world-impact verify-sources`
+# checks each entry against Crossref.
+#
+# HONESTY NOTE: entries marked `verified: true` were checked against a primary
+# or authoritative source during construction. The others are compiled from
+# domain knowledge and MUST be DOI-checked before submission -- see
+# docs/literature.md#verification-status.
+
+# ---------------------------------------------------------------- methods --
+- key: arrow1951
+  author: "Arrow, K. J."
+  year: 1951
+  title: "Social Choice and Individual Values"
+  publisher: "Wiley"
+  kind: book
+  note: "Why no aggregate ranking can satisfy a small set of reasonable axioms at once; motivates reporting a frontier rather than an order."
+
+- key: sen1970
+  author: "Sen, A. K."
+  year: 1970
+  title: "Collective Choice and Social Welfare"
+  publisher: "Holden-Day"
+  kind: book
+  note: "Interpersonal comparability and the informational basis of welfare judgements."
+
+- key: lahdelma1998
+  author: "Lahdelma, R.; Hokkanen, J.; Salminen, P."
+  year: 1998
+  title: "SMAA — Stochastic multiobjective acceptability analysis"
+  venue: "European Journal of Operational Research"
+  volume: "106(1):137-143"
+  kind: article
+  note: "Rank acceptability indices, central weight vectors, confidence factors. The method we use for ranking under uncertainty."
+
+- key: saltelli2008
+  author: "Saltelli, A. et al."
+  year: 2008
+  title: "Global Sensitivity Analysis: The Primer"
+  publisher: "Wiley"
+  kind: book
+  note: "Variance-based sensitivity; the basis for attributing rank variation to specific coding decisions."
+
+- key: sobol2001
+  author: "Sobol, I. M."
+  year: 2001
+  title: "Global sensitivity indices for nonlinear mathematical models and their Monte Carlo estimates"
+  venue: "Mathematics and Computers in Simulation"
+  volume: "55:271-280"
+  kind: article
+
+- key: horn1965
+  author: "Horn, J. L."
+  year: 1965
+  title: "A rationale and test for the number of factors in factor analysis"
+  venue: "Psychometrika"
+  volume: "30(2):179-185"
+  doi: "10.1007/BF02289447"
+  kind: article
+  verified: true
+  note: "Parallel analysis. Replaces the arbitrary choice of how many axes to keep."
+
+- key: glorfeld1995
+  author: "Glorfeld, L. W."
+  year: 1995
+  title: "An improvement on Horn's parallel analysis methodology for selecting the correct number of factors to retain"
+  venue: "Educational and Psychological Measurement"
+  volume: "55(3):377-393"
+  kind: article
+
+- key: zwick1986
+  author: "Zwick, W. R.; Velicer, W. F."
+  year: 1986
+  title: "Comparison of five rules for determining the number of components to retain"
+  venue: "Psychological Bulletin"
+  volume: "99(3):432-442"
+  kind: article
+  note: "Parallel analysis and MAP outperform the Kaiser rule."
+
+- key: haslbeck2024
+  author: "Haslbeck, J. M. B.; van Bork, R."
+  year: 2024
+  title: "Estimating the number of factors in exploratory factor analysis via out-of-sample prediction errors"
+  venue: "Psychological Methods"
+  volume: "29(1):48-64"
+  kind: article
+  note: "Best-performing modern alternative; used here as a cross-check on parallel analysis."
+
+- key: samejima1969
+  author: "Samejima, F."
+  year: 1969
+  title: "Estimation of latent ability using a response pattern of graded scores"
+  venue: "Psychometrika Monograph Supplement"
+  volume: "17"
+  kind: article
+  note: "Graded response model: the ordinal 0-3 coding -> latent impact mapping, and the test-information argument behind the saturation result."
+
+- key: tucker1966
+  author: "Tucker, L. R."
+  year: 1966
+  title: "Some mathematical notes on three-mode factor analysis"
+  venue: "Psychometrika"
+  volume: "31(3):279-311"
+  kind: article
+
+- key: delathauwer2000
+  author: "De Lathauwer, L.; De Moor, B.; Vandewalle, J."
+  year: 2000
+  title: "A multilinear singular value decomposition"
+  venue: "SIAM Journal on Matrix Analysis and Applications"
+  volume: "21(4):1324-1342"
+  kind: article
+  note: "HOSVD: the correct generalisation when the object is a tensor, not a matrix."
+
+- key: kossaifi2019
+  author: "Kossaifi, J.; Panagakis, Y.; Anandkumar, A.; Pantic, M."
+  year: 2019
+  title: "TensorLy: Tensor learning in Python"
+  venue: "Journal of Machine Learning Research"
+  volume: "20(26):1-5"
+  kind: article
+  note: "Implementation used for Tucker/HOSVD."
+
+- key: turchin2015
+  author: "Turchin, P.; Brennan, R.; Currie, T.; Feeney, K.; Francois, P.; et al."
+  year: 2015
+  title: "Seshat: The Global History Databank"
+  venue: "Cliodynamics"
+  volume: "6(1):77-107"
+  kind: article
+  note: "The external coding taxonomy (complexity characteristics) used for inter-framework reliability."
+
+- key: turchin2018
+  author: "Turchin, P.; Currie, T. E.; Whitehouse, H.; Francois, P.; Feeney, K.; et al."
+  year: 2018
+  title: "Quantitative historical analysis uncovers a single dimension of complexity that structures global variation in human social organization"
+  venue: "PNAS"
+  volume: "115(2):E144-E151"
+  kind: article
+  note: "CRITICAL PRIOR: 51 Seshat variables reduce to one dominant dimension. Predicts a low effective rank; our null models must beat this benchmark, not merely beat randomness."
+
+- key: morris2013
+  author: "Morris, I."
+  year: 2013
+  title: "The Measure of Civilization: How Social Development Decides the Fate of Nations"
+  publisher: "Princeton University Press"
+  kind: book
+  note: "The closest existing work: a 4-component social development index (energy capture, organisation, information technology, war-making capacity) scored from 14000 BC. Its 'information technology' component is independent evidence that information is a standard axis."
+
+- key: morris2010
+  author: "Morris, I."
+  year: 2010
+  title: "Why the West Rules - For Now"
+  publisher: "Farrar, Straus and Giroux"
+  kind: book
+
+- key: rogers2003
+  author: "Rogers, E. M."
+  year: 2003
+  title: "Diffusion of Innovations (5th ed.)"
+  publisher: "Free Press"
+  kind: book
+  note: "Adoption-curve literature; underlies treating diffusion lag as a property distinct from magnitude."
+
+- key: grubler1990
+  author: "Grubler, A."
+  year: 1990
+  title: "The Rise and Fall of Infrastructures: Dynamics of Evolution and Technological Change in Transport"
+  publisher: "Physica-Verlag"
+  kind: book
+
+- key: comin2010
+  author: "Comin, D.; Hobijn, B."
+  year: 2010
+  title: "An exploration of technology diffusion"
+  venue: "American Economic Review"
+  volume: "100(5):2031-2059"
+  kind: article
+  note: "CHAT dataset: measured adoption dates and lags for ~20 technologies across ~160 countries. The obvious route to replacing judgement with measurement for the technology subset."
+
+- key: nordhaus2007
+  author: "Nordhaus, W. D."
+  year: 2007
+  title: "Two centuries of productivity growth in computing"
+  venue: "Journal of Economic History"
+  volume: "67(1):128-159"
+  kind: article
+  note: "Cost per computation back to the 19th century; source for the information domain."
+
+- key: fortunato2018
+  author: "Fortunato, S.; Bergstrom, C. T.; Borner, K.; Evans, J. A.; Helbing, D.; et al."
+  year: 2018
+  title: "Science of science"
+  venue: "Science"
+  volume: "359(6379):eaao0185"
+  kind: article
+  note: "Impact measurement as a discipline; why naive citation or attention counts are not impact."
+
+- key: ferguson1997
+  author: "Ferguson, N. (ed.)"
+  year: 1997
+  title: "Virtual History: Alternatives and Counterfactuals"
+  publisher: "Picador"
+  kind: book
+  note: "Counterfactual reasoning in history; the constraint that makes impact a counterfactual quantity."
+
+- key: tetlock1996
+  author: "Tetlock, P. E.; Belkin, A. (eds.)"
+  year: 1996
+  title: "Counterfactual Thought Experiments in World Politics"
+  publisher: "Princeton University Press"
+  kind: book
+
+- key: ord2020
+  author: "Ord, T."
+  year: 2020
+  title: "The Precipice: Existential Risk and the Future of Humanity"
+  publisher: "Bloomsbury"
+  kind: book
+  note: "A serious attempt to formalise an outcome-neutral magnitude-of-impact scale; external check on the 0-3 rubric."
+
+- key: parfit1984
+  author: "Parfit, D."
+  year: 1984
+  title: "Reasons and Persons"
+  publisher: "Oxford University Press"
+  kind: book
+
+# ----------------------------------------------------------- historiography --
+# One entry per development family. Flow style for compactness. All unverified
+# pending `world-impact verify-sources`.
+- {key: wrangham2009, author: "Wrangham, R.", year: 2009, title: "Catching Fire: How Cooking Made Us Human", publisher: "Basic Books", kind: book}
+- {key: martin1967, author: "Martin, P. S.; Wright, H. E.", year: 1967, title: "Pleistocene Extinctions: The Search for a Cause", publisher: "Yale University Press", kind: book}
+- {key: bickerton2009, author: "Bickerton, D.", year: 2009, title: "Adam's Tongue", publisher: "Hill and Wang", kind: book}
+- {key: zohary2012, author: "Zohary, D.; Hopf, M.; Weiss, E.", year: 2012, title: "Domestication of Plants in the Old World (4th ed.)", publisher: "Oxford University Press", kind: book}
+- {key: diamond2002, author: "Diamond, J.", year: 2002, title: "Evolution, consequences and future of plant and animal domestication", venue: "Nature", volume: "418:700-707", kind: article}
+- {key: worster1992, author: "Worster, D.", year: 1992, title: "Rivers of Empire: Water, Aridity, and the Growth of the American West", publisher: "Oxford University Press", kind: book}
+- {key: schmandt1992, author: "Schmandt-Besserat, D.", year: 1992, title: "Before Writing: From Counting to Cuneiform", publisher: "University of Texas Press", kind: book}
+- {key: tylecote1976, author: "Tylecote, R. F.", year: 1976, title: "A History of Metallurgy", publisher: "Metals Society", kind: book}
+- {key: piggott1983, author: "Piggott, S.", year: 1983, title: "The Earliest Wheeled Transport", publisher: "Thames and Hudson", kind: book}
+- {key: graeber2011, author: "Graeber, D.", year: 2011, title: "Debt: The First 5,000 Years", publisher: "Melville House", kind: book}
+- {key: westbrook2003, author: "Westbrook, R. (ed.)", year: 2003, title: "A History of Ancient Near Eastern Law", publisher: "Brill", kind: book}
+- {key: scott1998, author: "Scott, J. C.", year: 1998, title: "Seeing Like a State", publisher: "Yale University Press", kind: book}
+- {key: crosby1986, author: "Crosby, A. W.", year: 1986, title: "Ecological Imperialism: The Biological Expansion of Europe, 900-1900", publisher: "Cambridge University Press", kind: book}
+- {key: robinson2007, author: "Robinson, A.", year: 2007, title: "Writing and Script: A Very Short Introduction", publisher: "Oxford University Press", kind: book}
+- {key: jaspers1953, author: "Jaspers, K.", year: 1953, title: "The Origin and Goal of History", publisher: "Yale University Press", kind: book}
+- {key: bellah2011, author: "Bellah, R. N.", year: 2011, title: "Religion in Human Evolution", publisher: "Harvard University Press", kind: book}
+- {key: hodge1992, author: "Hodge, A. T.", year: 1992, title: "Roman Aqueducts and Water Supply", publisher: "Duckworth", kind: book}
+- {key: tsien1985, author: "Tsien Tsuen-Hsuin", year: 1985, title: "Paper and Printing (Science and Civilisation in China, vol. 5 pt 1)", publisher: "Cambridge University Press", kind: book}
+- {key: eisenstein1979, author: "Eisenstein, E. L.", year: 1979, title: "The Printing Press as an Agent of Change", publisher: "Cambridge University Press", kind: book}
+- {key: shapin1985, author: "Shapin, S.; Schaffer, S.", year: 1985, title: "Leviathan and the Air-Pump", publisher: "Princeton University Press", kind: book}
+- {key: coase1937, author: "Coase, R. H.", year: 1937, title: "The nature of the firm", venue: "Economica", volume: "4(16):386-405", kind: article}
+- {key: acemoglu2005, author: "Acemoglu, D.; Johnson, S.; Robinson, J.", year: 2005, title: "The rise of Europe: Atlantic trade, institutional change, and economic growth", venue: "American Economic Review", volume: "95(3):546-579", kind: article}
+- {key: szreter1988, author: "Szreter, S.", year: 1988, title: "The importance of social intervention in Britain's mortality decline c.1850-1914", venue: "Social History of Medicine", volume: "1(1):1-37", kind: article}
+- {key: levinson2006, author: "Levinson, M.", year: 2006, title: "The Box: How the Shipping Container Made the World Smaller and the World Economy Bigger", publisher: "Princeton University Press", kind: book}
+- {key: riordan1997, author: "Riordan, M.; Hoddeson, L.", year: 1997, title: "Crystal Fire: The Birth of the Information Age", publisher: "W. W. Norton", kind: book}
+- {key: lindert2004, author: "Lindert, P. H.", year: 2004, title: "Growing Public: Social Spending and Economic Growth since the Eighteenth Century", publisher: "Cambridge University Press", kind: book}
+- {key: drescher2009, author: "Drescher, S.", year: 2009, title: "Abolition: A History of Slavery and Antislavery", publisher: "Cambridge University Press", kind: book}
+- {key: duflo2012, author: "Duflo, E.", year: 2012, title: "Women empowerment and economic development", venue: "Journal of Economic Literature", volume: "50(4):1051-1079", kind: article}
+- {key: goldin2002, author: "Goldin, C.; Katz, L. F.", year: 2002, title: "The power of the pill: Oral contraceptives and women's career and marriage decisions", venue: "Journal of Political Economy", volume: "110(4):730-770", kind: article}
+- {key: pingali2012, author: "Pingali, P. L.", year: 2012, title: "Green Revolution: Impacts, limits, and the path ahead", venue: "PNAS", volume: "109(31):12302-12308", kind: article}
+- {key: sen1981, author: "Sen, A.", year: 1981, title: "Poverty and Famines: An Essay on Entitlement and Deprivation", publisher: "Oxford University Press", kind: book}
+- {key: ihgsc2001, author: "International Human Genome Sequencing Consortium", year: 2001, title: "Initial sequencing and analysis of the human genome", venue: "Nature", volume: "409:860-921", kind: article}
+- {key: polack2020, author: "Polack, F. P.; et al.", year: 2020, title: "Safety and efficacy of the BNT162b2 mRNA Covid-19 vaccine", venue: "New England Journal of Medicine", volume: "383:2603-2615", kind: article}
+- {key: doudna2014, author: "Doudna, J. A.; Charpentier, E.", year: 2014, title: "The new frontier of genome engineering with CRISPR-Cas9", venue: "Science", volume: "346:1258096", kind: article}
+- {key: schelling1966, author: "Schelling, T. C.", year: 1966, title: "Arms and Influence", publisher: "Yale University Press", kind: book}
+- {key: rees2018, author: "Rees, J.", year: 2018, title: "Refrigeration Nation: A History of Ice, Appliances, and Enterprise in America", publisher: "Johns Hopkins University Press", kind: book}
+- {key: cooper1998, author: "Cooper, G.", year: 1998, title: "Air-Conditioning America", publisher: "Johns Hopkins University Press", kind: book}
+- {key: hunt2007, author: "Hunt, L.", year: 2007, title: "Inventing Human Rights", publisher: "W. W. Norton", kind: book}
+- {key: abbate2000, author: "Abbate, J.", year: 2000, title: "Inventing the Internet", publisher: "MIT Press", kind: book}
+- {key: leiner2009, author: "Leiner, B. M.; Cerf, V. G.; Clark, D. D.; et al.", year: 2009, title: "A brief history of the Internet", venue: "ACM SIGCOMM Computer Communication Review", volume: "39(5):22-31", kind: article}
+- {key: headrick1991, author: "Headrick, D. R.", year: 1991, title: "The Invisible Weapon: Telecommunications and International Politics 1851-1945", publisher: "Oxford University Press", kind: book}
+- {key: iea2023, author: "International Energy Agency", year: 2023, title: "World Energy Outlook 2023", publisher: "IEA", kind: dataset}
+- {key: faostat2022, author: "FAO", year: 2022, title: "FAOSTAT Food Balance Sheets", publisher: "Food and Agriculture Organization", kind: dataset}
+- {key: igme2023, author: "UN IGME", year: 2023, title: "Levels and Trends in Child Mortality", publisher: "UN Inter-agency Group for Child Mortality Estimation", kind: dataset}
+- {key: ucdp2023, author: "Davies, S.; Pettersson, T.; Oberg, M.", year: 2023, title: "Organized violence 1989-2022 and the return of conflicts between states", venue: "Journal of Peace Research", volume: "60(4)", kind: dataset}
+- {key: lecun2015, author: "LeCun, Y.; Bengio, Y.; Hinton, G.", year: 2015, title: "Deep learning", venue: "Nature", volume: "521:436-444", kind: article}
+- {key: krippner2011, author: "Krippner, G. R.", year: 2011, title: "Capitalizing on Crisis: The Political Origins of the Rise of Finance", publisher: "Harvard University Press", kind: book}
+
+# ------------------------------------------------------------- substance --
+- {key: smil2017, author: "Smil, V.", year: 2017, title: "Energy and Civilization: A History", publisher: "MIT Press", kind: book}
+- {key: smil2001, author: "Smil, V.", year: 2001, title: "Enriching the Earth: Fritz Haber, Carl Bosch, and the Transformation of World Food Production", publisher: "MIT Press", kind: book}
+- {key: erisman2008, author: "Erisman, J. W.; Sutton, M. A.; Galloway, J.; Klimont, Z.; Winiwarter, W.", year: 2008, title: "How a century of ammonia synthesis changed the world", venue: "Nature Geoscience", volume: "1:636-639", kind: article}
+- {key: mokyr2016, author: "Mokyr, J.", year: 2016, title: "A Culture of Growth: The Origins of the Modern Economy", publisher: "Princeton University Press", kind: book}
+- {key: mokyr1990, author: "Mokyr, J.", year: 1990, title: "The Lever of Riches: Technological Creativity and Economic Progress", publisher: "Oxford University Press", kind: book}
+- {key: landes1998, author: "Landes, D. S.", year: 1998, title: "The Wealth and Poverty of Nations", publisher: "W. W. Norton", kind: book}
+- {key: diamond1997, author: "Diamond, J.", year: 1997, title: "Guns, Germs, and Steel", publisher: "W. W. Norton", kind: book}
+- {key: mcneill1976, author: "McNeill, W. H.", year: 1976, title: "Plagues and Peoples", publisher: "Anchor", kind: book}
+- {key: mcneill2003, author: "McNeill, J. R.; McNeill, W. H.", year: 2003, title: "The Human Web: A Bird's-Eye View of World History", publisher: "W. W. Norton", kind: book}
+- {key: north1990, author: "North, D. C.", year: 1990, title: "Institutions, Institutional Change and Economic Performance", publisher: "Cambridge University Press", kind: book}
+- {key: tainter1988, author: "Tainter, J. A.", year: 1988, title: "The Collapse of Complex Societies", publisher: "Cambridge University Press", kind: book}
+- {key: tilly1990, author: "Tilly, C.", year: 1990, title: "Coercion, Capital, and European States, AD 990-1992", publisher: "Blackwell", kind: book}
+- {key: allen2009, author: "Allen, R. C.", year: 2009, title: "The British Industrial Revolution in Global Perspective", publisher: "Cambridge University Press", kind: book}
+- {key: allen2011, author: "Allen, R. C.", year: 2011, title: "Global Economic History: A Very Short Introduction", publisher: "Oxford University Press", kind: book}
+- {key: rockstrom2009, author: "Rockstrom, J.; Steffen, W.; Noone, K.; Persson, A.; Chapin, F. S.; et al.", year: 2009, title: "A safe operating space for humanity", venue: "Nature", volume: "461:472-475", kind: article}
+- {key: holdren1974, author: "Holdren, J. P.; Ehrlich, P. R.", year: 1974, title: "Human population and the global environment", venue: "American Scientist", volume: "62(3):282-292", kind: article}
+- {key: bolt2020, author: "Bolt, J.; van Zanden, J. L.", year: 2020, title: "Maddison style estimates of the evolution of the world economy: A new 2020 update", venue: "Journal of Economic Surveys", kind: article}
+- {key: barrolee2013, author: "Barro, R. J.; Lee, J. W.", year: 2013, title: "A new data set of educational attainment in the world, 1950-2010", venue: "Journal of Development Economics", volume: "104:184-198", kind: article}
+- {key: kleingoldewijk2017, author: "Klein Goldewijk, K.; Beusen, A.; Doelman, J.; Stehfest, E.", year: 2017, title: "Anthropogenic land use estimates for the Holocene - HYDE 3.2", venue: "Earth System Science Data", volume: "9:927-953", kind: article}
+- {key: coppedge2023, author: "Coppedge, M.; Gerring, J.; Knutsen, C. H.; et al.", year: 2023, title: "V-Dem Codebook v13", publisher: "Varieties of Democracy Institute, University of Gothenburg", kind: dataset}
+- {key: gcp2023, author: "Friedlingstein, P.; O'Sullivan, M.; Jones, M. W.; et al.", year: 2023, title: "Global Carbon Budget 2023", venue: "Earth System Science Data", kind: dataset}
+- {key: gbd2020, author: "GBD 2019 Risk Factors Collaborators", year: 2020, title: "Global burden of 87 risk factors in 204 countries and territories, 1990-2019", venue: "The Lancet", volume: "396:1223-1249", kind: dataset}
+- {key: lpi2022, author: "WWF", year: 2022, title: "Living Planet Report 2022", publisher: "WWF", kind: dataset}
+- {key: wpp2022, author: "United Nations", year: 2022, title: "World Population Prospects 2022", publisher: "UN Department of Economic and Social Affairs", kind: dataset}
+- {key: owid2024, author: "Our World in Data", year: 2024, title: "Our World in Data catalog", publisher: "Global Change Data Lab", kind: dataset}
+- {key: wdi2023, author: "World Bank", year: 2023, title: "World Development Indicators", publisher: "World Bank", kind: dataset}
+
+# ------------------------------------------------------- history of science --
+- {key: boyer1991, author: "Boyer, C. B.; Merzbach, U. C.", year: 1991, title: "A History of Mathematics (2nd ed.)", publisher: "Wiley", kind: book}
+- {key: cardwell1971, author: "Cardwell, D. S. L.", year: 1971, title: "From Watt to Clausius: The Rise of Thermodynamics in the Early Industrial Age", publisher: "Cornell University Press", kind: book}
+- {key: kragh1999, author: "Kragh, H.", year: 1999, title: "Quantum Generations: A History of Physics in the Twentieth Century", publisher: "Princeton University Press", kind: book}
+- {key: stigler1986, author: "Stigler, S. M.", year: 1986, title: "The History of Statistics: The Measurement of Uncertainty before 1900", publisher: "Harvard University Press", kind: book}
+- {key: whittaker1951, author: "Whittaker, E. T.", year: 1951, title: "A History of the Theories of Aether and Electricity", publisher: "Nelson", kind: book}
+- {key: kline1986, author: "Kline, S. J.; Rosenberg, N.", year: 1986, title: "An overview of innovation", publisher: "in: The Positive Sum Strategy, National Academy Press", kind: book}
+- {key: leontief1936, author: "Leontief, W. W.", year: 1936, title: "Quantitative input and output relations in the economic system of the United States", venue: "Review of Economics and Statistics", volume: "18(3):105-125", kind: article}
+- {key: hirschman1958, author: "Hirschman, A. O.", year: 1958, title: "The Strategy of Economic Development", publisher: "Yale University Press", kind: book}

@@ -1,0 +1,478 @@
+# The coded matrix: rows of impact.
+#
+# A DEVELOPMENT is a datable, documented intervention in the human career whose
+# effects on outcome domains are reported in the scholarly literature. The list
+# is a sample, not a census, and sampling is a known threat to validity
+# (docs/methods.md#threats). It includes the information cluster and its
+# competitors deliberately, and was written before any axis existed.
+#
+# effects: {outcome_id: magnitude} with the ordinal rubric
+#   1 = substantial but bounded in space, time or domain
+#   2 = large global or hemispheric shift
+#   3 = transformed the domain at global scale
+# The rubric is OUTCOME-NEUTRAL: catastrophe scores the same as cure.
+# Rubric calibration and its ceiling effect are in docs/methods.md#rubric.
+#
+# extern: Seshat variable group(s), used as an EXTERNAL taxonomy for the
+# inter-framework reliability check. Not used to build the axes.
+
+- id: fire_cooking
+  name: Control of fire and cooking
+  onset: -1000000
+  era: deep_prehistory
+  extern: [population]
+  sources: [wrangham2009]
+  effects: {survival: 2, food: 2, energy: 2, land: 2, health: 1}
+
+- id: hunting_megafauna
+  name: Projectile hunting and the megafauna extinctions
+  onset: -300000
+  era: deep_prehistory
+  extern: [population]
+  sources: [martin1967]
+  effects: {population: 1, food: 2, violence: 1, land: 2}
+
+- id: language_symbols
+  name: Language and symbolic culture
+  onset: -80000
+  era: deep_prehistory
+  extern: [information]
+  sources: [bickerton2009]
+  effects: {governance: 1, literacy: 2, information: 2, freedom: 1}
+
+- id: plant_domestication
+  name: Plant domestication and agriculture
+  onset: -10000
+  era: deep_prehistory
+  extern: [agriculture]
+  sources: [zohary2012, diamond2002, mcneill2003]
+  effects: {population: 3, survival: 1, food: 3, energy: 1, income: 1,
+            settlement: 2, violence: 1, land: 3, inequality: 2, labour: 1}
+
+- id: animal_domestication
+  name: Animal domestication
+  onset: -9000
+  era: deep_prehistory
+  extern: [agriculture]
+  sources: [diamond2002, mcneill1976]
+  effects: {population: 1, survival: 1, food: 2, energy: 2, income: 1,
+            mobility: 2, violence: 2, inequality: 1}
+
+- id: irrigation
+  name: Irrigation
+  onset: -6000
+  era: antiquity
+  extern: [agriculture, infrastructure]
+  sources: [worster1992, scott1998]
+  effects: {population: 2, food: 2, income: 1, settlement: 2, governance: 2,
+            land: 2, inequality: 2}
+
+- id: writing_accounting
+  name: Writing and accounting
+  onset: -3200
+  era: antiquity
+  extern: [information]
+  sources: [schmandt1992, robinson2007]
+  effects: {income: 1, governance: 3, literacy: 3, information: 3, inequality: 1}
+
+- id: metallurgy
+  name: "Metallurgy: bronze and iron"
+  onset: -5000
+  era: antiquity
+  extern: [infrastructure]
+  sources: [tylecote1976]
+  effects: {food: 1, materials: 2, income: 1, violence: 3, land: 2, labour: 1}
+
+- id: wheel
+  name: The wheel
+  onset: -3500
+  era: antiquity
+  extern: [infrastructure]
+  sources: [piggott1983]
+  effects: {materials: 1, mobility: 2, violence: 1, labour: 1}
+
+- id: coinage
+  name: Coinage and market exchange
+  onset: -600
+  era: antiquity
+  extern: [economy]
+  sources: [graeber2011]
+  effects: {income: 2, mobility: 2, governance: 2, inequality: 2}
+
+- id: codified_law
+  name: Codified law
+  onset: -1750
+  era: antiquity
+  extern: [governance]
+  sources: [westbrook2003]
+  effects: {income: 1, governance: 3, violence: 1, inequality: 1, freedom: 2}
+
+- id: administrative_state
+  name: The bureaucratic administrative state
+  onset: -3000
+  era: antiquity
+  extern: [governance]
+  sources: [scott1998, tainter1988]
+  effects: {income: 1, settlement: 1, governance: 3, violence: 2, inequality: 2}
+
+- id: sailing_navigation
+  name: Sailing and oceanic navigation
+  onset: -3000
+  era: antiquity
+  extern: [infrastructure, economy]
+  sources: [crosby1986, mcneill2003]
+  effects: {food: 1, income: 1, settlement: 1, mobility: 3, violence: 1, land: 1}
+
+- id: alphabet
+  name: The alphabet
+  onset: -1200
+  era: antiquity
+  extern: [information]
+  sources: [robinson2007]
+  effects: {governance: 2, literacy: 3, information: 3}
+
+- id: axial_age
+  name: Axial-age religion and philosophy
+  onset: -600
+  era: antiquity
+  extern: [religion]
+  sources: [jaspers1953, bellah2011]
+  effects: {governance: 1, literacy: 1, health: 2, freedom: 3, labour: 1}
+
+- id: aqueducts_water
+  name: Aqueducts and urban water supply
+  onset: -300
+  era: antiquity
+  extern: [infrastructure]
+  sources: [hodge1992, szreter1988]
+  effects: {population: 1, survival: 3, settlement: 2, governance: 1}
+
+- id: paper
+  name: Paper
+  onset: 105
+  era: medieval
+  extern: [information]
+  sources: [tsien1985]
+  effects: {governance: 1, literacy: 2, information: 3}
+
+- id: printing
+  name: Printing with movable type
+  onset: 1440
+  era: early_modern
+  extern: [information]
+  sources: [eisenstein1979, mokyr2016]
+  effects: {governance: 2, literacy: 3, information: 3, health: 2, freedom: 2}
+
+- id: columbian_exchange
+  name: Oceanic expansion and the Columbian exchange
+  onset: 1492
+  era: early_modern
+  extern: [economy, agriculture]
+  sources: [crosby1986, mcneill1976]
+  effects: {population: 1, food: 2, income: 2, mobility: 3, violence: 2,
+            land: 3, inequality: 3}
+
+- id: scientific_method
+  name: The scientific method and precision instrumentation
+  onset: 1600
+  era: early_modern
+  extern: [information]
+  sources: [shapin1985, mokyr2016]
+  effects: {energy: 1, materials: 1, income: 1, literacy: 2, information: 2, health: 1}
+
+- id: property_rights
+  name: Property rights and the modern firm
+  onset: 1600
+  era: early_modern
+  extern: [economy, governance]
+  sources: [north1990, coase1937, acemoglu2005]
+  effects: {income: 3, governance: 3, inequality: 2, labour: 1}
+
+- id: coal_steam
+  name: Coal and the steam engine
+  onset: 1712
+  era: industrial
+  extern: [infrastructure]
+  sources: [smil2017, allen2009, mokyr1990, landes1998]
+  effects: {energy: 3, materials: 3, income: 3, settlement: 3, mobility: 2,
+            climate: 2, inequality: 2, labour: 2}
+
+- id: vaccination
+  name: Vaccination
+  onset: 1796
+  era: industrial
+  extern: [population]
+  sources: [mcneill1976, szreter1988]
+  effects: {population: 1, survival: 3, health: 3}
+
+- id: germ_theory_sanitation
+  name: Germ theory, sewers and clean water
+  onset: 1850
+  era: industrial
+  extern: [population, infrastructure]
+  sources: [szreter1988, mcneill1976]
+  effects: {population: 2, survival: 3, settlement: 2, health: 3}
+
+- id: electrification
+  name: Electrification and the grid
+  onset: 1880
+  era: industrial
+  extern: [infrastructure]
+  sources: [smil2017, morris2013]
+  effects: {energy: 3, materials: 2, income: 3, settlement: 3, information: 2,
+            inequality: 1, labour: 3}
+
+- id: telegraph_radio
+  name: Telegraph, telephony and radio
+  onset: 1837
+  era: industrial
+  extern: [information]
+  sources: [headrick1991]
+  effects: {income: 2, mobility: 2, governance: 2, information: 3, health: 1}
+
+- id: combustion_automobility
+  name: Internal combustion and automobility
+  onset: 1885
+  era: industrial
+  extern: [infrastructure]
+  sources: [smil2017, grubler1990]
+  effects: {energy: 2, income: 2, settlement: 3, mobility: 3, land: 2,
+            climate: 2, labour: 2}
+
+- id: haber_bosch
+  name: Haber-Bosch synthetic nitrogen
+  onset: 1909
+  era: industrial
+  extern: [agriculture]
+  sources: [smil2001, erisman2008]
+  effects: {population: 2, survival: 1, food: 3, energy: 1, materials: 1,
+            land: 2, climate: 2, inequality: 1}
+
+- id: refrigeration_ac
+  name: Refrigeration and air conditioning
+  onset: 1902
+  era: industrial
+  extern: [infrastructure]
+  sources: [rees2018, cooper1998]
+  effects: {population: 1, survival: 2, food: 2, settlement: 2, labour: 1}
+
+- id: antibiotics
+  name: Antibiotics
+  onset: 1928
+  era: industrial
+  extern: [population]
+  sources: [mcneill1976, gbd2020]
+  effects: {population: 1, survival: 3, health: 3}
+
+- id: mass_schooling
+  name: Mass public schooling
+  onset: 1830
+  era: industrial
+  extern: [information]
+  sources: [lindert2004, barrolee2013]
+  effects: {population: 1, income: 1, governance: 1, literacy: 3,
+            information: 1, inequality: 2, labour: 1}
+
+- id: abolition_rights
+  name: Abolition of slavery and the invention of human rights
+  onset: 1780
+  era: industrial
+  extern: [social_complexity]
+  sources: [drescher2009, hunt2007]
+  effects: {governance: 2, violence: 1, inequality: 1, freedom: 3}
+
+- id: nuclear_weapons
+  name: Nuclear weapons and deterrence
+  onset: 1945
+  era: contemporary
+  extern: [warfare]
+  sources: [schelling1966, tilly1990]
+  effects: {governance: 2, violence: 3, climate: 1}
+
+- id: nuclear_power
+  name: Nuclear power
+  onset: 1954
+  era: contemporary
+  extern: [infrastructure]
+  sources: [iea2023, smil2017]
+  effects: {energy: 2, climate: 1}
+
+- id: transistor_ic
+  name: The transistor and the integrated circuit
+  onset: 1947
+  era: contemporary
+  extern: [information]
+  sources: [riordan1997, nordhaus2007, comin2010]
+  effects: {energy: 1, income: 2, information: 3, inequality: 1, labour: 2}
+
+- id: computing_internet
+  name: Computing and the internet
+  onset: 1945
+  era: contemporary
+  extern: [information]
+  sources: [abbate2000, leiner2009, nordhaus2007]
+  effects: {income: 3, governance: 2, literacy: 2, information: 3, health: 2,
+            inequality: 2, freedom: 2, labour: 3}
+
+- id: molecular_genomics
+  name: Molecular biology to genomics
+  onset: 1953
+  era: contemporary
+  extern: [population]
+  sources: [ihgsc2001, gbd2020]
+  effects: {survival: 2, food: 2, information: 2, health: 2}
+
+- id: containerisation
+  name: Containerisation and global logistics
+  onset: 1956
+  era: contemporary
+  extern: [economy]
+  sources: [levinson2006, grubler1990]
+  effects: {income: 2, mobility: 3, labour: 2}
+
+- id: contraceptive_pill
+  name: The contraceptive pill and the fertility transition
+  onset: 1960
+  era: contemporary
+  extern: [population]
+  sources: [goldin2002, duflo2012, wpp2022]
+  effects: {population: 3, survival: 1, income: 1, inequality: 1,
+            freedom: 3, labour: 2}
+
+- id: green_revolution
+  name: The Green Revolution in crops
+  onset: 1943
+  era: contemporary
+  extern: [agriculture]
+  sources: [pingali2012, faostat2022]
+  effects: {population: 2, survival: 2, food: 3, income: 2, land: 2,
+            climate: 1, inequality: 2}
+
+- id: fiat_credit_derivatives
+  name: Fiat money, credit and derivatives
+  onset: 1971
+  era: contemporary
+  extern: [economy]
+  sources: [krippner2011, graeber2011, north1990]
+  effects: {income: 3, governance: 2, inequality: 3}
+
+- id: female_enfranchisement
+  name: Female enfranchisement and gender equality
+  onset: 1893
+  era: contemporary
+  extern: [social_complexity]
+  sources: [duflo2012, hunt2007]
+  effects: {population: 1, income: 1, governance: 1, inequality: 1,
+            freedom: 3, labour: 1}
+
+- id: social_insurance
+  name: Famine relief and social insurance
+  onset: 1945
+  era: contemporary
+  extern: [governance]
+  sources: [lindert2004, sen1981]
+  effects: {population: 1, survival: 2, income: 1, governance: 2}
+
+- id: statistical_learning_ai
+  name: Statistical learning and artificial intelligence
+  onset: 1956
+  era: contemporary
+  extern: [information]
+  sources: [lecun2015, fortunato2018]
+  effects: {income: 2, governance: 2, literacy: 2, information: 3,
+            health: 1, inequality: 1, labour: 2}
+
+- id: solar_wind_batteries
+  name: Solar PV, wind and batteries
+  onset: 1975
+  era: contemporary
+  extern: [infrastructure]
+  sources: [iea2023, rockstrom2009]
+  effects: {energy: 3, land: 2, climate: 3}
+
+- id: crispr
+  name: CRISPR and gene editing
+  onset: 2012
+  era: contemporary
+  extern: [population]
+  sources: [doudna2014]
+  effects: {food: 1, information: 1, health: 1}
+
+- id: mrna_vaccines
+  name: mRNA vaccines
+  onset: 2020
+  era: contemporary
+  extern: [population]
+  sources: [polack2020]
+  effects: {survival: 2, health: 2}
+
+# ---------------------------------------------------------------------------
+# THE KNOWLEDGE LAYER
+#
+# These rows exist because a body of understanding is not a deployable
+# intervention, so it can never be a row of an outcome-impact matrix on its own
+# terms -- which is precisely why quantum mechanics was missing from the first
+# draft. Their direct effects are necessarily tiny and slightly artificial: the
+# outcome set has no column for "stock of validated explanatory models", so the
+# nearest available proxies are information and, where the theory reached
+# medicine, health. That proxy understates them by construction.
+#
+# Their real contribution is supposed to arrive through the enabling graph in
+# data/edges.yml, where forward linkage is measured instead of assumed. The
+# knowledge_layer flag is used ONLY to read the seed hypothesis off the results;
+# it never enters any score, weight or axis.
+# ---------------------------------------------------------------------------
+
+- id: calculus_analysis
+  name: "Calculus and mathematical analysis"
+  onset: 1665
+  era: early_modern
+  extern: [information]
+  sources: [boyer1991, mokyr2016]
+  knowledge_layer: true
+  effects: {information: 2, literacy: 1}
+
+- id: classical_mechanics
+  name: "Classical mechanics and the clockwork universe"
+  onset: 1687
+  era: early_modern
+  extern: [information]
+  sources: [boyer1991, mokyr1990]
+  knowledge_layer: true
+  effects: {information: 2, materials: 1}
+
+- id: thermodynamics
+  name: "Thermodynamics and the theory of heat"
+  onset: 1824
+  era: industrial
+  extern: [information]
+  sources: [cardwell1971, smil2017]
+  knowledge_layer: true
+  effects: {information: 2, energy: 1}
+
+- id: electromagnetism
+  name: "Electromagnetism and field theory"
+  onset: 1865
+  era: industrial
+  extern: [information]
+  sources: [whittaker1951, smil2017]
+  knowledge_layer: true
+  effects: {information: 2, energy: 1}
+
+- id: statistical_inference
+  name: "Statistical inference and experimental design"
+  onset: 1900
+  era: industrial
+  extern: [information]
+  sources: [stigler1986, mokyr2016]
+  knowledge_layer: true
+  effects: {information: 3, health: 1}
+
+- id: quantum_mechanics
+  name: "Quantum mechanics"
+  onset: 1925
+  era: industrial
+  extern: [information]
+  sources: [kragh1999, riordan1997]
+  knowledge_layer: true
+  effects: {information: 3, materials: 1, health: 1}

@@ -1,0 +1,127 @@
+# Outcome domains: the columns of the impact matrix.
+#
+# Selection protocol (fixes the circularity of the first draft, see
+# docs/decisions.md#d1): the domains are the *state-of-the-world* classes that
+# international statistical systems already measure and report. They were taken
+# from the reporting structure of the major long-run measurement programmes, not
+# invented to fit any axis:
+#
+#   OWID topic taxonomy  -> population, health, food, energy, environment,
+#                           poverty/income, education, work, human rights,
+#                           violence, transport, innovation
+#   Seshat "complexity characteristics" -> governance, religion/ritual,
+#                           information systems, social stratification
+#   Planetary boundaries (Rockstrom et al. 2009) -> climate, land, biodiversity
+#
+# Every domain therefore has (a) a named custodian dataset, (b) a unit, and
+# (c) at least one candidate series we can pull for empirical validation.
+# `owid_candidates` are tried in order; the first that resolves is recorded in
+# data/owid_series.yml. Validation is a cross-check, not the measure itself.
+
+- id: population
+  label: Population size and structure
+  custodian: "UN World Population Prospects"
+  unit: persons
+  owid_candidates: [population, population-with-un-projections]
+
+- id: survival
+  label: Survival, life expectancy and mortality
+  custodian: "WHO Global Health Observatory / UN IGME"
+  unit: years (e) or deaths per 1000
+  owid_candidates: [life-expectancy, child-mortality]
+
+- id: food
+  label: Food supply and nutrition
+  custodian: "FAO Food Balance Sheets"
+  unit: kcal per person per day
+  owid_candidates: [daily-caloric-supply-per-person, food-supply-kcal-per-person-per-day]
+
+- id: energy
+  label: Energy capture per capita
+  custodian: "IEA World Energy Balances / Smil (2017)"
+  unit: kWh or kcal per person per day
+  owid_candidates: [per-capita-energy-use, primary-energy-consumption-by-region]
+
+- id: materials
+  label: Material throughput and manufacturing
+  custodian: "UN IRP Global Material Flows"
+  unit: tonnes per capita (extraction)
+  owid_candidates: [cement-production, steel-production]
+
+- id: income
+  label: Income and wealth per capita
+  custodian: "Maddison Project / World Bank WDI"
+  unit: 2011 int-$ per person per year
+  owid_candidates: [gdp-per-capita-maddison, gdp-per-capita-worldbank]
+
+- id: settlement
+  label: Urbanisation and settlement
+  custodian: "UN World Urbanization Prospects"
+  unit: share of population urban
+  owid_candidates: [share-of-population-urban, urban-population-share-urban]
+
+- id: mobility
+  label: Mobility and trade
+  custodian: "ITF / World Bank WDI"
+  unit: passenger-km, tonne-km, or trade share of GDP
+  owid_candidates: [trade-as-share-of-gdp, air-transport-passengers-carried]
+
+- id: governance
+  label: Institutions and governance
+  custodian: "V-Dem / Polity5 / Seshat"
+  unit: index
+  owid_candidates: [vdem-liberal-democracy-index, political-regime]
+
+- id: violence
+  label: Violence and coercive capacity
+  custodian: "UCDP/PRIO / Seshat"
+  unit: battle deaths per 100k, or coercive capacity index
+  owid_candidates: [deaths-from-conflict-and-terrorism, number-of-deaths-in-armed-conflicts]
+
+- id: literacy
+  label: Literacy, education and skill
+  custodian: "Barro-Lee / UNESCO"
+  unit: years of schooling, or % literate
+  owid_candidates: [literacy-rate-adults, mean-years-of-schooling]
+
+- id: information
+  label: "Information: storage, computation, transmission"
+  custodian: "ITU / Nordhaus (2007) cost series"
+  unit: bits per person, or cost per operation (2011-$)
+  owid_candidates: [internet-users, mobile-cellular-subscriptions-per-100-people]
+
+- id: land
+  label: Land use and ecosystems
+  custodian: "HYDE 3.2 / Living Planet Index"
+  unit: hectares per capita; LPI (1970=100)
+  owid_candidates: [land-use-over-the-long-term, living-planet-index]
+
+- id: climate
+  label: Atmosphere and climate
+  custodian: "Global Carbon Project"
+  unit: tCO2 per capita; ppm
+  owid_candidates: [co2-emissions-per-capita, annual-co2-emissions]
+
+- id: health
+  label: Health burden including mental health
+  custodian: "Global Burden of Disease"
+  unit: DALYs per 100k
+  owid_candidates: [disease-burden-rate, dalys-rate-from-all-causes]
+
+- id: inequality
+  label: Inequality and stratification
+  custodian: "World Inequality Database / Seshat"
+  unit: Gini or top-decile share
+  owid_candidates: [income-share-top-1-percent, gini-coefficient]
+
+- id: freedom
+  label: Freedom, autonomy and legal personhood
+  custodian: "V-Dem / Freedom House"
+  unit: index
+  owid_candidates: [freedom-of-expression-index, civil-liberties-index]
+
+- id: labour
+  label: Time use and labour allocation
+  custodian: "ILO / OECD"
+  unit: hours per worker per year
+  owid_candidates: [annual-working-hours-per-worker, weekly-working-hours]

@@ -1,0 +1,36 @@
+# pixi
+.pixi/
+*.pixi.lock.bak
+
+# python
+__pycache__/
+*.py[cod]
+.eggs/
+build/
+dist/
+*.egg-info/
+.ipynb_checkpoints/
+
+# tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+htmlcov/
+.coverage
+.coverage.*
+
+# generated
+reports/
+site/
+figures/*.svg
+
+# editors / os
+.vscode/
+.idea/
+.DS_Store
+
+# data: raw downloads are reproducible from sources, but we DO commit the
+# small curated reference extract so the pipeline runs offline.
+data/raw/owid/*.csv
+!data/raw/owid/.gitkeep
