@@ -1,0 +1,184 @@
+[
+  {
+    "id": "https://openalex.org/fields/33",
+    "short": "33",
+    "name": "Social Sciences",
+    "works_count": 61185296,
+    "cited_by_count": 197036992
+  },
+  {
+    "id": "https://openalex.org/fields/27",
+    "short": "27",
+    "name": "Medicine",
+    "works_count": 51431849,
+    "cited_by_count": 600832201
+  },
+  {
+    "id": "https://openalex.org/fields/31",
+    "short": "31",
+    "name": "Physics and Astronomy",
+    "works_count": 51221590,
+    "cited_by_count": 133412800
+  },
+  {
+    "id": "https://openalex.org/fields/12",
+    "short": "12",
+    "name": "Arts and Humanities",
+    "works_count": 45333563,
+    "cited_by_count": 63773305
+  },
+  {
+    "id": "https://openalex.org/fields/22",
+    "short": "22",
+    "name": "Engineering",
+    "works_count": 40470421,
+    "cited_by_count": 309022237
+  },
+  {
+    "id": "https://openalex.org/fields/11",
+    "short": "11",
+    "name": "Agricultural and Biological Sciences",
+    "works_count": 29260992,
+    "cited_by_count": 131934124
+  },
+  {
+    "id": "https://openalex.org/fields/17",
+    "short": "17",
+    "name": "Computer Science",
+    "works_count": 17745428,
+    "cited_by_count": 159346413
+  },
+  {
+    "id": "https://openalex.org/fields/23",
+    "short": "23",
+    "name": "Environmental Science",
+    "works_count": 17671075,
+    "cited_by_count": 148315192
+  },
+  {
+    "id": "https://openalex.org/fields/13",
+    "short": "13",
+    "name": "Biochemistry, Genetics and Molecular Biology",
+    "works_count": 17362434,
+    "cited_by_count": 295407941
+  },
+  {
+    "id": "https://openalex.org/fields/14",
+    "short": "14",
+    "name": "Business, Management and Accounting",
+    "works_count": 11914036,
+    "cited_by_count": 63395791
+  },
+  {
+    "id": "https://openalex.org/fields/32",
+    "short": "32",
+    "name": "Psychology",
+    "works_count": 10229255,
+    "cited_by_count": 96848670
+  },
+  {
+    "id": "https://openalex.org/fields/19",
+    "short": "19",
+    "name": "Earth and Planetary Sciences",
+    "works_count": 9375533,
+    "cited_by_count": 70368135
+  },
+  {
+    "id": "https://openalex.org/fields/20",
+    "short": "20",
+    "name": "Economics, Econometrics and Finance",
+    "works_count": 8897829,
+    "cited_by_count": 52764876
+  },
+  {
+    "id": "https://openalex.org/fields/16",
+    "short": "16",
+    "name": "Chemistry",
+    "works_count": 7770935,
+    "cited_by_count": 96349732
+  },
+  {
+    "id": "https://openalex.org/fields/25",
+    "short": "25",
+    "name": "Materials Science",
+    "works_count": 7669003,
+    "cited_by_count": 128445889
+  },
+  {
+    "id": "https://openalex.org/fields/36",
+    "short": "36",
+    "name": "Health Professions",
+    "works_count": 6891717,
+    "cited_by_count": 34144308
+  },
+  {
+    "id": "https://openalex.org/fields/26",
+    "short": "26",
+    "name": "Mathematics",
+    "works_count": 5470992,
+    "cited_by_count": 60952017
+  },
+  {
+    "id": "https://openalex.org/fields/28",
+    "short": "28",
+    "name": "Neuroscience",
+    "works_count": 4168864,
+    "cited_by_count": 91477827
+  },
+  {
+    "id": "https://openalex.org/fields/18",
+    "short": "18",
+    "name": "Decision Sciences",
+    "works_count": 3639675,
+    "cited_by_count": 37883832
+  },
+  {
+    "id": "https://openalex.org/fields/24",
+    "short": "24",
+    "name": "Immunology and Microbiology",
+    "works_count": 2831411,
+    "cited_by_count": 49471728
+  },
+  {
+    "id": "https://openalex.org/fields/21",
+    "short": "21",
+    "name": "Energy",
+    "works_count": 1725822,
+    "cited_by_count": 27816682
+  },
+  {
+    "id": "https://openalex.org/fields/35",
+    "short": "35",
+    "name": "Dentistry",
+    "works_count": 1608607,
+    "cited_by_count": 14078681
+  },
+  {
+    "id": "https://openalex.org/fields/29",
+    "short": "29",
+    "name": "Nursing",
+    "works_count": 1510725,
+    "cited_by_count": 15124467
+  },
+  {
+    "id": "https://openalex.org/fields/30",
+    "short": "30",
+    "name": "Pharmacology, Toxicology and Pharmaceutics",
+    "works_count": 1465547,
+    "cited_by_count": 15277607
+  },
+  {
+    "id": "https://openalex.org/fields/15",
+    "short": "15",
+    "name": "Chemical Engineering",
+    "works_count": 932679,
+    "cited_by_count": 12883555
+  },
+  {
+    "id": "https://openalex.org/fields/34",
+    "short": "34",
+    "name": "Veterinary",
+    "works_count": 755170,
+    "cited_by_count": 5819268
+  }
+]

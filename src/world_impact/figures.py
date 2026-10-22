@@ -156,6 +156,144 @@ def pervasiveness_bar(values: np.ndarray, labels: tuple[str, ...], path: Path, t
     return _save(fig, path)
 
 
+def field_flow_heatmap(
+    flow: dict[str, Any], path: Path, title: str = "Field-to-field citation flow"
+) -> Path:
+    """Rows cite columns. Diagonal dominates, which is itself the finding."""
+    names = [name[:26] for name in flow["fields"]]
+    matrix = np.asarray(flow["matrix"], dtype=float)
+    if matrix.size == 0:
+        raise ValueError("empty flow matrix")
+    normalised = matrix / np.maximum(matrix.sum(axis=1, keepdims=True), 1.0)
+    fig, ax = plt.subplots(figsize=(0.34 * len(names) + 3.0, 0.34 * len(names) + 2.6))
+    image = ax.imshow(normalised, cmap="magma", vmin=0.0)
+    ax.set_xticks(range(len(names)))
+    ax.set_xticklabels(names, rotation=90, fontsize=FLOOR - 2)
+    ax.set_yticks(range(len(names)))
+    ax.set_yticklabels(names, fontsize=FLOOR - 2)
+    ax.set_xlabel("cited field")
+    ax.set_ylabel("citing field")
+    ax.set_title(title)
+    fig.colorbar(image, ax=ax, shrink=0.6, label="share of the citing field's references")
+    return _save(fig, path)
+
+
+def field_supply(
+    upstream: dict[str, dict[str, float]],
+    path: Path,
+    title: str = "Net citation exporters and importers",
+    limit: int = 12,
+) -> Path:
+    """Horizontal bars of the incoming/outgoing citation ratio, both extremes."""
+    rows = sorted(
+        (
+            (name, stats["ratio"], stats["incoming"], stats["outgoing"])
+            for name, stats in upstream.items()
+        ),
+        key=lambda row: -row[1],
+    )
+    selected = rows[:limit] + rows[-limit:]
+    fig, ax = plt.subplots(figsize=(8.0, 0.32 * len(selected) + 1.8))
+    values = [row[1] for row in selected]
+    colours = ["#1f6f8b" if value >= 1.0 else "#b0413e" for value in values]
+    ax.barh(range(len(selected)), values, color=colours)
+    ax.axvline(1.0, color="black", linestyle=":", linewidth=1.0)
+    ax.set_yticks(range(len(selected)))
+    ax.set_yticklabels([row[0][:40] for row in selected], fontsize=FLOOR - 1)
+    ax.invert_yaxis()
+    ax.set_xlabel("incoming / outgoing citation flow  (>1 = net supplier)")
+    ax.set_title(title)
+    return _save(fig, path)
+
+
+def corpus_timeline(
+    seeds: list[dict[str, Any]],
+    path: Path,
+    classify: Any,
+    title: str = "Top-cited works by year: the corpus as a timeline",
+) -> Path:
+    """One point per work, x = year, y = citations (log), coloured by class.
+
+    This is the automated equivalent of a hand-built timeline: the lanes are the
+    three title classes, so the reader can see at a glance when methodological
+    infrastructure came to dominate the most-cited literature.
+    """
+    fig, ax = plt.subplots(figsize=(9.5, 5.2))
+    palette = {"method": "#1f6f8b", "theory": "#b0413e", "unclassified": "#8aa0b4"}
+    for label, colour in palette.items():
+        subset = [
+            work
+            for work in seeds
+            if classify(work.get("title") or "") == label and work.get("year")
+        ]
+        if not subset:
+            continue
+        ax.scatter(
+            [work["year"] for work in subset],
+            [max(work.get("cited_by_count") or 1, 1) for work in subset],
+            s=16,
+            alpha=0.65,
+            color=colour,
+            label=f"{label} ({len(subset)})",
+        )
+    ax.set_yscale("log")
+    ax.set_xlabel("publication year")
+    ax.set_ylabel("citations (log scale)")
+    ax.set_title(title)
+    ax.legend(loc="upper left", title="title classification")
+    return _save(fig, path)
+
+
+def timeline_lanes(
+    items: list[dict[str, Any]],
+    path: Path,
+    lane_key: str = "field",
+    title: str = "Multi-field timeline",
+    max_lanes: int = 12,
+    max_items_per_lane: int = 6,
+) -> Path:
+    """The Information-Revolution visual grammar, generated from data.
+
+    Lanes are categories; each lane gets a horizontal rule with its most
+    important items placed at their date and labelled. Produced by a function
+    rather than drawn, so the same figure can be regenerated for any subset of
+    the corpus -- which is the point of automating it.
+    """
+    lanes: dict[str, list[dict[str, Any]]] = {}
+    for item in items:
+        if not item.get("year"):
+            continue
+        lanes.setdefault(str(item.get(lane_key) or "unknown"), []).append(item)
+    ranked = sorted(lanes.items(), key=lambda pair: -len(pair[1]))[:max_lanes]
+    fig, ax = plt.subplots(figsize=(11.0, 0.62 * len(ranked) + 2.0))
+    for row, (_lane, members) in enumerate(ranked):
+        members = sorted(members, key=lambda work: -(work.get("cited_by_count") or 0))
+        members = sorted(members[:max_items_per_lane], key=lambda work: work["year"] or 0)
+        years = [work["year"] for work in members]
+        if not years:
+            continue
+        ax.hlines(row, min(years), max(years), color="#c8d3dd", linewidth=2.0, zorder=1)
+        ax.scatter(years, [row] * len(years), s=42, color="#1f6f8b", zorder=2)
+        for index, work in enumerate(members):
+            offset = 0.22 if index % 2 == 0 else -0.34
+            ax.annotate(
+                (work.get("title") or "")[:34],
+                (work["year"], row),
+                textcoords="offset points",
+                xytext=(0, 14 if offset > 0 else -16),
+                fontsize=FLOOR - 2,
+                ha="center",
+                color="#33414d",
+            )
+    ax.set_yticks(range(len(ranked)))
+    ax.set_yticklabels([lane[:34] for lane, _ in ranked], fontsize=FLOOR - 1)
+    ax.invert_yaxis()
+    ax.set_xlabel("year")
+    ax.set_title(title)
+    ax.grid(axis="x", linestyle=":", alpha=0.35)
+    return _save(fig, path)
+
+
 def test_information(fit: Any, path: Path) -> Path:
     """The instrument's resolving power, and where it collapses."""
     grid = np.linspace(-3.0, 3.0, 121)

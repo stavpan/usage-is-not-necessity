@@ -40,12 +40,8 @@ def main() -> None:
     for row in candidates[:25]:
         print(f"  {row['sitelinks']:4d}  {row['date'][:4]}  {row['label'][:62]}")
 
-    matches = external.match_pool_to_dataset(
-        candidates, list(fine.names) + list(coarse.names)
-    )
-    (CACHE / "pool_coverage.json").write_text(
-        json.dumps(matches, indent=2), encoding="utf-8"
-    )
+    matches = external.match_pool_to_dataset(candidates, list(fine.names) + list(coarse.names))
+    (CACHE / "pool_coverage.json").write_text(json.dumps(matches, indent=2), encoding="utf-8")
     print("\nCOVERAGE OF THE OBJECTIVE POOL BY THE CODED LISTS")
     print(
         f"  pool {matches['n_pool']}: covered {matches['n_covered']}, "
