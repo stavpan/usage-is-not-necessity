@@ -78,6 +78,7 @@ testpaths = ["tests"]
 addopts = "-q --strict-markers --strict-config"
 markers = [
   "network: requires outbound network access (deselect with '-m \"not network\"')",
+  "slow: runs the analysis pipeline; a few minutes, not a few seconds",
 ]
 filterwarnings = ["error::RuntimeWarning"]
 

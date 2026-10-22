@@ -286,32 +286,42 @@ def _section_linkage(block: dict) -> list[str]:
         f"Edges: **{block['n_edges']}** enabling relations over {block['n_nodes']} "
         "developments. Direct effects are the coded matrix; total effects resolve "
         "mediation through the Leontief inverse (I - B)^-1 (Leontief 1936; Hirschman "
-        "1958). Forward linkage is the total effect a development transmits to others "
-        "per unit of its own impact -- the formal version of 'this is a seed'.\n"
+        "1958).\n"
     )
     lines.append(
-        "| development | direct | total own | downstream reach | forward linkage |\n"
-        "|---|---|---|---|---|\n"
+        "Three measures, because the first is biased. Forward linkage is "
+        "`(total - direct) / direct`, which **flatters developments with a small "
+        "direct footprint** -- exactly what a knowledge-layer row is by construction. "
+        "Downstream share is the same numerator over `total` and is bounded in "
+        "[0, 1). Transitive reach counts how many developments sit downstream and uses "
+        "no weights at all.\n"
+    )
+    lines.append(
+        "| development | direct | downstream share | transitive reach | "
+        "forward linkage |\n|---|---|---|---|---|\n"
     )
     for row in block["ranked"][:20]:
         lines.append(
-            f"| {row['name'][:40]} | {row['direct']:.0f} | {row['total_own']:.1f} | "
-            f"{row['downstream']:.1f} | {row['forward_linkage']:.2f} |\n"
+            f"| {row['name'][:40]} | {row['direct']:.0f} | "
+            f"{row['downstream_share']:.3f} | {row['transitive_reach']} | "
+            f"{row['forward_linkage']:.2f} |\n"
         )
     lines.append(
-        f"\nMedian forward linkage {block['median_forward_linkage']:.3f}. Knowledge-"
-        "bearing developments are listed separately so the seed hypothesis can be "
-        "read off the analysis rather than asserted by it.\n"
+        f"\n90th-percentile thresholds among non-knowledge developments: downstream "
+        f"share {block['share_threshold_p90']:.3f}, transitive reach "
+        f"{block['reach_threshold_p90']:.0f}.\n"
     )
     lines.append(
-        "| knowledge development | forward linkage | downstream reach | rank |\n|---|---|---|---|\n"
+        "| knowledge development | downstream share (percentile) | "
+        "transitive reach (percentile) |\n|---|---|---|\n"
     )
     for row in block["knowledge"]:
         lines.append(
-            f"| {row['name'][:40]} | {row['forward_linkage']:.2f} | "
-            f"{row['downstream']:.1f} | {row['rank']} / {block['n_nodes']} |\n"
+            f"| {row['name'][:40]} | {row['downstream_share']:.3f} "
+            f"({row['percentile_share']:.0f}) | {row['transitive_reach']} "
+            f"({row['percentile_reach']:.0f}) |\n"
         )
-    lines.append(f"\n{block['verdict']}\n")
+    lines.append(f"\n**{block['verdict']}**\n")
     return lines
 
 
