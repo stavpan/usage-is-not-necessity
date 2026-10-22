@@ -47,16 +47,11 @@ plugins:
 
 nav:
   - Overview: index.md
-  - Literature review: literature.md
   - Methods: methods.md
   - Decision log (incl. retractions): decisions.md
-  - Reference:
-      - world_impact.schema: reference/schema.md
-      - world_impact.data: reference/data.md
-      - world_impact.measurement: reference/measurement.md
-      - world_impact.axes: reference/axes.md
-      - world_impact.nulls: reference/nulls.md
-      - world_impact.ranking: reference/ranking.md
-      - world_impact.linkage: reference/linkage.md
-      - world_impact.sensitivity: reference/sensitivity.md
-      - world_impact.tensor: reference/tensor.md
+  - Literature review: literature.md
+  - API reference:
+      - Core (schema, data, measurement): reference/core.md
+      - Analysis (structure, nulls, ranking): reference/analysis.md
+      - Extensions (linkage, sensitivity, tensor): reference/extensions.md
+      - Pipeline and reporting: reference/pipeline.md

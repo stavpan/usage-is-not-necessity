@@ -22,6 +22,10 @@ types-PyYAML = "*"
 [feature.docs.pypi-dependencies]
 mkdocs-material = ">=9.5"
 mkdocstrings = { version = ">=0.24", extras = ["python"] }
+# mkdocstrings reports an INFO (not a warning, so --strict passes) that
+# signature formatting wants Black or Ruff present. Ruff lives in the dev
+# feature; adding it here would force a re-solve for no functional gain.
+# `pixi run -e docs docs-build` is clean as it stands.
 
 [environments]
 default = { features = [], solve-group = "default" }
