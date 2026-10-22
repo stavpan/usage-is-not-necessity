@@ -31,11 +31,20 @@ def run_analysis(
     screen_trajectories: int = 20,
     screen_targets: int = 3,
     reference_panel: bool = True,
+    level: str = "results",
+    with_granularity: bool = True,
     dataset: Dataset | None = None,
 ) -> dict[str, Any]:
-    """Run every stage and return a JSON-serialisable result tree."""
+    """Run every stage and return a JSON-serialisable result tree.
+
+    ``level`` selects the resolution: ``"results"`` (the fine layer of specific
+    artefacts and papers, the default) or ``"developments"`` (the coarse layer of
+    disciplines). The pipeline is identical at both, which is what makes the
+    granularity comparison a measurement rather than a rhetorical move.
+    """
     rng = np.random.default_rng(seed)
-    ds = dataset if dataset is not None else load_dataset(data_dir or DEFAULT_DATA_DIR)
+    root = data_dir or DEFAULT_DATA_DIR
+    ds = dataset if dataset is not None else load_dataset(root, level=level)
     matrix = ds.matrix()
 
     measurement = stages.measurement_stage(ds, rng, seed=seed, value_draws=value_draws)
@@ -49,11 +58,21 @@ def run_analysis(
     )
     tensor_block = stages.tensor_stage(ds, rng, null_iterations=tensor_null_iterations)
     linkage_block = stages.linkage_stage(ds)
+    option_value_block = stages.option_value_stage(ds, rng)
+    granularity_block: dict[str, Any] = {"available": False}
+    if with_granularity:
+        try:
+            coarse = load_dataset(root, level="developments")
+            granularity_block = stages.granularity_stage(ds, coarse)
+            granularity_block["available"] = True
+        except ValueError as error:
+            granularity_block = {"available": False, "error": str(error)}
     reference_block = stages.reference_stage(ds) if reference_panel else {"available": False}
 
     return {
         "meta": {
             "seed": seed,
+            "level": level,
             "n_developments": ds.n_developments,
             "n_outcomes": ds.n_outcomes,
             "n_cells": int((matrix > 0).sum()),
@@ -79,6 +98,8 @@ def run_analysis(
         "sensitivity": sensitivity_block,
         "tensor": tensor_block,
         "linkage": linkage_block,
+        "option_value": option_value_block,
+        "granularity": granularity_block,
         "reference": reference_block,
     }
 

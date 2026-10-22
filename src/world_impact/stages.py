@@ -377,6 +377,134 @@ def linkage_stage(
     }
 
 
+def option_value_stage(dataset: Dataset, rng: np.random.Generator | None = None) -> dict[str, Any]:
+    """Option value: what becomes unreachable without each development.
+
+    Three variants are reported, because the two free choices (weights, and
+    whether same-kind substitutes count) each move the answer, and picking one
+    silently would be exactly the move this project exists to avoid.
+    """
+    from world_impact import option_value as ov
+
+    matrix = dataset.matrix()
+    requires = ov.requires_matrix(dataset.ids, list(dataset.edges))
+    direct = matrix.sum(axis=1)
+
+    kinds = _kind_labels(dataset)
+    weighted = ov.option_value(requires, direct, parents=kinds)
+    weighted_no_subs = ov.option_value(requires, direct, parents=None)
+    unweighted = ov.option_value(requires, np.ones(len(dataset.ids)), parents=kinds)
+    expansion = ov.future_space_expansion(requires)
+    generator = rng if rng is not None else np.random.default_rng(0)
+    null = ov.criticality_null(requires, direct, generator, n_iter=60)
+
+    names = dataset.names
+    ranked = weighted.ranked(names)
+    by_impact = [
+        {"name": names[i], "impact": float(direct[i])}
+        for i in sorted(range(len(names)), key=lambda i: -direct[i])[:25]
+    ]
+    impact_rank = {int(i): position + 1 for position, i in enumerate(np.argsort(-direct))}
+    option_rank = {int(row["index"]): position + 1 for position, row in enumerate(ranked)}
+    # Annotated explicitly: without it the generator's dicts are inferred as
+    # dict[str, object], and every later arithmetic on a field becomes a mypy
+    # error rather than a check.
+    biggest_movers: list[dict[str, Any]] = sorted(
+        (
+            {
+                "name": names[i],
+                "impact_rank": int(impact_rank[i]),
+                "option_value_rank": int(option_rank[i]),
+                "shift": int(impact_rank[i] - option_rank[i]),
+            }
+            for i in range(len(names))
+        ),
+        key=lambda row: -int(row["shift"]),
+    )
+
+    return {
+        "n_nodes": len(names),
+        "n_edges": int(requires.sum()),
+        "n_available": weighted.n_available,
+        "total_capability": weighted.total_capability,
+        "ranked": ranked[:30],
+        "ranked_no_substitutes": weighted_no_subs.ranked(names)[:30],
+        "ranked_unweighted": unweighted.ranked(names)[:30],
+        "future_space_expansion": {
+            names[i]: float(expansion[i]) for i in np.argsort(-expansion)[:25]
+        },
+        "by_impact": by_impact,
+        "biggest_movers": [row for row in biggest_movers if int(row["shift"]) > 0][:15],
+        "null": null,
+        "note": (
+            "option value is criticality x (1 - substitutability) under a "
+            "conjunctive prerequisite reading, so it is an upper bound; "
+            "substitutability counts only alternatives already in a dependant's "
+            "prerequisite list, so it is a lower bound"
+        ),
+    }
+
+
+def _kind_labels(dataset: Dataset) -> np.ndarray:
+    """A 'same kind' label per row, for the substitutability discount.
+
+    Uses the coarse parent where one exists (fine layer) and the primary external
+    Seshat group otherwise (coarse layer). Either way it is a claim about which
+    developments are alternatives for each other, and it is stated rather than
+    buried.
+    """
+    labels = []
+    for development in dataset.developments:
+        key = development.parent or development.extern[0].value
+        labels.append(key)
+    unique = {key: position for position, key in enumerate(sorted(set(labels)))}
+    return np.array([unique[key] for key in labels], dtype=int)
+
+
+def granularity_stage(dataset: Dataset, coarse: Dataset, top_k: int = 10) -> dict[str, Any]:
+    """Coarse vs fine: coherence, dispersion, and whether the ranking survives."""
+    from world_impact import granularity as gr
+
+    result = gr.analyse_granularity(dataset, coarse, top_k=top_k)
+    return {
+        "n_coarse_with_children": result.n_coarse_with_children,
+        "n_fine_without_parent": result.n_fine_without_parent,
+        "ranking": result.ranking,
+        "worst_coherence": result.worst_coherence(8),
+        "worst_dispersion": result.worst_dispersion(8),
+        "mean_dispersion": float(np.mean([row["dispersion"] for row in result.dispersion]))
+        if result.dispersion
+        else 0.0,
+        "verdict": _granularity_verdict(result),
+    }
+
+
+def _granularity_verdict(result: Any) -> str:
+    """Computed, not written: does the coarse layer hold up as a unit?"""
+    overlap = result.ranking["top_k_overlap"]
+    mean_dispersion = (
+        float(np.mean([row["dispersion"] for row in result.dispersion]))
+        if result.dispersion
+        else 0.0
+    )
+    worst = max((row["min_cosine"] for row in result.dispersion), default=1.0)
+    incoherent = sum(1 for row in result.coherence if row["max_abs_gap"] >= 1)
+    if overlap >= 0.8 and mean_dispersion < 0.3:
+        headline = "the coarse layer holds up"
+    elif overlap >= 0.5:
+        headline = "the coarse layer mostly holds up"
+    else:
+        headline = "the coarse layer does NOT hold up as a unit of analysis"
+    return (
+        f"{headline}: top-{result.ranking['top_k']} overlap {overlap:.2f}, mean "
+        f"within-parent dispersion {mean_dispersion:.3f}, and {incoherent} coarse "
+        f"row(s) whose declared effects fall short of what their own children "
+        f"claim by a full rubric level. Worst within-parent cosine {worst:.2f}: "
+        "the lower that number, the more the coarse row is a bag of unrelated "
+        "things rather than one intervention."
+    )
+
+
 def reference_stage(
     dataset: Dataset,
     year_min: int = 1950,

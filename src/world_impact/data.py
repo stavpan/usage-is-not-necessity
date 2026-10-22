@@ -116,26 +116,69 @@ class Dataset:
         raise KeyError(development_id)
 
 
-def load_dataset(data_dir: Path | str = DEFAULT_DATA_DIR) -> Dataset:
-    """Load and validate the coding matrix.
+LEVELS: dict[str, str] = {
+    "developments": "developments.yml",
+    "results": "results.yml",
+}
+"""The two resolutions the same instrument runs at.
+
+``developments`` is coarse: whole disciplines and interventions
+("electromagnetism", "coal and the steam engine"). ``results`` is fine: the
+specific artefact or paper that did the work ("Maxwell's displacement current",
+"Watt's separate condenser"). Same schema, same pipeline, same nulls -- which is
+what makes the comparison between them meaningful rather than rhetorical.
+"""
+
+
+def load_dataset(
+    data_dir: Path | str = DEFAULT_DATA_DIR,
+    level: str = "developments",
+) -> Dataset:
+    """Load and validate the coding matrix at one resolution.
+
+    Parameters
+    ----------
+    level
+        ``"developments"`` (coarse) or ``"results"`` (fine).
 
     Raises
     ------
     ValueError
         If any cross-file rule is violated: unknown outcome id, undeclared
-        source key, duplicate id, or an era/onset contradiction.
+        source key, duplicate id, an era/onset contradiction, an unknown
+        prerequisite, or an unknown coarse parent.
     """
+    if level not in LEVELS:
+        raise ValueError(f"unknown level {level!r}; expected one of {sorted(LEVELS)}")
     root = Path(data_dir)
     outcomes = tuple(Outcome(**row) for row in _read_yaml(root / "outcomes.yml"))
-    developments = tuple(Development(**row) for row in _read_yaml(root / "developments.yml"))
+    developments = tuple(Development(**row) for row in _read_yaml(root / LEVELS[level]))
     sources = {row["key"]: Source(**row) for row in _read_yaml(root / "sources.yml")}
-    edges_path = root / "edges.yml"
-    edges = (
-        tuple((row["user"], row["provider"]) for row in (_read_yaml(edges_path) or []))
-        if edges_path.exists()
-        else ()
-    )
-    problems = check(outcomes, developments, sources)
+
+    # Edges. The coarse layer keeps its graph in a separate file because the
+    # edges there are a research artefact in their own right; the fine layer
+    # carries prerequisites inline, so that each result's dependency claim sits
+    # next to the result. Mixing the two would let a fine row silently inherit a
+    # coarse edge, which is exactly the coupling the granularity analysis needs
+    # to be able to measure.
+    inline = tuple((d.id, provider) for d in developments for provider in d.requires)
+    if level == "developments":
+        edges_path = root / "edges.yml"
+        declared = (
+            tuple((row["user"], row["provider"]) for row in (_read_yaml(edges_path) or []))
+            if edges_path.exists()
+            else ()
+        )
+        edges = declared + inline
+    else:
+        edges = inline
+
+    coarse_ids = None
+    if level == "results":
+        coarse_path = root / LEVELS["developments"]
+        coarse_ids = {row["id"] for row in _read_yaml(coarse_path)}
+
+    problems = check(outcomes, developments, sources, coarse_ids=coarse_ids)
     problems.extend(check_edges(developments, edges))
     if problems:
         raise ValueError("coding matrix failed validation:\n  - " + "\n  - ".join(problems))
@@ -204,8 +247,15 @@ def check(
     outcomes: tuple[Outcome, ...],
     developments: tuple[Development, ...],
     sources: dict[str, Source],
+    coarse_ids: set[str] | None = None,
 ) -> list[str]:
-    """Return a list of cross-file violations (empty means valid)."""
+    """Return a list of cross-file violations (empty means valid).
+
+    ``coarse_ids`` is supplied when validating the fine layer, so that every fine
+    row can be checked against the coarse row it claims to refine. Without it, a
+    typo in ``parent`` would silently drop a result out of the granularity
+    analysis rather than failing the build.
+    """
     problems: list[str] = []
 
     for name, seq in (("outcome", outcomes), ("development", developments)):
@@ -216,6 +266,7 @@ def check(
             seen.add(item.id)
 
     outcome_ids = {o.id for o in outcomes}
+    ids = {d.id for d in developments}
     for dev in developments:
         unknown = sorted(set(dev.effects) - outcome_ids)
         if unknown:
@@ -223,6 +274,23 @@ def check(
         missing = sorted(set(dev.sources) - set(sources))
         if missing:
             problems.append(f"{dev.id}: undeclared source keys {missing}")
+
+        # Same-resolution prerequisites. Cross-resolution coupling goes through
+        # ``parent``, never through ``requires``, so a fine row cannot quietly
+        # inherit a coarse dependency.
+        unknown_requires = sorted(set(dev.requires) - ids)
+        if unknown_requires:
+            problems.append(f"{dev.id}: unknown prerequisites {unknown_requires}")
+        if dev.id in dev.requires:
+            problems.append(f"{dev.id}: requires itself")
+        if len(set(dev.requires)) != len(dev.requires):
+            problems.append(f"{dev.id}: duplicate prerequisites")
+
+        if dev.parent is not None:
+            if coarse_ids is None:
+                problems.append(f"{dev.id}: parent set but no coarse level supplied for checking")
+            elif dev.parent not in coarse_ids:
+                problems.append(f"{dev.id}: unknown coarse parent {dev.parent}")
 
     # Era/onset consistency: era medians must not decrease along era order.
     # Periodisation is a convention, so we forbid contradiction rather than

@@ -476,3 +476,21 @@
   sources: [kragh1999, riordan1997]
   knowledge_layer: true
   effects: {information: 3, materials: 1, health: 1}
+
+- id: information_theory
+  name: "Information theory"
+  onset: 1948
+  era: contemporary
+  extern: [information]
+  sources: [shannon1948, cover2006]
+  knowledge_layer: true
+  effects: {information: 3, literacy: 1}
+
+- id: optimisation_control
+  name: "Optimisation and control theory"
+  onset: 1947
+  era: contemporary
+  extern: [information]
+  sources: [dantzig1963, bennett1996]
+  knowledge_layer: true
+  effects: {information: 2, income: 1, mobility: 1}

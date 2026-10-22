@@ -1,0 +1,36 @@
+{
+  "ford_assembly_line": {
+    "found": false,
+    "openalex_id": "https://openalex.org/W1940708076",
+    "doi": null,
+    "matched_title": "Art of the Moving Picture",
+    "publication_year": 1915,
+    "cited_by_count": 92,
+    "similarity": 0.49
+  },
+  "haber_ammonia": {
+    "found": false,
+    "error": "no work"
+  },
+  "mittasch_catalyst": {
+    "found": false,
+    "error": "no work"
+  },
+  "bosch_scaleup": {
+    "found": false,
+    "error": "no work"
+  },
+  "carrier_air_conditioning": {
+    "found": false,
+    "openalex_id": "https://openalex.org/W2044135785",
+    "doi": "https://doi.org/10.1016/s0140-6736(00)67142-8",
+    "matched_title": "A PROTEST AGAINST DIRT.",
+    "publication_year": 1903,
+    "cited_by_count": 1,
+    "similarity": 0.367
+  },
+  "ostwald_nitric_acid": {
+    "found": false,
+    "error": "no work"
+  }
+}

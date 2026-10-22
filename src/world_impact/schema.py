@@ -112,6 +112,17 @@ class Development(BaseModel):
     extern: list[SeshatGroup] = Field(min_length=1)
     sources: list[str] = Field(min_length=1)
     effects: dict[str, int] = Field(min_length=1)
+    parent: str | None = None
+    """Coarse-resolution development this row belongs to, when the row is a
+    *specific result* rather than a whole discipline. ``None`` at the coarse
+    level. Used by :mod:`world_impact.granularity` to test whether a coarse row
+    is an internally homogeneous unit of analysis, and to map fine rows back onto
+    the coarse graph."""
+
+    requires: list[str] = Field(default_factory=list)
+    """Prerequisite rows *at the same resolution*. Inline edges, so the fine layer
+    can be a self-contained DAG without a separate ``edges.yml``."""
+
     knowledge_layer: bool = False
     """True for developments whose primary product is *understanding* rather than
     a deployable capability (mathematics, mechanics, thermodynamics,

@@ -314,3 +314,15 @@
 - {key: kline1986, author: "Kline, S. J.; Rosenberg, N.", year: 1986, title: "An overview of innovation", publisher: "in: The Positive Sum Strategy, National Academy Press", kind: book}
 - {key: leontief1936, author: "Leontief, W. W.", year: 1936, title: "Quantitative input and output relations in the economic system of the United States", venue: "Review of Economics and Statistics", volume: "18(3):105-125", kind: article}
 - {key: hirschman1958, author: "Hirschman, A. O.", year: 1958, title: "The Strategy of Economic Development", publisher: "Yale University Press", kind: book}
+- {key: shannon1948, author: "Shannon, C. E.", year: 1948, title: "A mathematical theory of communication", venue: "Bell System Technical Journal", volume: "27(3):379-423", kind: article}
+- {key: cover2006, author: "Cover, T. M.; Thomas, J. A.", year: 2006, title: "Elements of Information Theory (2nd ed.)", publisher: "Wiley", kind: book}
+- {key: dantzig1963, author: "Dantzig, G. B.", year: 1963, title: "Linear Programming and Extensions", publisher: "Princeton University Press", kind: book}
+- {key: bennett1996, author: "Bennett, S.", year: 1996, title: "A History of Control Engineering 1930-1955", publisher: "Institution of Engineering and Technology", kind: book}
+- {key: hidalgo2007, author: "Hidalgo, C. A.; Klinger, B.; Barabasi, A.-L.; Hausmann, R.", year: 2007, title: "The product space conditions the development of nations", venue: "Science", volume: "317(5837):482-487", kind: article}
+- {key: ball1989, author: "Ball, M. O.; Golden, B. L.", year: 1989, title: "Finding the most vital arcs in a network", venue: "Operations Research Letters", volume: "8(2):73-76", kind: article}
+- {key: dixit1994, author: "Dixit, A. K.; Pindyck, R. S.", year: 1994, title: "Investment under Uncertainty", publisher: "Princeton University Press", kind: book}
+- {key: kauffman2000, author: "Kauffman, S. A.", year: 2000, title: "Investigations", publisher: "Oxford University Press", kind: book}
+- {key: arrow1974, author: "Arrow, K. J.; Fisher, A. C.", year: 1974, title: "Environmental preservation, uncertainty, and irreversibility", venue: "Quarterly Journal of Economics", volume: "88(2):312-319", kind: article}
+- {key: krippendorff2019, author: "Krippendorff, K.", year: 2019, title: "Content Analysis: An Introduction to Its Methodology (4th ed.)", publisher: "SAGE", kind: book}
+- {key: landis1977, author: "Landis, J. R.; Koch, G. G.", year: 1977, title: "The measurement of observer agreement for categorical data", venue: "Biometrics", volume: "33(1):159-174", kind: article}
+- {key: hidalgo2021, author: "Hidalgo, C. A.", year: 2021, title: "Economic complexity theory and applications", venue: "Nature Reviews Physics", volume: "3:92-113", kind: article}

@@ -1,0 +1,465 @@
+{
+  "threshold": 0.72,
+  "n_pool": 400,
+  "n_covered": 5,
+  "n_explained": 209,
+  "n_unexplained": 186,
+  "raw_coverage": 0.013,
+  "scope_adjusted_coverage": 0.026,
+  "exclusion_counts": {
+    "place_or_celestial_body": 45,
+    "name_only_ambiguity": 14,
+    "sport_or_game": 8,
+    "chemical_substance": 108,
+    "pathogen_or_condition": 5,
+    "theory_without_outcome_path": 5,
+    "unexplained": 186,
+    "entity_or_particle": 17,
+    "artefact_or_instrument": 7
+  },
+  "top_unexplained": [
+    {
+      "qid": "Q17517",
+      "label": "mobile phone",
+      "date": "1973-01-01",
+      "sitelinks": 180,
+      "best_name_similarity": 0.5,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q9158",
+      "label": "email",
+      "date": "1971-01-01",
+      "sitelinks": 172,
+      "best_name_similarity": 0.37,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q11427",
+      "label": "steel",
+      "date": "1865-01-01",
+      "sitelinks": 168,
+      "best_name_similarity": 0.571,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q6368",
+      "label": "web browser",
+      "date": "1990-12-20",
+      "sitelinks": 155,
+      "best_name_similarity": 0.5,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q11425",
+      "label": "animation",
+      "date": "1888-12-01",
+      "sitelinks": 146,
+      "best_name_similarity": 0.7,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q11425",
+      "label": "animation",
+      "date": "1892-10-28",
+      "sitelinks": 146,
+      "best_name_similarity": 0.7,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q37828",
+      "label": "refrigerator",
+      "date": "1856-01-01",
+      "sitelinks": 144,
+      "best_name_similarity": 0.636,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q26540",
+      "label": "artificial satellite",
+      "date": "1957-10-04",
+      "sitelinks": 143,
+      "best_name_similarity": 0.529,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q1307",
+      "label": "oganesson",
+      "date": "2002-06-01",
+      "sitelinks": 135,
+      "best_name_similarity": 0.421,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q1266",
+      "label": "darmstadtium",
+      "date": "1994-11-09",
+      "sitelinks": 133,
+      "best_name_similarity": 0.452,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q4439",
+      "label": "hard disk",
+      "date": "1956-01-01",
+      "sitelinks": 132,
+      "best_name_similarity": 0.435,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q1272",
+      "label": "roentgenium",
+      "date": "1994-12-08",
+      "sitelinks": 132,
+      "best_name_similarity": 0.519,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q11656",
+      "label": "diode",
+      "date": "1901-01-01",
+      "sitelinks": 130,
+      "best_name_similarity": 0.357,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q1278",
+      "label": "copernicium",
+      "date": "1996-01-01",
+      "sitelinks": 130,
+      "best_name_similarity": 0.4,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q1301",
+      "label": "nihonium",
+      "date": "2006-01-01",
+      "sitelinks": 130,
+      "best_name_similarity": 0.421,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q1303",
+      "label": "moscovium",
+      "date": "2003-08-01",
+      "sitelinks": 129,
+      "best_name_similarity": 0.4,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q1304",
+      "label": "livermorium",
+      "date": "2000-07-01",
+      "sitelinks": 128,
+      "best_name_similarity": 0.381,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q36359",
+      "label": "Hammurabi",
+      "date": "1853-01-01",
+      "sitelinks": 126,
+      "best_name_similarity": 0.412,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q1302",
+      "label": "flerovium",
+      "date": "1999-01-01",
+      "sitelinks": 126,
+      "best_name_similarity": 0.364,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q1306",
+      "label": "tennessine",
+      "date": "2010-01-01",
+      "sitelinks": 124,
+      "best_name_similarity": 0.471,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q1306",
+      "label": "tennessine",
+      "date": "2009-01-01",
+      "sitelinks": 124,
+      "best_name_similarity": 0.471,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q11658",
+      "label": "transformer",
+      "date": "1831-01-01",
+      "sitelinks": 123,
+      "best_name_similarity": 0.5,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q12757",
+      "label": "internal combustion engine",
+      "date": "1924-01-01",
+      "sitelinks": 121,
+      "best_name_similarity": 0.71,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q267298",
+      "label": "battery",
+      "date": "1800-01-01",
+      "sitelinks": 120,
+      "best_name_similarity": 0.5,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q7547",
+      "label": "Phobos",
+      "date": "1877-08-18",
+      "sitelinks": 116,
+      "best_name_similarity": 0.375,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q604",
+      "label": "136472 Makemake",
+      "date": "2005-03-31",
+      "sitelinks": 114,
+      "best_name_similarity": 0.343,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q3123",
+      "label": "Io",
+      "date": "1610-01-07",
+      "sitelinks": 113,
+      "best_name_similarity": 0.333,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q43478",
+      "label": "natural selection",
+      "date": "1858-01-01",
+      "sitelinks": 112,
+      "best_name_similarity": 0.541,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q3169",
+      "label": "Ganymede",
+      "date": "1610-01-07",
+      "sitelinks": 111,
+      "best_name_similarity": 0.37,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q7548",
+      "label": "Deimos",
+      "date": "1877-08-12",
+      "sitelinks": 111,
+      "best_name_similarity": 0.5,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q601",
+      "label": "(136108) Haumea",
+      "date": "2003-03-07",
+      "sitelinks": 109,
+      "best_name_similarity": 0.296,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q79897",
+      "label": "Morse code",
+      "date": "1836-01-01",
+      "sitelinks": 106,
+      "best_name_similarity": 0.476,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q47616",
+      "label": "incandescent light bulb",
+      "date": "1879-01-01",
+      "sitelinks": 105,
+      "best_name_similarity": 0.453,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q134566",
+      "label": "weighing scale",
+      "date": "1770-01-01",
+      "sitelinks": 104,
+      "best_name_similarity": 0.444,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q5325",
+      "label": "inductor",
+      "date": "1831-01-01",
+      "sitelinks": 104,
+      "best_name_similarity": 0.476,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q3134",
+      "label": "Callisto",
+      "date": "1610-01-07",
+      "sitelinks": 103,
+      "best_name_similarity": 0.429,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q129072",
+      "label": "Persepolis",
+      "date": "1621-01-01",
+      "sitelinks": 103,
+      "best_name_similarity": 0.5,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q80728",
+      "label": "dynamite",
+      "date": "1867-01-01",
+      "sitelinks": 103,
+      "best_name_similarity": 0.381,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q47719",
+      "label": "Pepsi",
+      "date": "1893-01-01",
+      "sitelinks": 103,
+      "best_name_similarity": 0.4,
+      "exclusion_category": "unexplained"
+    },
+    {
+      "qid": "Q48584",
+      "label": "Rosetta Stone",
+      "date": "1799-07-15",
+      "sitelinks": 101,
+      "best_name_similarity": 0.519,
+      "exclusion_category": "unexplained"
+    }
+  ],
+  "top_explained": [
+    {
+      "qid": "Q51",
+      "label": "Antarctica",
+      "date": "1820-01-28",
+      "sitelinks": 317,
+      "best_name_similarity": 0.571,
+      "exclusion_category": "place_or_celestial_body"
+    },
+    {
+      "qid": "Q68",
+      "label": "computer",
+      "date": "1945-01-01",
+      "sitelinks": 298,
+      "best_name_similarity": 0.471,
+      "exclusion_category": "name_only_ambiguity"
+    },
+    {
+      "qid": "Q2736",
+      "label": "association football",
+      "date": "1863-01-01",
+      "sitelinks": 296,
+      "best_name_similarity": 0.516,
+      "exclusion_category": "sport_or_game"
+    },
+    {
+      "qid": "Q324",
+      "label": "Uranus",
+      "date": "1781-03-13",
+      "sitelinks": 261,
+      "best_name_similarity": 0.435,
+      "exclusion_category": "place_or_celestial_body"
+    },
+    {
+      "qid": "Q332",
+      "label": "Neptune",
+      "date": "1846-09-23",
+      "sitelinks": 252,
+      "best_name_similarity": 0.4,
+      "exclusion_category": "place_or_celestial_body"
+    },
+    {
+      "qid": "Q1420",
+      "label": "car",
+      "date": "1884-01-01",
+      "sitelinks": 246,
+      "best_name_similarity": 0.5,
+      "exclusion_category": "name_only_ambiguity"
+    },
+    {
+      "qid": "Q556",
+      "label": "hydrogen",
+      "date": "1766-01-01",
+      "sitelinks": 238,
+      "best_name_similarity": 0.417,
+      "exclusion_category": "chemical_substance"
+    },
+    {
+      "qid": "Q629",
+      "label": "oxygen",
+      "date": "1774-01-01",
+      "sitelinks": 234,
+      "best_name_similarity": 0.364,
+      "exclusion_category": "chemical_substance"
+    },
+    {
+      "qid": "Q84263196",
+      "label": "COVID-19",
+      "date": "2019-12-01",
+      "sitelinks": 227,
+      "best_name_similarity": 0.4,
+      "exclusion_category": "pathogen_or_condition"
+    },
+    {
+      "qid": "Q339",
+      "label": "Pluto",
+      "date": "1930-02-18",
+      "sitelinks": 223,
+      "best_name_similarity": 0.348,
+      "exclusion_category": "place_or_celestial_body"
+    },
+    {
+      "qid": "Q623",
+      "label": "carbon",
+      "date": "1789-01-01",
+      "sitelinks": 219,
+      "best_name_similarity": 0.471,
+      "exclusion_category": "chemical_substance"
+    },
+    {
+      "qid": "Q11035",
+      "label": "telephone",
+      "date": "1876-01-01",
+      "sitelinks": 218,
+      "best_name_similarity": 0.571,
+      "exclusion_category": "name_only_ambiguity"
+    },
+    {
+      "qid": "Q5372",
+      "label": "basketball",
+      "date": "1891-12-01",
+      "sitelinks": 217,
+      "best_name_similarity": 0.353,
+      "exclusion_category": "sport_or_game"
+    },
+    {
+      "qid": "Q11633",
+      "label": "photography",
+      "date": "1839-01-01",
+      "sitelinks": 211,
+      "best_name_similarity": 0.529,
+      "exclusion_category": "name_only_ambiguity"
+    },
+    {
+      "qid": "Q12725",
+      "label": "electricity",
+      "date": "1821-01-01",
+      "sitelinks": 210,
+      "best_name_similarity": 0.556,
+      "exclusion_category": "name_only_ambiguity"
+    }
+  ],
+  "reading": "raw_coverage counts every pool item; scope_adjusted_coverage counts only the items that fall inside the declared scope. The gap between them is the unit mismatch, and n_unexplained is the residual selection bias."
+}

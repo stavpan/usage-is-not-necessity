@@ -46,13 +46,16 @@ def lookup(source: Source, timeout: float = 20.0) -> dict[str, Any]:
     if not items:
         return {"key": source.key, "error": "no candidates"}
 
-    best, best_score = None, 0.0
+    # ``best_score`` starts below any possible ratio: at 0.0 the first item can
+    # fail the strict ``>`` test (empty titles score 0.0), leaving ``best`` None
+    # and tripping the old assertion. Found by running the command, not by
+    # reading it -- which is the argument for running things.
+    best, best_score = items[0], -1.0
     for item in items:
         titles = item.get("title") or [""]
         score = difflib.SequenceMatcher(None, source.title.lower(), titles[0].lower()).ratio()
         if score > best_score:
             best, best_score = item, score
-    assert best is not None
 
     year = None
     issued = best.get("issued", {}).get("date-parts", [[None]])
@@ -78,19 +81,51 @@ def verify_entries(
     entries = sources[:limit] if limit else sources
     results = []
     for index, source in enumerate(entries, start=1):
-        results.append(lookup(source))
+        row = lookup(source)
+        row["tier"] = classify(row)
+        results.append(row)
         if index < len(entries):
             time.sleep(pause)
-    matched = sum(1 for row in results if row.get("matched_doi"))
-    agreeing = sum(1 for row in results if row.get("year_agrees") is True)
+
+    counts: dict[str, int] = {}
+    for row in results:
+        counts[row["tier"]] = counts.get(row["tier"], 0) + 1
     return {
         "entries": results,
         "n_entries": len(results),
-        "n_matched": matched,
-        "n_year_agree": agreeing,
+        "counts_by_tier": counts,
         "summary": (
-            f"{matched}/{len(results)} entries matched a DOI; {agreeing} of those also "
-            "agreed on year. Review every mismatch by hand: Crossref matching is a "
-            "suggestion, not a verdict."
+            f"{counts.get('verified', 0)} verified, "
+            f"{counts.get('plausible', 0)} plausible, "
+            f"{counts.get('weak', 0)} weak, "
+            f"{counts.get('unmatched', 0)} unmatched, out of {len(results)}. "
+            "A DOI hit is NOT verification: Crossref returns its best guess for any "
+            "query, so the tier is gated on title similarity and year agreement. An "
+            "earlier version of this module reported 'matched a DOI' without gating "
+            "and claimed 4/4 for entries whose similarity scores were 0.2-1.0 and "
+            "only one of which agreed on year."
         ),
     }
+
+
+def classify(row: dict[str, object]) -> str:
+    """Grade a Crossref hit. Never call a weak hit a match.
+
+    The tiers exist because the failure mode of a bibliography checker is
+    over-confidence, not under-confidence: it always returns *something*, so a
+    naive count of "matched" rises toward 100% regardless of correctness.
+    """
+    if row.get("error") or not row.get("matched_doi"):
+        return "unmatched"
+    raw = row.get("similarity")
+    similarity = float(raw) if isinstance(raw, (int, float)) else 0.0
+    year_agrees = row.get("year_agrees") is True
+    if similarity >= 0.90 and year_agrees:
+        return "verified"
+    if similarity >= 0.75 and year_agrees:
+        return "verified"
+    if similarity >= 0.70 or (similarity >= 0.55 and year_agrees):
+        return "plausible"
+    if similarity >= 0.40:
+        return "weak"
+    return "unmatched"

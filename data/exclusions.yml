@@ -1,0 +1,151 @@
+# Exclusion register for the objective candidate pool.
+#
+# Purpose. `scripts/probe_external.py` compares the coded lists against a
+# criterion-driven pool drawn from Wikidata (items with a time of discovery or
+# invention, ranked by how many Wikipedias cover them). The raw overlap is about
+# 1%. Reporting that number alone would be misleading, and explaining it away in
+# prose would be worse: most of the gap is not bias, it is a **unit mismatch**.
+# The pool's unit is "notable entity that has a discovery or invention date",
+# which is dominated by substances, places, sports and pathogens. The coded
+# unit is "an intervention with a causal path to an outcome domain". A discovered
+# element is not an intervention; nobody can act on helium to change mortality.
+#
+# So every omitted candidate is assigned to a declared category with a stated
+# reason. What is left unclassified after this is the **unexplained residual**,
+# and that residual -- not the raw 99% -- is the actual selection-bias measure.
+#
+# Rules are keyword-based and deliberately crude: the point is to make the
+# judgement explicit and falsifiable, not to be clever. A candidate that matches
+# nothing here is not thereby unimportant; it is unexplained, and the report says
+# how many of those there are and lists the most notable.
+
+categories:
+  - id: chemical_substance
+    reason: >-
+      A discovered substance rather than an intervention. Substances reach the
+      outcome domains only through a technique that uses them, and that technique
+      is what belongs in the matrix.
+    patterns:
+      [hydrogen, helium, lithium, beryllium, boron, carbon, nitrogen, oxygen,
+       fluorine, neon, sodium, magnesium, aluminium, aluminum, silicon,
+       phosphorus, sulfur, sulphur, chlorine, argon, potassium, calcium,
+       scandium, titanium, chromium, manganese, iron, cobalt, nickel, copper,
+       zinc, gallium, germanium, arsenic, selenium, bromine, krypton, rubidium,
+       strontium, yttrium, zirconium, niobium, molybdenum, ruthenium, rhodium,
+       palladium, silver, cadmium, indium, tin, antimony, tellurium, iodine,
+       xenon, caesium, cesium, barium, lanthanum, cerium, tungsten, platinum,
+       gold, mercury, thallium, lead, bismuth, radon, radium, uranium, plutonium,
+       americium, cobalt-60, deuterium, tritium, ozone, table salt, aspirin,
+       vanadium, francium, iridium, polonium, osmium, tantalum, hafnium,
+       technetium, thorium, neptunium, rhenium, europium, rutherfordium,
+       terbium, dysprosium, holmium, erbium, thulium, ytterbium, lutetium,
+       promethium, astatine, protactinium, californium, berkelium, einsteinium,
+       fermium, mendelevium, nobelium, lawrencium, dubnium, seaborgium,
+       bohrium, hassium, meitnerium, curium, actinium, gadolinium, samarium,
+       praseodymium, neodymium, thulium, radon, helium-3, graphite, diamond,
+       graphene, cellulose, chlorophyll, cholesterol, insulin, penicillin,
+       ethanol, methanol, ammonia, methane, propane, butane, benzene,
+       polyethylene, nylon, teflon, bakelite, vulcanised rubber, bakelite]
+
+  - id: place_or_celestial_body
+    reason: >-
+      A geographical or astronomical discovery. It has no causal path to any of
+      the coded outcome domains; it changes what is on the map, not how anyone
+      lives.
+    patterns:
+      [antarctica, uranus, neptune, pluto, eris, ceres, titan, europa,
+       triton, charon, mount everest, north pole, south pole, new zealand,
+       australia, america, iceland, greenland, bermuda, atlantis, ceres,
+       halley, comet, asteroid, galaxy, nebula, pulsar, quasar, exoplanet,
+       black hole, continental drift, lake, island, isle, river, sea, ocean,
+       desert, volcano, cape, strait, gulf, bay, peninsula, archipelago,
+       falls, reef, atoll, peak, mountain, valley, plateau, basin]
+
+  - id: entity_or_particle
+    reason: >-
+      A discovered entity or particle rather than an intervention. Like a
+      substance, it acts on the outcome domains rather than being something one
+      can choose to apply; the techniques that use it are coded separately.
+    patterns:
+      [electron, proton, neutron, photon, neutrino, muon, positron, antiproton,
+       boson, quark, lepton, hadron, meson, atom, molecule, isotope, hormoner,
+       hormone, enzyme, vitamin, protein, gene, genome, virus, bacterium,
+       bacterium, cell, tissue, organ, blood group, chromosome, antibody,
+       antigen, cytokine, microbiome, prion, vitamin]
+
+  - id: artefact_or_instrument
+    reason: >-
+      A finished artefact or household/leisure instrument. The schema codes the
+      technique or result that made the artefact possible, not the artefact; a
+      piano is the output of craft traditions that are separately coded, and it
+      has no independent causal path to the outcome domains.
+    patterns:
+      [piano, violin, guitar, flute, trumpet, drum, organ, harp, cello,
+       accordion, saxophone, typewriter, sewing machine, washing machine,
+       dishwasher, elevator, escalator, motorcycle, scooter, tractor,
+       tank, submarine, battleship, destroyer, helicopter, glider,
+       parachute, hang glider, trampoline, roller coaster, ferris wheel,
+       camera, phonograph, gramophone, telescope mirror, microscope slide,
+       fountain pen, ballpoint pen, pencil, zipper, velcro, safety pin,
+       razor, toothbrush, toilet, plumbing, central heating]
+
+  - id: theory_without_outcome_path
+    reason: >-
+      A result in cosmology or fundamental physics whose subject matter is not
+      the human outcome domains at all. This is a genuinely uncomfortable
+      category and it is declared rather than hidden: the schema measures effects
+      on human outcomes, so a result about the universe's origin has no path
+      through it, even though it is knowledge of the first rank. The proper fix
+      is a knowledge outcome domain, not a wider definition of impact.
+    patterns:
+      [big bang, cosmic microwave background, expansion of the universe,
+       dark matter, dark energy, gravitational wave, general relativity,
+       special relativity, cosmology, hubble, redshift, inflation,
+       multiverse, string theory, quantum entanglement, bell's theorem]
+
+  - id: sport_or_game
+    reason: A rule-governed game. It is an invention with a date, and it is not a knowledge or capability development in this schema.
+    patterns:
+      [football, soccer, basketball, baseball, cricket, rugby, tennis, golf,
+       hockey, volleyball, handball, snooker, billiards, chess, draughts,
+       checkers, poker, bridge, monopoly, scrabble, olympic, marathon,
+       boxing, wrestling, judo, karate, skiing, snowboard, skateboard, surfing,
+       formula one, grand prix, world cup]
+
+  - id: pathogen_or_condition
+    reason: >-
+      A discovered pathogen, disease or syndrome. Like a substance, it is an
+      entity that acts on the outcome domains rather than an intervention
+      available to be chosen; interventions against it are separately coded.
+    patterns:
+      [covid-19, covid, sars, hiv, aids, ebola, zika, malaria, tuberculosis,
+       cholera, plague, influenza, smallpox, polio, measles, hepatitis,
+       diabetes, cancer, alzheimer, parkinson, schizophrenia, autism,
+       down syndrome, sickle cell, haemophilia, hemophilia, leukaemia,
+       leukemia, influenza, coronavirus, monkeypox, mpox, legionnaires]
+
+  - id: language_or_ethnic_group
+    reason: A language or named human group. Not an intervention and not datable to a discovery.
+    patterns: [esperanto, latin, sanskrit, indo-european, germanic, slavic]
+
+  - id: administrative_geography
+    reason: A state, border or administrative entity rather than a technique.
+    patterns:
+      [united nations, european union, nato, soviet union, united states,
+       constitution, declaration of independence, human rights, geneva convention]
+
+  - id: name_only_ambiguity
+    reason: >-
+      A pool label that matches a coded row in substance but not in string: the
+      pool names the artefact ("computer", "telephone") while the coded row names
+      the technique or result ("the EDVAC report", "the Morse telegraph"). Listed
+      so the coverage statistic is not depressed by string matching rather than by
+      real omission; an alias table would be the proper fix.
+    patterns: [computer, telephone, radio, photography, car, bicycle, airplane,
+               electricity, newspaper, television, cinema, film, internet,
+               transistor, laser, printing, vaccination, anaesthesia, anesthesia]
+
+threshold_note: >-
+  Category matching is a prefix/substring test on the lowercased label. It is
+  deliberately generous, which makes the unexplained residual conservative: a
+  loose rule can only shrink the residual, never inflate it.
