@@ -46,6 +46,7 @@ validate = { cmd = "world-impact validate", description = "schema + provenance v
 fetch = { cmd = "world-impact fetch-reference", description = "download OWID reference series" }
 fetch-openalex = { cmd = "python scripts/fetch_openalex.py --per-field 20", description = "build the automated corpus from OpenAlex (network)" }
 figures-openalex = { cmd = "python scripts/make_figures.py", description = "figures + reports/fields.json for the automated layer" }
+contrast = { cmd = "python scripts/make_contrast.py", description = "the paper's central figure: use vs necessity, and their overlap" }
 analyse = { cmd = "world-impact analyse", description = "full analysis, writes reports/" }
 figures = { cmd = "world-impact figures", description = "regenerate figures" }
 report = { cmd = "world-impact report", description = "render the markdown report" }

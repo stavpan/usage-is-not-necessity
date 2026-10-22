@@ -55,7 +55,10 @@ def main() -> None:
         print(f"wrote {path}  ({path.stat().st_size} bytes)")
 
     # ---- convergence: the answer to "what are the most important things" ----
-    result = convergence.convergence(corpus, upstream)
+    citers_path = ROOT / "data" / "openalex" / "citers.json"
+    citers = json.loads(citers_path.read_text(encoding="utf-8")) if citers_path.exists() else {}
+    print(f"citers cached for {len(citers)} works")
+    result = convergence.convergence(corpus, upstream, citers)
     consensus = result.consensus(30)
     trend = convergence.decade_trend(result.rows)
     written += [
@@ -68,6 +71,46 @@ def main() -> None:
     for path in written[4:]:
         print(f"wrote {path}  ({path.stat().st_size} bytes)")
 
+    # ---- how many criteria are actually independent? ----
+    redundant = convergence.redundant_pairs(result.agreement)
+    effective = convergence.effective_criteria(result.agreement)
+    print(f"\nactive criteria {len(result.active)}, effective {effective}")
+    for pair in redundant:
+        print(f"  REDUNDANT  {pair['a']} = {pair['b']}  (r={pair['r']})")
+
+    # ---- was the single theory paper a coincidence? ----
+    gap = convergence.method_theory_gap(result.rows, fields.classify_work)
+    for name, stats in gap["profile"].items():
+        print(
+            "  {:<13} n={:>3.0f} cit={:>10,.0f} rate={:>8,.1f} prestige={:>9,.0f}".format(
+                name, stats["n"], stats["citations"], stats["rate"], stats["citer_prestige"]
+            )
+        )
+    print("  VERDICT:", gap["verdict"])
+
+    # Per-work rank under every criterion, so criterion-dependence is visible
+    # rather than asserted. Shannon 1948 is the case that prompted this.
+    criterion_spread = []
+    for row in consensus:
+        ranks = {key: result.rank_table[key][str(row["id"])] for key in result.active}
+        criterion_spread.append(
+            {
+                "title": row["title"],
+                "year": row["year"],
+                "support": result.support(str(row["id"])),
+                "ranks": ranks,
+                "best": min(ranks.values()),
+                "worst": max(ranks.values()),
+                "spread": max(ranks.values()) - min(ranks.values()),
+            }
+        )
+    widest = max(criterion_spread, key=lambda row: row["spread"]) if criterion_spread else None
+    if widest:
+        print(
+            "\n  widest criterion spread in the consensus top 30: "
+            f"{widest['spread']} ranks  {(widest['title'] or '')[:48]}"
+        )
+
     report = {
         "summary": summary,
         "size_normalised_upstreamness": normalised,
@@ -75,8 +118,13 @@ def main() -> None:
         "convergence": {
             "n": result.n,
             "criteria": list(convergence.CRITERIA),
+            "active_criteria": list(result.active),
+            "effective_criteria": effective,
+            "redundant_pairs": redundant,
             "agreement": {f"{a}|{b}": value for (a, b), value in result.agreement.items()},
             "consensus_top_30": consensus,
+            "criterion_spread": criterion_spread,
+            "method_theory_gap": gap,
             "movers": result.movers(15),
             "decade_trend": trend,
             "pareto_size": len(result.pareto()),

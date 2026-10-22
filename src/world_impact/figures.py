@@ -395,6 +395,54 @@ def decade_intensity(
     return _save(fig, path)
 
 
+def necessity_contrast(
+    by_use: list[tuple[str, float]],
+    by_necessity: list[tuple[str, float]],
+    path: Path,
+    title: str = "Two instruments, two answers",
+) -> Path:
+    """The same question answered by in-degree and by transitive in-degree.
+
+    Left panel ranks by how many works *use* something (citation count); right
+    panel ranks by how many works *depend* on it (transitive reach in the
+    dependency graph). The point of the figure is that the two lists do not
+    overlap at all: no work appears in both, and no label can be moved from one
+    panel to the other without changing which question is being asked.
+    """
+    fig, axes = plt.subplots(1, 2, figsize=(11.0, 4.6))
+    for ax, rows, colour, caption, unit in (
+        (axes[0], by_use, "#b45309", "by use", "citations"),
+        (axes[1], by_necessity, "#1d4ed8", "by necessity", "dependants"),
+    ):
+        labels = [_shorten(name, 40) for name, _ in rows][::-1]
+        values = [value for _, value in rows][::-1]
+        positions = np.arange(len(rows))
+        ax.barh(positions, values, color=colour, alpha=0.85)
+        ax.set_yticks(positions)
+        ax.set_yticklabels(labels)
+        ax.set_xlabel(unit)
+        ax.set_title(caption)
+        # A log-free x-axis with the value printed at the bar end: the two panels
+        # differ by three orders of magnitude, so a shared scale would flatten one.
+        span = max(values) if values else 1.0
+        for position, value in zip(positions, values, strict=True):
+            ax.text(
+                value + span * 0.02,
+                position,
+                f"{value:,.0f}",
+                va="center",
+                fontsize=9,
+            )
+        ax.set_xlim(0, span * 1.22)
+    fig.suptitle(title, fontsize=12)
+    return _save(fig, path)
+
+
+def _shorten(text: str, limit: int) -> str:
+    text = " ".join(str(text).split())
+    return text if len(text) <= limit else text[: limit - 1] + "\u2026"
+
+
 def test_information(fit: Any, path: Path) -> Path:
     """The instrument's resolving power, and where it collapses."""
     grid = np.linspace(-3.0, 3.0, 121)

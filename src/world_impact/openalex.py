@@ -41,14 +41,43 @@ WORK_SELECT = (
 )
 
 
-def _get(path: str, params: dict[str, Any], timeout: float = 60.0) -> dict[str, Any]:
+POLITE_DELAY = 0.12
+"""Seconds between requests. OpenAlex's polite pool tolerates roughly ten per
+second; a corpus-wide citer fetch followed immediately by a probe exceeded it and
+returned HTTP 429, which crashed the probe. Both the delay and the retry below
+exist because that happened."""
+
+
+def _get(
+    path: str,
+    params: dict[str, Any],
+    timeout: float = 60.0,
+    retries: int = 5,
+) -> dict[str, Any]:
+    """GET with polite pacing and exponential backoff on rate limiting."""
     merged = {**params, "mailto": MAILTO}
-    response = requests.get(
-        f"{BASE}{path}", params=merged, timeout=timeout, headers={"User-Agent": USER_AGENT}
-    )
-    response.raise_for_status()
-    payload = response.json()
-    return payload if isinstance(payload, dict) else {"results": payload}
+    last: Exception | None = None
+    for attempt in range(retries):
+        try:
+            response = requests.get(
+                f"{BASE}{path}",
+                params=merged,
+                timeout=timeout,
+                headers={"User-Agent": USER_AGENT},
+            )
+        except requests.RequestException as error:
+            last = error
+            time.sleep(POLITE_DELAY * (2**attempt))
+            continue
+        if response.status_code == 429:
+            last = requests.HTTPError("429 Too Many Requests")
+            time.sleep(1.5 * (2**attempt))
+            continue
+        response.raise_for_status()
+        time.sleep(POLITE_DELAY)
+        payload = response.json()
+        return payload if isinstance(payload, dict) else {"results": payload}
+    raise last if last is not None else requests.HTTPError("request failed")
 
 
 def short_id(value: str | None) -> str:
@@ -177,6 +206,69 @@ def build_corpus(
     cache.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(corpus, indent=2), encoding="utf-8")
     return corpus
+
+
+def fetch_citers(
+    seed_ids: list[str],
+    per_seed: int = 25,
+    cache: Path = DEFAULT_CACHE,
+    refresh: bool = False,
+    verbose: bool = False,
+) -> dict[str, Any]:
+    """Who cites each seed, and how important those citers are.
+
+    This exists because citation *count* measures usage, and usage is not
+    importance. Everybody who uses an assay cites the assay; only people building
+    directly on a theory cite the theory. So a count-based ranking is structurally
+    biased toward instruments. The repair is to look at *who* does the citing: a
+    work cited by few but extremely-cited works is foundational; a work cited by
+    everyone but by ordinary papers is a service.
+
+    Two numbers per seed, both from one request:
+
+    ``n_citers``      unique citing works (``meta.count``), which is a different
+                      quantity from ``cited_by_count`` -- the latter counts
+                      citation *instances*, so a single paper citing the same work
+                      twelve times inflates it.
+    ``top_citers``    the 25 most-cited citing works, fetched for their own
+                      citation counts and fields. That is the input to the
+                      ``citer_prestige`` criterion in :mod:`world_impact.convergence`.
+    """
+    path = cache / "citers.json"
+    if path.exists() and not refresh:
+        return json.loads(path.read_text(encoding="utf-8"))
+
+    # Merge into any existing cache rather than overwriting it: this function is
+    # called both for the whole corpus and for ad-hoc subsets (the theory probe),
+    # and an overwrite would silently destroy 520 seeds' worth of fetches.
+    out: dict[str, Any] = {}
+    if path.exists():
+        out = json.loads(path.read_text(encoding="utf-8"))
+    out = {key: value for key, value in out.items() if key not in set(seed_ids)}
+    for index, work_id in enumerate(seed_ids, start=1):
+        try:
+            payload = _get(
+                "/works",
+                {
+                    "filter": f"cites:{work_id}",
+                    "sort": "cited_by_count:desc",
+                    "per-page": per_seed,
+                    "select": "id,title,publication_year,cited_by_count,primary_topic",
+                },
+                timeout=60.0,
+            )
+        except requests.RequestException:
+            continue
+        out[work_id] = {
+            "n_citers": int((payload.get("meta") or {}).get("count") or 0),
+            "top_citers": [_slim(row) for row in payload.get("results", [])],
+        }
+        if verbose and index % 50 == 0:
+            print(f"    {index}/{len(seed_ids)} seeds")
+
+    cache.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(out, indent=2), encoding="utf-8")
+    return out
 
 
 def field_flow(corpus: dict[str, Any]) -> dict[str, Any]:

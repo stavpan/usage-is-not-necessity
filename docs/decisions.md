@@ -21,6 +21,11 @@ dominate conclusions" cannot hide its own.
 | D13 | Index arrays used after `rows.sort()` | **fixed (bug)** | Positions no longer matched the matrix rows, producing nonsense merges. The original index is carried explicitly |
 | D14 | A linear decomposition can rank a pervasive enabler | **retracted as impossible** | Verified: σ(1.5·A) = 1.5·σ(A) with identical directions. A factor that multiplies everything leaves no trace. Growth accounting, not factor analysis, is the instrument for that claim |
 | D15 | Quantum mechanics and other bodies of knowledge were absent | **fixed** | They are not deployable interventions, so they could never be matrix rows. Added as rows *plus* an enabling graph, so their effect is mediated rather than direct |
+| D16 | `reach` and `top_citations` are legitimate criteria | **RETRACTED — degenerate** | Across 520 works `reach` takes **3** distinct values and `top_citations` **5**, so their top ranks are tie-breaks. Seven works tie at the maximum `reach` and occupy ranks 1–7 in sort order. Cause: 20 references captured per seed, so seeds rarely cite each other. Both are now dropped and named; a criterion must take ≥ 10 distinct values to rank |
+| D17 | Exactly one work is in the top 50 of every criterion (the Folin assay), and Shannon 1948 is the consensus's only theory paper and holds rank 1 on cross-disciplinary reach | **RETRACTED — tie-break artefact** | Shannon's rank 1 on `reach` was the first of seven tied works. Under the corrected criterion set no work is unanimous (maximum support 5 of 7), and Shannon falls out of the top 30 to position 35. On discriminating criteria Shannon is 471st of 520 on field-normalised rate. This was the finding that made the project look as though it had vindicated its own origin |
+| D18 | The knowledge layer occupies the top of the downstream-share ranking | **retracted as untestable on the fine layer** | Zero of the 150 fine rows carry the `knowledge_layer` flag — it exists only on the 55-row coarse layer, which D19 shows is not a legitimate unit. So the fine-layer verdict "NOT SUPPORTED" is vacuous: there was nothing to test. Reported as vacuous rather than as evidence either way |
+| D19 | The 55-row coarse layer and the 150-row fine layer are two resolutions of one thing | **retracted — coarse is not a unit** | Top-10 overlap between resolutions is 0.30, mean within-parent dispersion 0.233, and 40 coarse rows declare effects below what their own children claim by a full rubric level. A coarse row is a bag of related things, not one intervention |
+| D20 | `citer_prestige` recovers foundational importance from citation structure | **retracted — it is citations one hop out** | Rank correlation with raw citations is 0.65, and the top eight by citer prestige are AlexNet, VGG, ResNet, Kohn–Sham, ImageNet, Faster R-CNN, LeNet and SAMtools — seven machine-learning architectures. The PageRank intuition returns the usage ranking with extra steps, which is the strongest single piece of evidence that necessity cannot be recovered from an untyped edge |
 
 ## The five claims that survived, and their status
 
@@ -35,6 +40,25 @@ dominate conclusions" cannot hide its own.
    anywhere in the repository.
 4. **There is no league table.** Pareto frontier (weight-free) plus SMAA
    (distribution over orderings). Forced by Arrow and Sen, not by preference.
-5. **Mediation changes which developments look upstream.** The knowledge layer
-   occupies the top of the downstream-share ranking and the middle of the
-   transitive-reach ranking. Reported as mixed, because that is what it is.
+5. **Mediation changes which developments look upstream** — *restated, and partly
+   withdrawn.* The original claim was that the knowledge layer occupies the top of
+   the downstream-share ranking and the middle of the transitive-reach ranking. It
+   cannot be tested on the fine layer, because no fine row carries the knowledge
+   flag (D18), and the coarse layer on which it can be tested is not a legitimate
+   unit (D19). What survives is the structural result, and it is the paper's
+   central one: **transitive reach and direct impact are negatively correlated
+   (Spearman ρ = −0.30)** across the same 150 rows, and the ten developments with
+   the largest direct impact have a transitive reach of 0 or 1 — eight of them zero.
+   Necessity and impact are not two estimates of one quantity.
+
+## Status of the retractions, counted
+
+Twenty decisions are logged; **eleven of them are retractions** (D5, D7, D9, D10,
+D11, D14, D16, D17, D18, D19, D20) and **one is a fixed trap caught before
+publication** (D12, the forward-linkage denominator). The option-value ordering was
+retracted separately, in `results.md`. That makes twelve retractions in total, seven
+of them documented before the paper and five added by it. D16–D20 were all found by a
+single check that did not exist when the earlier claims were made: **count each
+criterion's distinct values before letting it rank anything.**
+
+

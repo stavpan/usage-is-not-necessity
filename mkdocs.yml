@@ -47,6 +47,7 @@ plugins:
 
 nav:
   - Overview: index.md
+  - The paper: paper.md
   - The answer (what is most important): consensus.md
   - Results, explained: results.md
   - Methods: methods.md

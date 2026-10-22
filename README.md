@@ -1,88 +1,98 @@
 # world-impact
 
-**An uncertainty-aware, multi-criteria basis for ranking world-historical developments.**
+**Usage is not necessity.** An instrument for ranking scientific works, and the
+demonstration that bibliometric importance rankings measure *use* while people mean
+*necessity* — because a citation edge records that one work referred to another and
+never says why.
 
-Most claims that "X was a turning point" are unfalsifiable prose. This repository makes
-them falsifiable: it codes ~50 documented developments against 18 outcome domains, then
-asks what structure that coding actually supports — and reports the answer as an
-*interval plus a Pareto frontier*, never as a single league table, because the arithmetic
-says a single league table does not exist.
+**[Read the paper](docs/paper.md)** · **[Decision log, with twelve retractions](docs/decisions.md)**
 
-## What this is not
+---
 
-It is **not** a list of "the most important inventions". It is a measurement instrument
-plus an honest account of what that instrument can and cannot resolve. Two results in
-this repository are *negative*, and they are reported as prominently as the positive ones:
+## The result in three lines
 
-1. A rubric with four levels cannot distinguish "transformed the world" from "transformed
-   the world enormously". At the top of the scale the instrument is blind, so **no claim
-   about acceleration is possible from this data**.
-2. Ranking depends on (a) which outcomes you weight and (b) which norm you use to combine
-   them. Both are normative choices, not empirical ones. We therefore report
-   *rank-acceptability* distributions over the space of legitimate choices rather than a
-   point ordering.
+- A careful nine-criterion citation instrument over 520 works (the twenty most-cited
+  in each of 26 fields) returns a top twelve that is entirely instruments: a
+  diagnostic manual, a statistics package, a network architecture, two assays, a
+  programming language, an algorithm. **Not one is a theory.** The result is robust
+  to every repair we applied to the instrument.
+- A parameter-free dependency instrument over 150 coded results, ranked by
+  transitive reach, returns the infinitesimal calculus (58 of 150 results sit
+  downstream of it), electromagnetic induction, Carnot, entropy, Maxwell, Planck,
+  the Turing machine. **Not one is software.**
+- **The two top-twelve lists share zero entries**, and within a single coding direct
+  impact and transitive reach are *negatively* correlated (Spearman ρ = −0.30).
 
-## Why it might be publishable
+## Why
 
-There is a substantial literature on measuring long-run social development
-([Morris 2013](docs/literature.md#morris2013), [Seshat/Turchin et al. 2018](docs/literature.md#turchin2018)),
-and a substantial literature on multi-criteria ranking under uncertainty
-([SMAA, Lahdelma et al. 1998](docs/literature.md#lahdelma1998)). What is missing is the
-join: **nobody has taken the expert-coded magnitude of a development's effect across
-outcome domains and propagated measurement, weighting and norm uncertainty all the way
-through to the ranking**, with null models and pre-registered robustness checks. That
-join, plus the two negative results above, is the contribution.
+Citation count is in-degree: how many works *use* a thing. Importance is closer to
+transitive in-degree: how much of the structure of knowledge *depends* on it. These
+are non-monotone in each other, and the citation record stores an **untyped edge** —
+a paper using BLAST and a paper building on Shannon look identical in the graph. The
+one attempt to recover necessity from citation structure (a PageRank-flavoured citer
+prestige measure) returned the same machine-learning papers as the count it was
+meant to correct.
+
+## What is portable
+
+**A degeneracy check.** Count each criterion's distinct values before trusting a
+composite ranking. One criterion here had *three* values across 520 works, so its
+top ranks were tie-breaks — and its rank 1 was the finding that made the project
+look as though it had vindicated its own origin. The check caught three retractions.
 
 ## Design commitments
 
 | Commitment | Implementation |
 |---|---|
-| No axis is assumed | Axes are **derived** as principal directions of the outcome co-impact grammar. The count is an output, selected by parallel analysis, not by taste. |
-| Every cell is attributable | Each effect carries a source key into `data/sources.yml`; `world-impact validate` fails the build on a missing citation. |
-| Uncertainty propagates | Ordinal codes become a latent scale via a graded-response model; rankings use SMAA (rank acceptability, central weights, confidence factors). |
-| Nothing is ranked without a null | Permutation nulls preserve **both** row and column margins (curveball), so "structure" cannot be a margin artifact. |
-| No single ranking | Pareto frontier over impact/breadth/peak; Sobol sensitivity over every coding decision. |
-| Retractions are shipped | `docs/decisions.md` records three claims from earlier drafts that this code **disproved**, with the test that killed them. |
-| Reproducible | `pixi install && pixi run all` from a clean checkout. Deterministic seeds, locked environment, CI enforcing it. |
+| Nothing ranks without a null | Permutation nulls preserve **both** row and column margins (curveball), so "structure" cannot be a margin artefact |
+| No criterion ranks without discriminating | A criterion must take ≥ 10 distinct values or it is dropped and named (`convergence.MIN_DISTINCT_VALUES`) |
+| Redundancy is reported, not tolerated | Criteria correlating above 0.95 are collapsed and the effective count reported |
+| No denominator that flatters the thesis | The forward-linkage ratio was rejected before publication because its denominator rewarded exactly the nodes the analysis was meant to test; the trap is asserted in a test |
+| Retractions are shipped | Twelve, in `docs/decisions.md`, each with the test that killed it |
+| Reproducible | `pixi install && pixi run all` from a clean checkout. Deterministic seeds, locked environment, CI enforcing bit-identical output |
 
-## Quickstart
+## Reproduce
 
 ```bash
-pixi install                 # locked environment
-pixi run validate            # schema + citation completeness
-pixi run analyse             # writes reports/*.json
-pixi run figures             # writes figures/*.svg
-pixi run all                 # gates + full pipeline
+pixi install
+pixi run gate                      # lint, mypy, 81 tests
+pixi run analyse                   # coded-layer analysis -> reports/results.json
+pixi run figures-openalex          # bibliometric figures -> reports/fields.json
+python scripts/make_contrast.py    # the central figure -> reports/contrast.json
+pixi run docs-build                # mkdocs, strict
 ```
+
+The bibliometric corpus and its citer cache are committed, so every number in the
+paper reproduces offline. CI runs the pipeline twice and diffs the output, because a
+pipeline that is not bit-reproducible under a fixed seed is a sample, not a result.
 
 ## Layout
 
 ```
-data/            developments.yml, outcomes.yml, sources.yml, owid series registry
+data/           coded layer (results, developments, outcomes, edges, exclusions)
+                + committed OpenAlex corpus and citer cache
 src/world_impact/
-  schema.py      pydantic models; the coding protocol as executable validation
-  data.py        loading + the incidence tensor
-  measurement.py graded-response model: ordinal codes -> latent impact + SE
-  structure.py   factor analysis with parallel analysis, Marchenko-Pastur, rotation
-  nulls.py       curveball nulls preserving row and column margins
-  ranking.py     Pareto, SMAA, rank acceptability, confidence factors
-  sensitivity.py Sobol indices over coding decisions
-  tensor.py      Tucker/HOSVD over development x outcome x era
-  reference.py   OWID measured series: validation against the real world
-  figures.py     deterministic SVG
-  report.py      markdown + JSON
-tests/           property-based and golden tests
-docs/            literature review, methods, decision log (including retractions)
+  convergence.py    the bibliometric instrument: criteria, ranks, consensus,
+                    and the degeneracy / redundancy diagnostics
+  linkage.py        the dependency instrument: reachability, transitive reach
+  granularity.py    the coarse-vs-fine comparison that retired the coarse layer
+  fields.py         field flow and net citation export
+  option_value.py   implemented, null result, retracted
+  figures.py        deterministic SVG, including the two-instrument contrast
+docs/paper.md   the paper
+docs/decisions.md   twenty decisions, twelve retractions
+tests/          81 tests; a change that breaks the argument breaks a test
 ```
 
 ## Status
 
-Alpha, pre-registration stage. The coding matrix is complete enough to run end-to-end;
-inter-coder reliability has **not** yet been measured, which is the single largest threat
-to validity (see `docs/methods.md#threats`). Do not cite this as an estimate of anything
-until that is done.
+Alpha. The bibliometric layer is complete and reproducible. The dependency layer's
+principal limitation is that it is **single-coder and its inter-coder reliability is
+unmeasured**, which is the single largest threat to validity. Do not cite the
+transitive-reach ranking as an estimate of anything until a second coder has coded
+the graph.
 
 ## Licence
 
-Code MIT. Coded data and derived outputs CC-BY-4.0. Third-party reference series retain
-their own licences (OWID: CC-BY; see `data/raw/owid/README.md`).
+Code MIT. Coded data and derived outputs CC-BY-4.0.
+

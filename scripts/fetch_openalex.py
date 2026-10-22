@@ -35,6 +35,12 @@ def main() -> None:
         f"{corpus['n_referenced_resolved']} resolved"
     )
 
+    print("\nfetching citers for every seed (one request each)...")
+    citers = openalex.fetch_citers(
+        [work["id"] for work in corpus["seeds"]], verbose=True, refresh=args.refresh
+    )
+    print(f"CITERS: resolved for {len(citers)} of {len(corpus['seeds'])} seeds")
+
     flow = openalex.field_flow(corpus)
     print(
         f"FLOW: {len(flow['fields'])} fields, "
