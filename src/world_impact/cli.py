@@ -79,7 +79,7 @@ def analyse(
     console.print(f"wrote [bold]{out}[/bold]")
 
 
-@app.command()
+@app.command("figures")
 def figures_cmd(
     seed: int = typer.Option(SEED, "--seed"),
     out_dir: Path = typer.Option(FIGURES, "--out"),
@@ -135,7 +135,7 @@ def figures_cmd(
         console.print(f"wrote {path}")
 
 
-@app.command()
+@app.command("report")
 def report_cmd(
     results: Path = typer.Option(REPORTS / "results.json", "--results"),
     out: Path = typer.Option(REPORTS / "report.md", "--out"),
@@ -146,7 +146,7 @@ def report_cmd(
     console.print(f"wrote [bold]{out}[/bold]")
 
 
-@app.command()
+@app.command("verify-sources")
 def verify_sources(
     out: Path = typer.Option(REPORTS / "source-verification.json", "--out"),
     limit: int = typer.Option(0, "--limit", help="0 = all"),
