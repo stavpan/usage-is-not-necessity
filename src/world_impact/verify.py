@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import difflib
 import time
+from typing import Any
 
 import requests
 
@@ -22,9 +23,9 @@ CROSSREF = "https://api.crossref.org/works"
 USER_AGENT = "world-impact/0.1 (bibliography verification; mailto:panagist32@gmail.com)"
 
 
-def lookup(source: Source, timeout: float = 20.0) -> dict[str, object]:
+def lookup(source: Source, timeout: float = 20.0) -> dict[str, Any]:
     """Query Crossref for one entry. Returns the best match or an error record."""
-    params = {
+    params: dict[str, str | int] = {
         "query.bibliographic": source.title,
         "rows": 3,
         "select": "DOI,title,author,issued,container-title,type",
@@ -72,7 +73,7 @@ def lookup(source: Source, timeout: float = 20.0) -> dict[str, object]:
 
 def verify_entries(
     sources: list[Source], pause: float = 0.4, limit: int | None = None
-) -> dict[str, object]:
+) -> dict[str, Any]:
     """Verify a list of entries. ``pause`` keeps us inside Crossref's courtesy rate."""
     entries = sources[:limit] if limit else sources
     results = []

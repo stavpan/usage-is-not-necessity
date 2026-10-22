@@ -9,6 +9,7 @@ without a second pass.
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
 import matplotlib
 
@@ -155,7 +156,7 @@ def pervasiveness_bar(values: np.ndarray, labels: tuple[str, ...], path: Path, t
     return _save(fig, path)
 
 
-def test_information(fit, path: Path) -> Path:
+def test_information(fit: Any, path: Path) -> Path:
     """The instrument's resolving power, and where it collapses."""
     grid = np.linspace(-3.0, 3.0, 121)
     fig, ax = plt.subplots(figsize=(7.0, 4.0))

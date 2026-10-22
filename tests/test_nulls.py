@@ -60,9 +60,7 @@ def test_parallel_analysis_on_pure_noise_retains_at_most_one() -> None:
     retained = []
     for seed in range(12):
         matrix = np.random.default_rng(seed).normal(size=(200, 8))
-        result = nulls.parallel_analysis(
-            matrix, np.random.default_rng(1000 + seed), n_iter=200
-        )
+        result = nulls.parallel_analysis(matrix, np.random.default_rng(1000 + seed), n_iter=200)
         retained.append(result["n_retained"])
     # Per-component the false-positive rate is the nominal 5%, but the retention
     # rule is *sequential* (stop at the first component that fails), so the

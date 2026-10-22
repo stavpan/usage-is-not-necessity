@@ -8,6 +8,8 @@ stage a conclusion came from.
 
 from __future__ import annotations
 
+from typing import Any
+
 import numpy as np
 
 from world_impact import nulls, ranking, reference, sensitivity, tensor
@@ -38,7 +40,7 @@ def measurement_stage(
     rng: np.random.Generator,
     seed: int = 0,
     value_draws: int = 24,
-) -> dict[str, object]:
+) -> dict[str, Any]:
     """Fit the graded response model and generate value-uncertainty draws."""
     matrix = dataset.matrix()
     fit = fit_graded_response(matrix, seed=seed)
@@ -72,7 +74,7 @@ def structure_stage(
     dataset: Dataset,
     rng: np.random.Generator,
     pa_iterations: int = 500,
-) -> dict[str, object]:
+) -> dict[str, Any]:
     """Derive the axes; the number of them is an output, not a setting."""
     matrix = dataset.matrix()
     axes = analyse_structure(matrix, dataset.outcome_labels, rng, pa_iterations=pa_iterations)
@@ -117,7 +119,7 @@ def nulls_stage(
     dataset: Dataset,
     rng: np.random.Generator,
     iterations: int = 300,
-) -> dict[str, object]:
+) -> dict[str, Any]:
     """Two nulls for the coupling claim: row-shuffle and margin-preserving swap."""
     matrix = dataset.matrix()
     observed = coupling_statistic(matrix)
@@ -150,7 +152,7 @@ def ranking_stage(
     rng: np.random.Generator,
     smaa_draws: int = 20000,
     dominance_draws: int = 2000,
-) -> dict[str, object]:
+) -> dict[str, Any]:
     """Frontier first (no weights), then SMAA (all legitimate weights)."""
     matrix = dataset.matrix()
     binary = dataset.binary()
@@ -223,11 +225,11 @@ def sensitivity_stage(
     rng: np.random.Generator,
     trajectories: int = 20,
     targets: int = 3,
-) -> dict[str, object]:
+) -> dict[str, Any]:
     """Morris screening: which cell codings drive the rank of the top developments."""
     matrix = dataset.matrix()
     order = list(np.argsort(-matrix.sum(axis=1))[:targets])
-    screens = {}
+    screens: dict[str, Any] = {}
     for index in order:
         result = sensitivity.screen_coding_decisions(
             matrix, int(index), rng, n_trajectories=trajectories
@@ -252,7 +254,7 @@ def tensor_stage(
     rng: np.random.Generator,
     ranks: tuple[int, int, int] = (4, 4, 3),
     null_iterations: int = 60,
-) -> dict[str, object]:
+) -> dict[str, Any]:
     """Tucker/HOSVD on development x outcome x era, with an era-shuffled null."""
     incidence = dataset.tensor()
     decomposition = tensor.tucker_decomposition(incidence, ranks)
@@ -280,7 +282,7 @@ def tensor_stage(
 def linkage_stage(
     dataset: Dataset,
     attenuation: float = 0.6,
-) -> dict[str, object]:
+) -> dict[str, Any]:
     """Mediation: total effects through the enabling graph.
 
     The last word is computed, not written. ``verdict`` compares the forward
@@ -306,15 +308,15 @@ def linkage_stage(
             return float("nan")
         return float((reference < values[index]).mean() * 100.0)
 
-    knowledge_rows = [
+    knowledge_rows: list[dict[str, Any]] = [
         {
             "name": names[i],
             "forward_linkage": float(result.forward_linkage[i]),
             "downstream_share": float(result.downstream_share[i]),
             "transitive_reach": int(result.transitive_reach[i]),
             "direct_dependants": float(result.downstream_reach[i]),
-            "percentile_share": pct_of_others(result.downstream_share, i),
-            "percentile_reach": pct_of_others(result.transitive_reach, i),
+            "percentile_share": pct_of_others(result.downstream_share, int(i)),
+            "percentile_reach": pct_of_others(result.transitive_reach, int(i)),
         }
         for i in np.flatnonzero(mask)
     ]
@@ -379,7 +381,7 @@ def reference_stage(
     dataset: Dataset,
     year_min: int = 1950,
     year_max: int = 2022,
-) -> dict[str, object]:
+) -> dict[str, Any]:
     """Compare the coded grammar against measured long-run series (OWID).
 
     Degrades honestly: unresolved series are reported as missing and the
@@ -401,25 +403,25 @@ def reference_stage(
     coded = dataset.matrix()[:, columns]
 
     correlation = panel.correlation()
+    # Convert to numpy and a plain label list up front: pandas' scalar union
+    # types make every arithmetic expression on ``iloc`` a typing fight, and the
+    # values are what matter here.
+    labels = [str(name) for name in correlation.columns]
+    measured = np.nan_to_num(correlation.to_numpy(dtype=float), nan=0.0)
     redundant = [
-        {
-            "a": correlation.columns[i],
-            "b": correlation.columns[j],
-            "r": float(correlation.iloc[i, j]),
-        }
+        {"a": labels[i], "b": labels[j], "r": float(measured[i, j])}
         for i in range(len(resolved))
         for j in range(i + 1, len(resolved))
-        if abs(correlation.iloc[i, j]) >= 0.95
+        if abs(float(measured[i, j])) >= 0.95
     ]
-    measured = correlation.to_numpy()
-    measured = np.nan_to_num(measured, nan=0.0)
+    index_values = np.asarray(panel.frame.index)
 
     return {
         "available": True,
         "resolved": panel.resolved,
         "missing": panel.missing,
         "coverage": f"{len(resolved)}/{dataset.n_outcomes}",
-        "years": [int(panel.frame.index.min()), int(panel.frame.index.max())],
+        "years": [int(index_values.min()), int(index_values.max())],
         "n_years": int(panel.frame.shape[0]),
         "comparison": reference.compare_structures(coded, measured),
         "redundant_pairs_above_0.95": redundant,

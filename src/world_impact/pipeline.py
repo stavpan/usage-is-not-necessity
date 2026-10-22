@@ -10,6 +10,7 @@ and the tensor last, because they are diagnostics on the first four.
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 
@@ -31,7 +32,7 @@ def run_analysis(
     screen_targets: int = 3,
     reference_panel: bool = True,
     dataset: Dataset | None = None,
-) -> dict[str, object]:
+) -> dict[str, Any]:
     """Run every stage and return a JSON-serialisable result tree."""
     rng = np.random.default_rng(seed)
     ds = dataset if dataset is not None else load_dataset(data_dir or DEFAULT_DATA_DIR)
@@ -85,6 +86,6 @@ def run_analysis(
 NON_SERIALISABLE = {"fit_object", "axes_object", "value_matrices"}
 
 
-def _strip(block: dict[str, object]) -> dict[str, object]:
+def _strip(block: dict[str, Any]) -> dict[str, Any]:
     """Drop the non-serialisable objects that stages carry for plotting."""
     return {k: v for k, v in block.items() if k not in NON_SERIALISABLE}

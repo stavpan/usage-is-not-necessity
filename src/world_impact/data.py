@@ -75,7 +75,7 @@ class Dataset:
     def matrix(self, dtype: type = float) -> np.ndarray:
         """(n_developments, n_outcomes) magnitude matrix, zeros where absent."""
         index = {o: j for j, o in enumerate(self.outcome_ids)}
-        out = np.zeros((self.n_developments, self.n_outcomes), dtype=dtype)
+        out: np.ndarray = np.zeros((self.n_developments, self.n_outcomes), dtype=dtype)
         for i, dev in enumerate(self.developments):
             for outcome_id, magnitude in dev.effects.items():
                 out[i, index[outcome_id]] = magnitude

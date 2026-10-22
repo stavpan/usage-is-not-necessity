@@ -82,14 +82,17 @@ class SmaaResult:
         return best
 
 
-def _as_draws(matrices) -> list[np.ndarray]:
+MatrixOrDraws = np.ndarray | list[np.ndarray]
+
+
+def _as_draws(matrices: MatrixOrDraws) -> list[np.ndarray]:
     if isinstance(matrices, list):
         return [np.asarray(m, dtype=float) for m in matrices]
     return [np.asarray(matrices, dtype=float)]
 
 
 def smaa(
-    matrices,
+    matrices: MatrixOrDraws,
     rng: np.random.Generator,
     n_draws: int = 20000,
     weight_alpha: float = 1.0,
@@ -170,7 +173,7 @@ def smaa(
 
 
 def pairwise_dominance(
-    matrices,
+    matrices: MatrixOrDraws,
     rng: np.random.Generator,
     n_draws: int = 5000,
     weight_alpha: float = 1.0,

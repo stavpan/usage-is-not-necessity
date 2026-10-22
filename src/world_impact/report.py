@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 
@@ -22,7 +23,7 @@ def write_json(payload: dict, path: Path | str) -> Path:
     return path
 
 
-def _jsonable(value):
+def _jsonable(value: Any) -> Any:
     if isinstance(value, dict):
         return {str(k): _jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):

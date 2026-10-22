@@ -28,6 +28,7 @@ auditable than magnitudes, but audit is not identification.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Any
 
 import numpy as np
 
@@ -44,7 +45,7 @@ class LinkageResult:
     downstream_reach: np.ndarray
     n_edges: int
 
-    def ranked(self, names: tuple[str, ...], key: str = "downstream_share"):
+    def ranked(self, names: tuple[str, ...], key: str = "downstream_share") -> list[dict[str, Any]]:
         """Rank by ``key``.
 
         Default is ``downstream_share``, not ``forward_linkage``. The ratio

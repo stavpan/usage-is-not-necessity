@@ -8,6 +8,8 @@ rather than a hidden step.
 
 from __future__ import annotations
 
+from typing import Any
+
 import numpy as np
 
 
@@ -96,7 +98,7 @@ def deduplicate(
     matrix: np.ndarray,
     threshold: float = 0.85,
     metric: str = "cosine",
-) -> dict[str, object]:
+) -> dict[str, Any]:
     """Complete-linkage clustering of developments by outcome profile.
 
     Complete linkage is required, not a preference: single linkage chains, and

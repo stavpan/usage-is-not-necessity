@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import typer
@@ -60,7 +61,7 @@ def analyse(
     no_reference: bool = typer.Option(False, "--no-reference"),
 ) -> None:
     """Run the full analysis and write reports/results.json."""
-    settings = (
+    settings: dict[str, Any] = (
         {
             "smaa_draws": 2000,
             "null_iterations": 40,
