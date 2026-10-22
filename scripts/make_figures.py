@@ -11,7 +11,7 @@ import argparse
 import json
 from pathlib import Path
 
-from world_impact import fields, figures, openalex
+from world_impact import convergence, fields, figures, openalex
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -54,10 +54,39 @@ def main() -> None:
     for path in written:
         print(f"wrote {path}  ({path.stat().st_size} bytes)")
 
+    # ---- convergence: the answer to "what are the most important things" ----
+    result = convergence.convergence(corpus, upstream)
+    consensus = result.consensus(30)
+    trend = convergence.decade_trend(result.rows)
+    written += [
+        figures.consensus_atlas(result.rows, consensus, out / "consensus-atlas.svg", label_top=12),
+        figures.criterion_agreement(
+            result.agreement, convergence.CRITERION_LABEL, out / "criterion-agreement.svg"
+        ),
+        figures.decade_intensity(trend, out / "decade-intensity.svg"),
+    ]
+    for path in written[4:]:
+        print(f"wrote {path}  ({path.stat().st_size} bytes)")
+
     report = {
         "summary": summary,
         "size_normalised_upstreamness": normalised,
         "suspect_outliers": fields.suspect_outliers(corpus),
+        "convergence": {
+            "n": result.n,
+            "criteria": list(convergence.CRITERIA),
+            "agreement": {f"{a}|{b}": value for (a, b), value in result.agreement.items()},
+            "consensus_top_30": consensus,
+            "movers": result.movers(15),
+            "decade_trend": trend,
+            "pareto_size": len(result.pareto()),
+            "support_histogram": {
+                str(support): sum(
+                    1 for row in result.rows if result.support(str(row["id"])) == support
+                )
+                for support in range(len(convergence.CRITERIA) + 1)
+            },
+        },
     }
     (ROOT / "reports").mkdir(exist_ok=True)
     (ROOT / "reports" / "fields.json").write_text(

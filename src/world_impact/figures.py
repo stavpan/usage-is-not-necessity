@@ -294,6 +294,107 @@ def timeline_lanes(
     return _save(fig, path)
 
 
+def consensus_atlas(
+    rows: list[dict[str, Any]],
+    consensus: list[dict[str, Any]],
+    path: Path,
+    label_top: int = 12,
+    title: str = "The atlas: 520 most-cited works, by year and citation intensity",
+) -> Path:
+    """Year against citations-per-year, with the consensus items named.
+
+    The x axis is time, the y axis is how intensively the work is still used, so
+    the vertical axis is the age-corrected importance measure. Grey is everything;
+    the named points are the works every criterion agrees on.
+    """
+    fig, ax = plt.subplots(figsize=(11.5, 6.2))
+    ax.scatter(
+        [row["year"] for row in rows],
+        [max(row["rate"], 1.0) for row in rows],
+        s=13,
+        color="#c3ced8",
+        alpha=0.8,
+        label=f"all seeds (n={len(rows)})",
+    )
+    top = consensus[:label_top]
+    ax.scatter(
+        [row["year"] for row in top],
+        [max(row["rate"], 1.0) for row in top],
+        s=70,
+        color="#b0413e",
+        zorder=3,
+        label=f"consensus top {label_top}",
+    )
+    for index, row in enumerate(top):
+        ax.annotate(
+            (row["title"] or "")[:38],
+            (row["year"], max(row["rate"], 1.0)),
+            textcoords="offset points",
+            xytext=(6, 6 if index % 2 == 0 else -12),
+            fontsize=FLOOR - 1,
+            color="#3a2a2a",
+        )
+    ax.set_yscale("log")
+    ax.set_xlabel("publication year")
+    ax.set_ylabel("citations per year since publication (log scale)")
+    ax.set_title(title)
+    ax.legend(loc="lower right")
+    ax.grid(axis="y", linestyle=":", alpha=0.3)
+    return _save(fig, path)
+
+
+def criterion_agreement(
+    agreement: dict[tuple[str, str], float],
+    labels: dict[str, str],
+    path: Path,
+    title: str = "Do the criteria agree? Spearman correlation between rank orders",
+) -> Path:
+    """Annotated heatmap of the rank-correlation matrix between criteria."""
+    keys = list(labels)
+    matrix = np.array([[agreement[(a, b)] for b in keys] for a in keys])
+    fig, ax = plt.subplots(figsize=(1.7 * len(keys) + 2.6, 1.5 * len(keys) + 2.0))
+    image = ax.imshow(matrix, cmap="RdBu_r", vmin=-1.0, vmax=1.0)
+    ax.set_xticks(range(len(keys)))
+    ax.set_xticklabels([labels[k] for k in keys], rotation=30, ha="right", fontsize=FLOOR - 1)
+    ax.set_yticks(range(len(keys)))
+    ax.set_yticklabels([labels[k] for k in keys], fontsize=FLOOR - 1)
+    for i in range(len(keys)):
+        for j in range(len(keys)):
+            ax.text(
+                j,
+                i,
+                f"{matrix[i, j]:.2f}",
+                ha="center",
+                va="center",
+                fontsize=FLOOR,
+                color="white" if abs(matrix[i, j]) > 0.6 else "black",
+            )
+    fig.colorbar(image, ax=ax, shrink=0.7, label="rank correlation")
+    ax.set_title(title)
+    return _save(fig, path)
+
+
+def decade_intensity(
+    trend: list[dict[str, Any]],
+    path: Path,
+    title: str = "Citation intensity by publication decade",
+) -> Path:
+    """Median citations per year for the seeds of each decade."""
+    decades = [row["decade"] for row in trend]
+    medians = [row["median_rate"] for row in trend]
+    maxima = [row["max_rate"] for row in trend]
+    fig, ax = plt.subplots(figsize=(9.0, 4.6))
+    ax.plot(decades, medians, marker="o", label="median citations/year")
+    ax.plot(decades, maxima, marker="s", linestyle="--", label="maximum citations/year")
+    ax.set_yscale("log")
+    ax.set_xlabel("publication decade")
+    ax.set_ylabel("citations per year (log scale)")
+    ax.set_title(title)
+    ax.legend(loc="upper left")
+    ax.grid(linestyle=":", alpha=0.3)
+    return _save(fig, path)
+
+
 def test_information(fit: Any, path: Path) -> Path:
     """The instrument's resolving power, and where it collapses."""
     grid = np.linspace(-3.0, 3.0, 121)
