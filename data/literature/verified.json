@@ -1,0 +1,473 @@
+{
+  "floor": 0.9,
+  "verified": [
+    {
+      "similarity": 1.0,
+      "doi": "10.1177/2158244019829575",
+      "title": "Citations, Citation Indicators, and Research Quality: An Overview of Basic Concepts and Theories",
+      "year": 2019,
+      "container": "Sage Open",
+      "volume": "9",
+      "page": null,
+      "type": "journal-article",
+      "authors": [
+        "Aksnes, Dag W.",
+        "Langfeldt, Liv",
+        "Wouters, Paul"
+      ],
+      "key": "aksnes2019",
+      "query": "Citations, Citation Indicators, and Research Quality: An Overview of Basic Concepts and Theories",
+      "why": "the standard review of what citation counts do and do not measure"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.1002/asi.21228",
+      "title": "Problems of citation analysis: A study of uncited and seldom\u2010cited influences",
+      "year": 2009,
+      "container": "Journal of the American Society for Information Science and Technology",
+      "volume": "61",
+      "page": "1-12",
+      "type": "journal-article",
+      "authors": [
+        "MacRoberts, M.H.",
+        "MacRoberts, B.R."
+      ],
+      "key": "macroberts2010",
+      "query": "Problems of citation analysis: A study of uncited and seldom-cited influences",
+      "why": "citation analysis misses influences that are not cited"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.1136/bmj.314.7079.497",
+      "title": "Why the impact factor of journals should not be used for evaluating research",
+      "year": 1997,
+      "container": "BMJ",
+      "volume": "314",
+      "page": "497.1",
+      "type": "journal-article",
+      "authors": [
+        "Seglen, Per O"
+      ],
+      "key": "seglen1997",
+      "query": "Why the impact factor of journals should not be used for evaluating research",
+      "why": "the foundational critique of journal-level citation measures"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.3115/1610075.1610091",
+      "title": "Automatic classification of citation function",
+      "year": 2006,
+      "container": "Proceedings of the 2006 Conference on Empirical Methods in Natural Language Processing - EMNLP '06",
+      "volume": null,
+      "page": "103",
+      "type": "proceedings-article",
+      "authors": [
+        "Teufel, Simone",
+        "Siddharthan, Advaith",
+        "Tidhar, Dan"
+      ],
+      "key": "teufel2006",
+      "query": "Automatic classification of citation function",
+      "why": "citations carry different functions, and the function is not in the edge"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.18653/v1/n19-1361",
+      "title": "Structural Scaffolds for Citation Intent Classification in Scientific Publications",
+      "year": 2019,
+      "container": "Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)",
+      "volume": null,
+      "page": "3586-3596",
+      "type": "proceedings-article",
+      "authors": [
+        "Cohan, Arman",
+        "Ammar, Waleed",
+        "van Zuylen, Madeleine",
+        "Cady, Field"
+      ],
+      "key": "cohan2019",
+      "query": "Structural Scaffolds for Citation Intent Classification in Scientific Publications",
+      "why": "citation intent classification at scale"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.1162/tacl_a_00028",
+      "title": "Measuring the Evolution of a Scientific Field through Citation Frames",
+      "year": 2018,
+      "container": "Transactions of the Association for Computational Linguistics",
+      "volume": "6",
+      "page": "391-406",
+      "type": "journal-article",
+      "authors": [
+        "Jurgens, David",
+        "Kumar, Srijan",
+        "Hoover, Raine",
+        "McFarland, Dan",
+        "Jurafsky, Dan"
+      ],
+      "key": "jurgens2018",
+      "query": "Measuring the Evolution of a Scientific Field through Citation Frames",
+      "why": "citation framing as a measure of how a work is used"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.1038/s41586-022-05543-x",
+      "title": "Papers and patents are becoming less disruptive over time",
+      "year": 2023,
+      "container": "Nature",
+      "volume": "613",
+      "page": "138-144",
+      "type": "journal-article",
+      "authors": [
+        "Park, Michael",
+        "Leahey, Erin",
+        "Funk, Russell J."
+      ],
+      "key": "park2023",
+      "query": "Papers and patents are becoming less disruptive over time",
+      "why": "the CD index: a citation-network measure of whether work breaks with the past"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.1287/mnsc.2015.2366",
+      "title": "A Dynamic Network Measure of Technological Change",
+      "year": 2017,
+      "container": "Management Science",
+      "volume": "63",
+      "page": "791-817",
+      "type": "journal-article",
+      "authors": [
+        "Funk, Russell J.",
+        "Owen-Smith, Jason"
+      ],
+      "key": "funk2017",
+      "query": "A Dynamic Network Measure of Technological Change",
+      "why": "the original disruption measure"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.1126/science.1237825",
+      "title": "Quantifying Long-Term Scientific Impact",
+      "year": 2013,
+      "container": "Science",
+      "volume": "342",
+      "page": "127-132",
+      "type": "journal-article",
+      "authors": [
+        "Wang, Dashun",
+        "Song, Chaoming",
+        "Barab\u00e1si, Albert-L\u00e1szl\u00f3"
+      ],
+      "key": "wang2013",
+      "query": "Quantifying Long-Term Scientific Impact",
+      "why": "citation dynamics and the limits of early prediction"
+    },
+    {
+      "similarity": 0.902,
+      "doi": "10.1016/j.joi.2006.06.001",
+      "title": "Finding scientific gems with Google\u2019s PageRank algorithm",
+      "year": 2007,
+      "container": "Journal of Informetrics",
+      "volume": "1",
+      "page": "8-15",
+      "type": "journal-article",
+      "authors": [
+        "Chen, P.",
+        "Xie, H.",
+        "Maslov, S.",
+        "Redner, S."
+      ],
+      "key": "chen2007",
+      "query": "Finding scientific gems with Google's PageRank",
+      "why": "PageRank on citation networks: the direct ancestor of our citer-prestige measure"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.1088/1742-5468/2007/06/p06010",
+      "title": "Ranking scientific publications using a model of network traffic",
+      "year": 2007,
+      "container": "Journal of Statistical Mechanics: Theory and Experiment",
+      "volume": "2007",
+      "page": "P06010-P06010",
+      "type": "journal-article",
+      "authors": [
+        "Walker, Dylan",
+        "Xie, Huafeng",
+        "Yan, Koon-Kiu",
+        "Maslov, Sergei"
+      ],
+      "key": "walker2007",
+      "query": "Ranking scientific publications using a model of network traffic",
+      "why": "traffic-based ranking as an alternative to raw counts"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.1016/0378-8733(78)90021-7",
+      "title": "Centrality in social networks conceptual clarification",
+      "year": 1978,
+      "container": "Social Networks",
+      "volume": "1",
+      "page": "215-239",
+      "type": "journal-article",
+      "authors": [
+        "Freeman, Linton C."
+      ],
+      "key": "freeman1979",
+      "query": "Centrality in social networks conceptual clarification",
+      "why": "degree versus closeness versus betweenness: centrality is not one thing"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.3386/w23782",
+      "title": "Are Ideas Getting Harder to Find?",
+      "year": 2017,
+      "container": "",
+      "volume": null,
+      "page": null,
+      "type": "report",
+      "authors": [
+        "Bloom, Nicholas",
+        "Jones, Charles",
+        "Van Reenen, John",
+        "Webb, Michael"
+      ],
+      "key": "bloom2020",
+      "query": "Are Ideas Getting Harder to Find?",
+      "why": "the productivity of research is falling despite more inputs"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.1073/pnas.2305016120",
+      "title": "ChatGPT outperforms crowd workers for text-annotation tasks",
+      "year": 2023,
+      "container": "Proceedings of the National Academy of Sciences",
+      "volume": "120",
+      "page": null,
+      "type": "journal-article",
+      "authors": [
+        "Gilardi, Fabrizio",
+        "Alizadeh, Meysam",
+        "Kubli, Ma\u00ebl"
+      ],
+      "key": "gilardi2023",
+      "query": "ChatGPT outperforms crowd workers for text-annotation tasks",
+      "why": "LLM annotation reliability, the provenance question this paper raises about itself"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.1162/coli_a_00502",
+      "title": "Can Large Language Models Transform Computational Social\n                    Science?",
+      "year": 2024,
+      "container": "Computational Linguistics",
+      "volume": "50",
+      "page": "237-291",
+      "type": "journal-article",
+      "authors": [
+        "Ziems, Caleb",
+        "Held, William",
+        "Shaikh, Omar",
+        "Chen, Jiaao",
+        "Zhang, Zhehao",
+        "Yang, Diyi"
+      ],
+      "key": "ziems2024",
+      "query": "Can Large Language Models Transform Computational Social Science?",
+      "why": "where LLM annotation is and is not reliable"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.1038/s41586-024-07146-0",
+      "title": "Artificial intelligence and illusions of understanding in scientific research",
+      "year": 2024,
+      "container": "Nature",
+      "volume": "627",
+      "page": "49-58",
+      "type": "journal-article",
+      "authors": [
+        "Messeri, Lisa",
+        "Crockett, M. J."
+      ],
+      "key": "messeri2024",
+      "query": "Artificial intelligence and illusions of understanding in scientific research",
+      "why": "the risk of AI-assisted science producing illusory understanding"
+    },
+    {
+      "similarity": 1.0,
+      "doi": "10.1073/pnas.1708800115",
+      "title": "Quantitative historical analysis uncovers a single dimension of complexity that structures global variation in human social organization",
+      "year": 2017,
+      "container": "Proceedings of the National Academy of Sciences",
+      "volume": "115",
+      "page": null,
+      "type": "journal-article",
+      "authors": [
+        "Turchin, Peter",
+        "Currie, Thomas E.",
+        "Whitehouse, Harvey",
+        "Fran\u00e7ois, Pieter",
+        "Feeney, Kevin",
+        "Mullins, Daniel"
+      ],
+      "key": "turchin2018",
+      "query": "Quantitative historical analysis uncovers a single dimension of complexity that structures global variation in human social organization",
+      "why": "the long-run coded dataset our coarse layer was compared against"
+    }
+  ],
+  "rejected": [
+    {
+      "similarity": 0.766,
+      "doi": "10.1017/9781108610834.005",
+      "title": "The Matthew Effect",
+      "year": 2021,
+      "container": "The Science of Science",
+      "volume": null,
+      "page": "28-38",
+      "type": "book-chapter",
+      "authors": [],
+      "key": "merton1968",
+      "query": "The Matthew Effect in Science",
+      "why": "cumulative advantage in scientific recognition"
+    },
+    {
+      "similarity": 0.812,
+      "doi": "10.1201/b19046-19",
+      "title": "Beauties and Sleeping Beauties in Science",
+      "year": 2016,
+      "container": "Solved and Unsolved Problems of Structural Chemistry",
+      "volume": null,
+      "page": "385-416",
+      "type": "book-chapter",
+      "authors": [],
+      "key": "vanraan2004",
+      "query": "Sleeping beauties in science",
+      "why": "delayed recognition: citation trajectories are not monotone in importance"
+    },
+    {
+      "similarity": 0.79,
+      "doi": "10.3410/f.735090984.793559694",
+      "title": "Faculty Opinions recommendation of Large teams develop and small teams disrupt science and technology.",
+      "year": 2019,
+      "container": "Faculty Opinions \u2013 Post-Publication Peer Review of the Biomedical Literature",
+      "volume": null,
+      "page": null,
+      "type": "dataset",
+      "authors": [
+        "Linden, Jennifer"
+      ],
+      "key": "wu2019",
+      "query": "Large teams develop and small teams disrupt science and technology",
+      "why": "team size, disruption and the use of prior knowledge"
+    },
+    {
+      "similarity": 0.454,
+      "doi": "10.1016/j.ipm.2007.06.006",
+      "title": "Bringing PageRank to the citation analysis",
+      "year": 2008,
+      "container": "Information Processing &amp; Management",
+      "volume": "44",
+      "page": "800-810",
+      "type": "journal-article",
+      "authors": [
+        "Ma, Nan",
+        "Guan, Jiancheng",
+        "Zhao, Yi"
+      ],
+      "key": "page1999",
+      "query": "The PageRank Citation Ranking: Bringing Order to the Web",
+      "why": "the ranking the citer-prestige criterion imitates"
+    },
+    {
+      "similarity": 0.0,
+      "doi": "10.15407/sofs2023.01",
+      "title": "",
+      "year": 2023,
+      "container": "Science and Science of Science",
+      "volume": null,
+      "page": null,
+      "type": "journal-issue",
+      "authors": [],
+      "key": "fortunato2018",
+      "query": "Science of science",
+      "why": "the field this paper sits in"
+    },
+    {
+      "similarity": 0.805,
+      "doi": "10.3386/w11360",
+      "title": "The Burden of Knowledge and the 'Death of the Renaissance Man': Is Innovation Getting Harder?",
+      "year": 2005,
+      "container": "",
+      "volume": null,
+      "page": null,
+      "type": "report",
+      "authors": [
+        "Jones, Benjamin"
+      ],
+      "key": "jones2009",
+      "query": "The Burden of Knowledge and the Death of the Renaissance Man",
+      "why": "knowledge accumulates and the cost of reaching the frontier rises"
+    },
+    {
+      "similarity": 0.777,
+      "doi": "10.7551/mitpress/10782.003.0009",
+      "title": "The Historical Construction of an Analytical Framework",
+      "year": 2017,
+      "container": "Models of Innovation",
+      "volume": null,
+      "page": "77-100",
+      "type": "book-chapter",
+      "authors": [],
+      "key": "godin2006",
+      "query": "The Linear Model of Innovation: The Historical Construction of an Analytical Framework",
+      "why": "the linear model is a construction, not a finding"
+    },
+    {
+      "similarity": 0.625,
+      "doi": "10.1126/science.269.5228.1291-c",
+      "title": "Vignettes: Technological Advance",
+      "year": 1995,
+      "container": "Science",
+      "volume": "269",
+      "page": "1291-1291",
+      "type": "journal-article",
+      "authors": [],
+      "key": "mowery1979",
+      "query": "The Influence of Science on Technological Advance",
+      "why": "the direction of the science-technology relation is an empirical question"
+    },
+    {
+      "similarity": 0.388,
+      "doi": "10.36253/979-12-215-1010-2.13",
+      "title": "Authoritative Practices and Collective Validation: Wikidata within the Collaborative Digital Edition of the Greek Anthology",
+      "year": 2026,
+      "container": "Studi e saggi",
+      "volume": null,
+      "page": "71-83",
+      "type": "book-chapter",
+      "authors": [
+        "Verstraete, Mathilde",
+        "Gu\u00e9nette, Maxime",
+        "Vitali-Rosati, Marcello"
+      ],
+      "key": "vrandecic2014",
+      "query": "Wikidata: a free collaborative knowledgebase",
+      "why": "the third-party graph we attempted to source the dependency layer from"
+    },
+    {
+      "similarity": 0.513,
+      "doi": "10.1023/a:1010573723540",
+      "title": "Lattices in citation networks: An investigation into the structure of citation graphs",
+      "year": 2001,
+      "container": "Scientometrics",
+      "volume": "50",
+      "page": "273-287",
+      "type": "journal-article",
+      "authors": [
+        "Yong, Fang",
+        "Rousseau, Ronald"
+      ],
+      "key": "unresolved_probe",
+      "query": "The Scientometrics of Citation Networks in Twenty-First Century Research",
+      "why": "a deliberately non-existent title, to show unresolved queries are reported not kept"
+    }
+  ]
+}

@@ -59,7 +59,10 @@ ignore = ["RUF001", "RUF002", "RUF003"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["PD", "N", "B008"]
-"scripts/*" = ["PTH"]
+# Scripts carry data-heavy literal tables -- title queries, anchor lists, field
+# name mappings -- where wrapping each entry across four lines makes the table
+# unreadable. The line limit is for logic, not for bibliographies.
+"scripts/*" = ["PTH", "E501"]
 # typer's documented API requires calling typer.Option() in the signature
 # default, which B008 flags. This is the standard exemption for typer apps.
 "src/world_impact/cli.py" = ["B008"]

@@ -49,10 +49,16 @@ foundational. Within the coded layer itself, direct impact and transitive reach 
 *negatively* correlated (Spearman ρ = −0.30): eight of the ten developments with the
 largest direct impact have no dependants at all.
 
-We report twelve retractions of our own claims, seven of them documented before this
-paper and five added by it, plus a degeneracy check that generalises to any
-composite ranking and the honest limit of the second instrument: it is only as good
-as its curation, and its inter-coder reliability is unmeasured.
+**The paper's provenance is reported as a result, not as a caveat.** The bibliometric
+layer is externally reproducible; the bibliography is hand-compiled and only 23% of
+its 119 entries verify against Crossref, with 50% plausible, 18% weak and 10%
+unmatched; and the 143 prerequisite edges that produce the necessity ranking carry
+**no sources at all**. The transitive-reach ranking is therefore offered as a
+demonstration that the method yields the kind of answer the question deserves, not as
+a finding about the relative importance of calculus and thermodynamics, and the paper
+states what would be required to make it the latter. We report twelve retractions of
+our own claims, seven documented before this paper and five added by it, plus a
+degeneracy check that generalises to any composite ranking.
 
 ---
 
@@ -129,6 +135,86 @@ and abandoned directions. Sections 10 and 11 are limitations and retractions.
 Section 12 concludes. Every number is produced by code in the repository; the
 reproduction recipe is in the appendix.
 
+### 1.1 Related work, and what is new here
+
+**That citation counts measure use rather than quality is not a new claim.** It is
+the settled position of the field's own critical literature: Seglen's argument that
+journal impact factors should not be used to evaluate research [seglen1997], the
+MacRoberts' demonstration that citation analysis misses influences that are never
+cited [macroberts2010], and Aksnes, Langfeldt and Wouters' review distinguishing
+what citation indicators do and do not measure [aksnes2019]. Restating that critique
+would add nothing. What this paper adds is a *computable form* for it — in-degree
+versus transitive in-degree — together with the measurement that the two rankings are
+disjoint and, within one corpus, negatively correlated. The literature asserts that
+citations are not importance; it does not, so far as we know, quantify how far apart
+the two orderings are.
+
+**The most direct threat to our central argument is the citation-function
+literature.** Teufel and colleagues showed that citations carry distinguishable
+functions [teufel2006]; Jurgens and colleagues built citation frames to measure how
+a field uses its own past [jurgens2018]; Cohan and colleagues classify citation
+intent at scale [cohan2019]. If a citation's intent can be recovered, then the
+untyped edge is not untyped — and our claim that necessity is *absent from the
+record* would be false. We therefore narrow it deliberately: the claim is about what
+**standard bibliometric rankings** can recover from the fields they actually use
+(counts, years, reference lists), not about what is impossible with richer data. The
+corpus used here had no abstracts and no citation contexts; had it, intent
+classification is the experiment that could falsify Section 5 rather than
+corroborate it, and we say so in the limitations rather than claiming the
+distinction is unrecoverable in principle.
+
+**Disruption is a different question, measured on the same graph.** Funk and
+Owen-Smith's dynamic network measure [funk2017] and Park, Leahey and Funk's CD index
+[park2023] ask whether later work *breaks with* a paper — whether its successors
+bypass it. That is novelty, not necessity: a work can be highly disruptive and
+support nothing (a dead-end novelty) or highly necessary and disruptive of nothing
+(the infinitesimal calculus did not break with arithmetic). Both are computed on
+citation networks and therefore inherit the untyped-edge problem, which is one
+reason the CD index has itself attracted dataset-artefact criticism. We note the
+relation and do not claim priority over it.
+
+**Ranking by network position has a long pedigree, and we report one of its
+failures.** PageRank on the web [page1999] was applied to citation networks as a way
+to find work that counts are too crude to see [chen2007, walker2007]. Our
+`citer_prestige` criterion is that same family, and Section 5.3 reports that it
+returned the usage ranking with extra steps. Freeman's demonstration that degree,
+closeness and betweenness are different quantities that "centrality" conflates
+[freeman1979] is the structural precedent for this paper's central distinction; we
+apply it to the citation graph and measure the consequence.
+
+**Knowledge accumulates, which is why necessity is cumulative.** Jones on the
+burden of knowledge [jones2009] and Bloom and colleagues on the falling productivity
+of research inputs [bloom2020] both concern the cost of reaching a moving frontier.
+Our transitive-reach measure is a structural analogue: it counts how much of a
+graph sits downstream of a node, which is a statement about accumulated dependency.
+
+**Long-run coded datasets are the closest prior art to the dependency layer.**
+Seshat [turchin2018] codes social complexity across ten millennia with an explicit
+protocol and multiple coders. Our coded layer is smaller (150 rows), narrower in
+scope and — unlike Seshat — single-coder, which is its principal weakness and the
+subject of Section 10.
+
+**Large language models now write annotations, and the reliability literature is
+directly relevant to our own provenance.** Gilardi and colleagues found that LLM
+annotation can outperform crowd workers on some labelling tasks [gilardi2023]; Ziems
+and colleagues map where LLM annotation is and is not dependable [ziems2024]; and
+Messeri and Crockett warn that AI-assisted science can produce illusory
+understanding — results that feel well-grounded and are not [messeri2024]. That last
+warning describes the risk this paper's coded layer poses, and Section 2.1 reports
+what we did about it, including what we could not do.
+
+**What is new here.** Four things, in descending order of confidence. (i) A
+**degeneracy check** for composite rankings — count each criterion's distinct values
+before letting it rank — which is one line, general, and caught three retractions in
+this project. (ii) The **in-degree / transitive-in-degree** formalisation of
+use-versus-necessity, with a measured disjointness and a negative within-corpus
+correlation between direct impact and necessity. (iii) A **documented failure** of
+the prestige repair to necessity, which is the strongest evidence that the untyped
+edge is the obstacle rather than the criterion set. (iv) A **verification
+procedure** for hand-compiled bibliographies and coded graphs, with reported yield,
+which is the subject of Section 2.1.
+
+
 ---
 
 ## 2. Vocabulary, and the one distinction the paper turns on
@@ -162,6 +248,71 @@ publication year. `stated` is a coder's assertion -- a prerequisite edge, a
 magnitude on the rubric. `derived` is computed from the other two -- a rank, a
 correlation, a consensus score. Most of what follows is `derived` from one
 `measured` and one `stated` input, and its quality is bounded by both.
+
+### 2.1 Provenance: three kinds of data, and one of them is the weak point
+
+The project contains data of three different provenances, and they do not deserve
+the same trust. Saying so with numbers is more useful than a general caveat.
+
+**(a) The bibliometric layer is `measured` and externally reproducible.** The 520
+seeds, their citation counts, publication years, field assignments, reference lists
+and the 5,870 referenced works were fetched from the OpenAlex API and committed as
+JSON. Anyone with an API key can re-fetch them and diff the result. Nothing in
+Sections 3–5 depends on a judgement made by the authors.
+
+**(b) The bibliography is hand-compiled and *mostly not* verifiable.** `sources.yml`
+holds 119 entries, each with an author, year, title and publisher. Each was submitted
+to the Crossref API and graded. The yield is the finding:
+
+| tier | criterion | entries |
+|---|---|---|
+| `verified` | similarity ≥ 0.75 **and** year agrees | 27 |
+| `plausible` | similarity ≥ 0.70, or ≥ 0.55 with year agreement | 59 |
+| `weak` | similarity ≥ 0.40 | 21 |
+| `unmatched` | below 0.40, or no DOI returned | 12 |
+
+So **23% of the bibliography verifies, 50% is plausible, 18% is weak and 10% is
+unmatched.** The failures are systematic rather than random, and the reason matters:
+Crossref indexes journal articles, so a book query returns the book's front matter.
+`arrow1951` matched "INDEX"; `morris2013` matched "Contents"; `fortunato2018` matched
+nothing at all.
+
+The tiering exists because the failure mode of a bibliography checker is
+**over-confidence**: it always returns *something*, so a naive count of "matched"
+rises toward 100% regardless of correctness. The verification module says so in its
+own docstring, and it records its own retraction: an earlier version reported "119/119
+entries matched to a DOI" without gating, and the tooling now states plainly that *a
+DOI hit is not verification*. That earlier number was in this project's own commit
+history, which is why the tiers are reported here rather than a match rate.
+
+**(c) The dependency layer is `stated`, unsourced, and single-coder.** This is the
+weak point, and it is worse than Section 10's general caveat suggests. Of the 143
+prerequisite edges in `edges.yml`, **zero carry a source.** The 150 rows carry
+bibliographic keys into `sources.yml`, so a row's *existence* is attributable, but
+the *edges* — claims of the form "X would not have been possible without Y", which are
+the entire input to the transitive-reach ranking — are assertions with no citation
+attached. The ranking in Section 6.3 is therefore a statement about what one coder
+wrote down, not a measurement of history.
+
+We state that plainly because the alternative is worse. A reader who wanted to check
+Section 6.3 would have nothing to check against, and a reviewer would be right to
+reject it. **The transitive-reach ranking should be read as a demonstration that the
+method produces the kind of answer the question deserves, on data whose provenance is
+reported — not as a finding about the relative importance of calculus and
+thermodynamics.** Section 10 lists the three things that would change that: per-edge
+sources, a second coder, and citation-intent classification.
+
+**The related-work anchors were verified before use, and half of them failed.**
+Section 1.1 cites seventeen works. Those seventeen are the survivors of twenty-seven
+hand-chosen anchors submitted to Crossref with a 0.90 similarity floor and a version
+check on the year. Ten were rejected: `merton1968` matched a book chapter rather than
+the paper; `wu2019` matched a *Faculty Opinions recommendation of* the paper rather
+than the paper; `fortunato2018` matched nothing; `page1999` is a technical report
+Crossref does not index; `vrandecic2014` matched an unrelated chapter at 0.39. One
+anchor was included deliberately as a non-existent title, to confirm that unresolved
+queries are reported rather than kept — and it matched something at 0.51, which is the
+clearest possible demonstration of why a similarity floor is necessary. The
+verification is reproducible: `python scripts/fetch_literature.py`.
 
 ---
 
@@ -547,6 +698,16 @@ quantisation, the Bohr atom, the Schrödinger equation, Boolean algebra in relay
 band theory, germ theory, the Turing machine. There is no software, no assay, no
 reporting guideline and no dataset anywhere in the top twenty.
 
+**This table is the paper's weakest claim and should be read as such.** Every number
+in it is computed from 143 prerequisite edges of which **none carries a source**
+(Section 2.1). The ranking is reproducible from the committed graph, and the graph is
+auditable in the sense that a reader can inspect it, but no reader can check an
+individual edge against a citation because no citation is attached. What the table
+demonstrates is that a parameter-free necessity measure, applied to a coded
+dependency graph, produces an ordering of the kind the question asks for — and that
+the ordering has no overlap with the bibliometric one. It is not evidence about the
+relative importance of calculus and thermodynamics, and we do not claim that it is.
+
 ### 6.4 The internal control: impact and necessity are not merely different but opposed
 
 Comparing two corpora invites the objection that the corpora differ in ways that
@@ -789,15 +950,20 @@ coverage rather than about importance.
 
 The limitation that matters most is stated first.
 
-**The dependency graph is single-coder, and its reliability is unmeasured.** The
-150 rows and 143 edges were coded by one person, who is also the author of this
-paper, who also chose the corpus, the measures and the criteria. The design mitigates
-this in one specific way -- edges are binary and citable, so "was A necessary for
-B?" is a claim with a source rather than a judgement call, and it has a much higher
-expected inter-coder agreement rate than "was this a 2 or a 3?" -- but *expected* is
-not *measured*. No second coder has coded any part of the graph, so no agreement
-statistic can be reported. Every result in Sections 6 and 7 inherits this, and the
-most useful thing a reader could do with this paper is remove that limitation.
+**The dependency graph is single-coder, its edges are unsourced, and its reliability
+is unmeasured.** The 150 rows and 143 edges were coded by one person, who is also the
+author of this paper, who also chose the corpus, the measures and the criteria.
+Section 2.1 gives the numbers: **zero of the 143 edges carry a citation**, so an
+individual "X required Y" claim cannot be checked against a source by any reader.
+The design mitigates this in one specific way — edges are binary and *intended* to be
+citable, so "was A necessary for B?" is in principle a claim with a source rather than
+a judgement call, and it has a much higher expected inter-coder agreement rate than
+"was this a 2 or a 3?" — but *expected* is not *measured* and *intended* is not
+*attached*. The three repairs, in order of value: attach a citation to each of the 143
+edges and recompute the ranking over the sourced subgraph only; obtain a second coder
+and report agreement; and classify citation intent from abstracts. Until at least the
+first is done, Section 6.3 is a demonstration rather than a result, and the most
+useful thing a reader could do with this paper is perform it.
 
 **The bibliometric corpus is the elite tail.** Twenty most-cited works per field is
 the top of the citation distribution, which is exactly where instrumentation is most
@@ -938,8 +1104,17 @@ pixi run gate                      # lint, mypy, tests
 pixi run analyse                   # coded-layer analysis -> reports/results.json
 pixi run figures-openalex          # bibliometric figures -> reports/fields.json
 python scripts/make_contrast.py    # the central figure -> reports/contrast.json
+python scripts/fetch_literature.py # verify the related-work anchors against Crossref
+pixi run validate                  # schema + provenance
+world-impact verify-sources        # verify the bibliography against Crossref
 pixi run docs-build                # mkdocs, strict
 ```
+
+The outputs of both verification commands are committed, so the provenance claims in
+Section 2.1 can be checked without network access:
+`data/literature/bibliography-verification.json` (all 119 bibliography entries with
+their similarity to the best Crossref match) and `data/literature/verified.json` (the
+27 related-work anchors, with the 10 rejections and their reasons).
 
 The bibliometric corpus (`data/openalex/corpus.json`: 520 seeds and 5,870 referenced
 works) and the citer cache (`data/openalex/citers.json`) are committed, so no network
@@ -950,6 +1125,46 @@ are `docs/results.md` and `docs/consensus.md`; the measurement diagnostics are
 `docs/methods.md`.
 
 Data is CC-BY-4.0; code is MIT.
+
+---
+
+## References
+
+Verification status is part of the reference list. `verified` means Crossref
+returned a record at ≥ 0.90 title similarity with an agreeing version year, and the
+DOI given is that record. `unverified` means no such record was returned; the entry
+is a real work cited from knowledge, and the reader should treat its bibliographic
+details as unconfirmed. Two of the eighteen works cited below are unverified, which
+is the yield of the procedure described in Section 2.1.
+
+| key | work | DOI | status |
+|---|---|---|---|
+| aksnes2019 | Aksnes, D. W., Langfeldt, L. & Wouters, P. (2019). Citations, citation indicators, and research quality. *SAGE Open* 9(1). | 10.1177/2158244019829575 | verified |
+| macroberts2010 | MacRoberts, M. H. & MacRoberts, B. R. (2009). Problems of citation analysis: a study of uncited and seldom-cited influences. *JASIST* 61(1). | 10.1002/asi.21228 | verified |
+| seglen1997 | Seglen, P. O. (1997). Why the impact factor of journals should not be used for evaluating research. *BMJ* 314, 497. | 10.1136/bmj.314.7079.497 | verified |
+| teufel2006 | Teufel, S., Siddharthan, A. & Tidhar, D. (2006). Automatic classification of citation function. *EMNLP 2006*. | 10.3115/1610075.1610091 | verified |
+| jurgens2018 | Jurgens, D., Kumar, S., Hoover, R., McFarland, D. & Jurafsky, D. (2018). Measuring the evolution of a scientific field through citation frames. *TACL* 6. | 10.1162/tacl_a_00028 | verified |
+| cohan2019 | Cohan, A., Ammar, W., van Zuylen, M. & Cady, F. (2019). Structural scaffolds for citation intent classification. *NAACL 2019*. | 10.18653/v1/n19-1361 | verified |
+| park2023 | Park, M., Leahey, E. & Funk, R. J. (2023). Papers and patents are becoming less disruptive over time. *Nature* 613, 138–144. | 10.1038/s41586-022-05543-x | verified |
+| funk2017 | Funk, R. J. & Owen-Smith, J. (2017). A dynamic network measure of technological change. *Management Science* 63(3). | 10.1287/mnsc.2015.2366 | verified |
+| wang2013 | Wang, D., Song, C. & Barabási, A.-L. (2013). Quantifying long-term scientific impact. *Science* 342, 127–132. | 10.1126/science.1237825 | verified |
+| chen2007 | Chen, P., Xie, H., Maslov, S. & Redner, S. (2007). Finding scientific gems with Google's PageRank. *Journal of Informetrics* 1(1). | 10.1016/j.joi.2006.06.001 | verified |
+| walker2007 | Walker, D., Xie, H., Yan, K.-K. & Maslov, S. (2007). Ranking scientific publications using a model of network traffic. *J. Stat. Mech.* P06010. | 10.1088/1742-5468/2007/06/p06010 | verified |
+| freeman1979 | Freeman, L. C. (1978). Centrality in social networks: conceptual clarification. *Social Networks* 1(3). | 10.1016/0378-8733(78)90021-7 | verified |
+| bloom2020 | Bloom, N., Jones, C. I., Van Reenen, J. & Webb, M. (2017). Are ideas getting harder to find? *NBER WP 23782*. | 10.3386/w23782 | verified |
+| gilardi2023 | Gilardi, F., Alizadeh, M. & Kubli, M. (2023). ChatGPT outperforms crowd workers for text-annotation tasks. *PNAS* 120(30). | 10.1073/pnas.2305016120 | verified |
+| ziems2024 | Ziems, C., Held, W., Shaikh, O., Chen, J., Zhang, Z. & Yang, D. (2024). Can large language models transform computational social science? *Computational Linguistics* 50(1). | 10.1162/coli_a_00502 | verified |
+| messeri2024 | Messeri, L. & Crockett, M. J. (2024). Artificial intelligence and illusions of understanding in scientific research. *Nature* 627, 49–58. | 10.1038/s41586-024-07146-0 | verified |
+| turchin2018 | Turchin, P. et al. (2017). Quantitative historical analysis uncovers a single dimension of complexity. *PNAS* 115(2). | 10.1073/pnas.1708800115 | verified |
+| jones2009 | Jones, B. F. (2009). The burden of knowledge and the "death of the Renaissance man". *Review of Economic Studies* 76(1). | — | **unverified** |
+| page1999 | Page, L., Brin, S., Motwani, R. & Winograd, T. (1999). The PageRank citation ranking: bringing order to the web. *Stanford InfoLab TR*. | — | **unverified** |
+
+Two further works are cited in Section 2.1 as examples of *failed* verification and
+are not part of the bibliography above: Merton's "The Matthew Effect in Science"
+(*Science* 159, 1968), for which Crossref returns a book chapter at 0.77 similarity;
+and Fortunato et al.'s "Science of science" (*Science* 359, 2018), for which Crossref
+returns no match at all.
+
 
 
 

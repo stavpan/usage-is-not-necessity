@@ -84,13 +84,28 @@ docs/decisions.md   twenty decisions, twelve retractions
 tests/          81 tests; a change that breaks the argument breaks a test
 ```
 
+## Provenance, stated as a result
+
+Three kinds of data, three levels of trust:
+
+- **The bibliometric layer is `measured` and externally reproducible.** Fetched from
+  the OpenAlex API and committed, so anyone can re-fetch and diff.
+- **The bibliography is 23% verified.** Of 119 hand-compiled entries, Crossref
+  confirms 27, finds 59 plausible, 21 weak and 12 unmatched — because Crossref
+  indexes articles, not books. `world-impact verify-sources` is reproducible, and its
+  output is committed at `data/literature/bibliography-verification.json`.
+- **The 143 prerequisite edges carry no sources at all.** So the transitive-reach
+  ranking is a demonstration that the method yields the right kind of answer, **not** a
+  finding about the relative importance of calculus and thermodynamics. Attaching a
+  citation to each edge and recomputing over the sourced subgraph is the single most
+  valuable thing anyone could do to this repository.
+
 ## Status
 
-Alpha. The bibliometric layer is complete and reproducible. The dependency layer's
-principal limitation is that it is **single-coder and its inter-coder reliability is
-unmeasured**, which is the single largest threat to validity. Do not cite the
-transitive-reach ranking as an estimate of anything until a second coder has coded
-the graph.
+Alpha, and the above is why. The bibliometric layer is complete and reproducible. The
+dependency layer is single-coder, unsourced and unmeasured for reliability — see
+`docs/paper.md` §2.1 and §10. Do not cite the transitive-reach ranking as an estimate
+of anything until the edges are sourced.
 
 ## Licence
 
