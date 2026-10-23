@@ -1,0 +1,1078 @@
+{
+  "n_entries": 119,
+  "counts_by_tier": {
+    "plausible": 47,
+    "verified": 47,
+    "weak": 16,
+    "unmatched": 9
+  },
+  "summary": "47 verified, 47 plausible, 16 weak, 9 unmatched, out of 119",
+  "entries": [
+    {
+      "key": "arrow1951",
+      "declared_title": "Social Choice and Individual Values",
+      "matched_title": "Social Choice and Individual Values",
+      "matched_doi": "10.12987/9780300186987",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "sen1970",
+      "declared_title": "Collective Choice and Social Welfare",
+      "matched_title": "Collective Choice and Social Welfare",
+      "matched_doi": "10.1016/c2009-0-12011-1",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "lahdelma1998",
+      "declared_title": "SMAA \u2014 Stochastic multiobjective acceptability analysis",
+      "matched_title": "SMAA - Stochastic multiobjective acceptability analysis",
+      "matched_doi": "10.1016/s0377-2217(97)00163-x",
+      "similarity": 0.982,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "saltelli2008",
+      "declared_title": "Global Sensitivity Analysis: The Primer",
+      "matched_title": "Sensitivity Analysis: From Theory to Practice",
+      "matched_doi": "10.1002/9780470725184.ch6",
+      "similarity": 0.714,
+      "year_agrees": true,
+      "tier": "plausible"
+    },
+    {
+      "key": "sobol2001",
+      "declared_title": "Global sensitivity indices for nonlinear mathematical models and their Monte Carlo estimates",
+      "matched_title": "Global sensitivity indices for nonlinear mathematical models and their Monte Carlo estimates",
+      "matched_doi": "10.1016/s0378-4754(00)00270-6",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "horn1965",
+      "declared_title": "A rationale and test for the number of factors in factor analysis",
+      "matched_title": "A Rationale and Test for the Number of Factors in Factor Analysis",
+      "matched_doi": "10.1007/bf02289447",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "glorfeld1995",
+      "declared_title": "An improvement on Horn's parallel analysis methodology for selecting the correct number of factors to retain",
+      "matched_title": "An Improvement on Horn's Parallel Analysis Methodology for Selecting the Correct Number of Factors to Retain",
+      "matched_doi": "10.1177/0013164495055003002",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "zwick1986",
+      "declared_title": "Comparison of five rules for determining the number of components to retain",
+      "matched_title": "Comparison of five rules for determining the number of components to retain.",
+      "matched_doi": "10.1037/0033-2909.99.3.432",
+      "similarity": 0.993,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "haslbeck2024",
+      "declared_title": "Estimating the number of factors in exploratory factor analysis via out-of-sample prediction errors",
+      "matched_title": "Estimating the Number of Factors in Exploratory Factor Analysis via out-of-sample Prediction Errors",
+      "matched_doi": "10.31234/osf.io/qktsd",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "samejima1969",
+      "declared_title": "Estimation of latent ability using a response pattern of graded scores",
+      "matched_title": "Estimation of Latent Ability Using a Response Pattern of Graded Scores",
+      "matched_doi": "10.1007/bf03372160",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "tucker1966",
+      "declared_title": "Some mathematical notes on three-mode factor analysis",
+      "matched_title": "Some Mathematical Notes on Three-Mode Factor Analysis",
+      "matched_doi": "10.1007/bf02289464",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "delathauwer2000",
+      "declared_title": "A multilinear singular value decomposition",
+      "matched_title": "Construction of finite tight frames via singular value decomposition",
+      "matched_doi": "10.1080/03081087.2021.1887068",
+      "similarity": 0.655,
+      "year_agrees": false,
+      "tier": "weak"
+    },
+    {
+      "key": "kossaifi2019",
+      "declared_title": "TensorLy: Tensor learning in Python",
+      "matched_title": "Efficient numerical simulations with Tensor Networks: Tensor Network  Python (TeNPy)",
+      "matched_doi": "10.21468/scipostphyslectnotes.5",
+      "similarity": 0.42,
+      "year_agrees": true,
+      "tier": "weak"
+    },
+    {
+      "key": "turchin2015",
+      "declared_title": "Seshat: The Global History Databank",
+      "matched_title": "Dataset Review\u2014Seshat: Global History Databank",
+      "matched_doi": "10.5195/jwsr.2018.786",
+      "similarity": 0.765,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "turchin2018",
+      "declared_title": "Quantitative historical analysis uncovers a single dimension of complexity that structures global variation in human social organization",
+      "matched_title": "Quantitative historical analysis uncovers a single dimension of complexity that structures global variation in human social organization",
+      "matched_doi": "10.1073/pnas.1708800115",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "morris2013",
+      "declared_title": "The Measure of Civilization: How Social Development Decides the Fate of Nations",
+      "matched_title": "Illustrations",
+      "matched_doi": "10.1515/9781400844760-001",
+      "similarity": 0.196,
+      "year_agrees": true,
+      "tier": "unmatched"
+    },
+    {
+      "key": "morris2010",
+      "declared_title": "Why the West Rules - For Now",
+      "matched_title": "Why the West rules \u2013 for now: the patterns of history and what they reveal about the future",
+      "matched_doi": "10.1017/s1740022811000623",
+      "similarity": 0.454,
+      "year_agrees": true,
+      "tier": "weak"
+    },
+    {
+      "key": "rogers2003",
+      "declared_title": "Diffusion of Innovations (5th ed.)",
+      "matched_title": "The Diffusion of Product Innovations",
+      "matched_doi": "10.1093/oso/9780198816676.003.0009",
+      "similarity": 0.686,
+      "year_agrees": false,
+      "tier": "weak"
+    },
+    {
+      "key": "grubler1990",
+      "declared_title": "The Rise and Fall of Infrastructures: Dynamics of Evolution and Technological Change in Transport",
+      "matched_title": "The rise and fall of infrastructures: dynamics of evolution and technological change in transport",
+      "matched_doi": "10.1016/0957-1787(91)90018-z",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "comin2010",
+      "declared_title": "An exploration of technology diffusion",
+      "matched_title": "An Exploration of Technology Diffusion",
+      "matched_doi": "10.3386/w12314",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "nordhaus2007",
+      "declared_title": "Two centuries of productivity growth in computing",
+      "matched_title": "Two Centuries of Productivity Growth in Computing",
+      "matched_doi": "10.1017/s0022050707000058",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "fortunato2018",
+      "error": "no match"
+    },
+    {
+      "key": "ferguson1997",
+      "declared_title": "Virtual History: Alternatives and Counterfactuals",
+      "matched_title": "Virtual History: Alternatives and Counterfactuals",
+      "matched_doi": "10.1215/03335372-22-4-863",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "tetlock1996",
+      "declared_title": "Counterfactual Thought Experiments in World Politics",
+      "matched_title": "Counterfactual Thought Experiments in World Politics:",
+      "matched_doi": "10.2307/j.ctv10vm1bn.5",
+      "similarity": 0.99,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "ord2020",
+      "declared_title": "The Precipice: Existential Risk and the Future of Humanity",
+      "matched_title": "The Precipice: Existential Risk and the Future of Humanity. By Toby Ord",
+      "matched_doi": "10.5840/acpq2023971270",
+      "similarity": 0.899,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "parfit1984",
+      "declared_title": "Reasons and Persons",
+      "matched_title": "Reasons and Persons",
+      "matched_doi": "10.1093/019824908x.001.0001",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "wrangham2009",
+      "declared_title": "Catching Fire: How Cooking Made Us Human",
+      "matched_title": "Catching fire: how cooking made us human",
+      "matched_doi": "10.5860/choice.47-5113",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "martin1967",
+      "declared_title": "Pleistocene Extinctions: The Search for a Cause",
+      "matched_title": "Pleistocene Extinctions: The Search for a Cause",
+      "matched_doi": "10.2307/2798599",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "bickerton2009",
+      "declared_title": "Adam's Tongue",
+      "matched_title": "Similar sounds help the tongue-tied",
+      "matched_doi": "10.1038/news001116-4",
+      "similarity": 0.417,
+      "year_agrees": false,
+      "tier": "weak"
+    },
+    {
+      "key": "zohary2012",
+      "declared_title": "Domestication of Plants in the Old World (4th ed.)",
+      "matched_title": "Domestication of Plants in the Old World",
+      "matched_doi": "10.1093/acprof:osobl/9780199549061.001.0001",
+      "similarity": 0.889,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "diamond2002",
+      "declared_title": "Evolution, consequences and future of plant and animal domestication",
+      "matched_title": "Evolution, consequences and future of plant and animal domestication",
+      "matched_doi": "10.1038/nature01019",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "worster1992",
+      "declared_title": "Rivers of Empire: Water, Aridity, and the Growth of the American West",
+      "matched_title": "Rivers of Empire: Water, Aridity, and the Growth of the American West",
+      "matched_doi": "10.2307/1184072",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "schmandt1992",
+      "declared_title": "Before Writing: From Counting to Cuneiform",
+      "matched_title": "Before writing: v.1: From counting to cuneiform",
+      "matched_doi": "10.5860/choice.30-2275",
+      "similarity": 0.944,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "tylecote1976",
+      "declared_title": "A History of Metallurgy",
+      "matched_title": "History of Powder Metallurgy",
+      "matched_doi": "10.31399/asm.hb.v07.a0006017",
+      "similarity": 0.824,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "piggott1983",
+      "declared_title": "The Earliest Wheeled Transport",
+      "matched_title": "The Earliest Wheeled Transport, from the Atlantic Coast to the Caspian Sea",
+      "matched_doi": "10.2307/4349634",
+      "similarity": 0.577,
+      "year_agrees": true,
+      "tier": "plausible"
+    },
+    {
+      "key": "graeber2011",
+      "declared_title": "Debt: The First 5,000 Years",
+      "matched_title": "David Graeber's Wunderkammer,<i>Debt: The First 5 000 Years</i>",
+      "matched_doi": "10.1080/00664677.2012.729492",
+      "similarity": 0.578,
+      "year_agrees": true,
+      "tier": "plausible"
+    },
+    {
+      "key": "westbrook2003",
+      "declared_title": "A History of Ancient Near Eastern Law",
+      "matched_title": "A History of Ancient Near Eastern Law (2 vols)",
+      "matched_doi": "10.1163/9789047402091",
+      "similarity": 0.892,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "scott1998",
+      "declared_title": "Seeing Like a State",
+      "matched_title": "Seeing Like a State",
+      "matched_doi": "10.1057/9781137269720.0012",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "crosby1986",
+      "declared_title": "Ecological Imperialism: The Biological Expansion of Europe, 900-1900",
+      "matched_title": "Explanations",
+      "matched_doi": "10.1017/cbo9781316424032.012",
+      "similarity": 0.2,
+      "year_agrees": false,
+      "tier": "unmatched"
+    },
+    {
+      "key": "robinson2007",
+      "declared_title": "Writing and Script: A Very Short Introduction",
+      "matched_title": "Writing and Script",
+      "matched_doi": "10.1093/actrade/9780199567782.001.0001",
+      "similarity": 0.571,
+      "year_agrees": true,
+      "tier": "plausible"
+    },
+    {
+      "key": "jaspers1953",
+      "declared_title": "The Origin and Goal of History",
+      "matched_title": "The Origin and Goal of History",
+      "matched_doi": "10.4324/9781003133674",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "bellah2011",
+      "declared_title": "Religion in Human Evolution",
+      "matched_title": "Religion and Evolution",
+      "matched_doi": "10.2307/j.ctt2jbstq.6",
+      "similarity": 0.857,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "hodge1992",
+      "declared_title": "Roman Aqueducts and Water Supply",
+      "matched_title": "Roman Aqueducts and Water Supply",
+      "matched_doi": "10.2307/1088373",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "tsien1985",
+      "declared_title": "Paper and Printing (Science and Civilisation in China, vol. 5 pt 1)",
+      "matched_title": "<i>Paper and Printing. Vol. 5, Pt. 1 of Science and Civilisation in China</i>. Tsien Tsuen-Hsuin , Joseph Needham",
+      "matched_doi": "10.1086/601960",
+      "similarity": 0.622,
+      "year_agrees": false,
+      "tier": "weak"
+    },
+    {
+      "key": "eisenstein1979",
+      "declared_title": "The Printing Press as an Agent of Change",
+      "matched_title": "The Printing Press as an Agent of Change",
+      "matched_doi": "10.1017/cbo9781107049963",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "shapin1985",
+      "declared_title": "Leviathan and the Air-Pump",
+      "matched_title": "INTRODUCTION TO THE 2011 EDITION",
+      "matched_doi": "10.2307/j.ctt7sv46.4",
+      "similarity": 0.345,
+      "year_agrees": false,
+      "tier": "unmatched"
+    },
+    {
+      "key": "coase1937",
+      "declared_title": "The nature of the firm",
+      "matched_title": "The nature of the firm",
+      "matched_doi": "10.1017/cbo9780511817410.009",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "acemoglu2005",
+      "declared_title": "The rise of Europe: Atlantic trade, institutional change, and economic growth",
+      "matched_title": "The Rise of Europe: Atlantic Trade, Institutional Change, and Economic Growth",
+      "matched_doi": "10.1257/0002828054201305",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "szreter1988",
+      "declared_title": "The importance of social intervention in Britain's mortality decline c.1850-1914",
+      "matched_title": "4 THE IMPORTANCE OF SOCIAL INTERVENTION IN BRITAIN\u2019S MORTALITY DECLINE c.1850\u20131914* A Reinterpretation of the Role of Public Health1",
+      "matched_doi": "10.1515/9781580466462-006",
+      "similarity": 0.736,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "levinson2006",
+      "declared_title": "The Box: How the Shipping Container Made the World Smaller and the World Economy Bigger",
+      "matched_title": "The Box: How the Shipping Container Made the World Smaller and the World Economy Bigger",
+      "matched_doi": "10.1163/2468-1733_shafr_sim280020594",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "riordan1997",
+      "declared_title": "Crystal Fire: The Birth of the Information Age",
+      "matched_title": "Crystal Fire: The Birth of the Information Age",
+      "matched_doi": "10.1353/tech.2000.0121",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "lindert2004",
+      "declared_title": "Growing Public: Social Spending and Economic Growth since the Eighteenth Century",
+      "matched_title": "What Drove Postwar Social Spending?",
+      "matched_doi": "10.1017/cbo9780511510724.006",
+      "similarity": 0.348,
+      "year_agrees": true,
+      "tier": "unmatched"
+    },
+    {
+      "key": "drescher2009",
+      "declared_title": "Abolition: A History of Slavery and Antislavery",
+      "matched_title": "Abolition: A History of Slavery and Antislavery",
+      "matched_doi": "10.1080/0144039x.2011.568235",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "duflo2012",
+      "declared_title": "Women empowerment and economic development",
+      "matched_title": "Women Empowerment: Key to Socio-Economic Development",
+      "matched_doi": "10.29052/2413-4252.v4.i1.2018.5-7",
+      "similarity": 0.83,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "goldin2002",
+      "declared_title": "The power of the pill: Oral contraceptives and women's career and marriage decisions",
+      "matched_title": "The Power of the Pill: Oral Contraceptives and Women's Career and Marriage Decisions",
+      "matched_doi": "10.3386/w7527",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "pingali2012",
+      "declared_title": "Green Revolution: Impacts, limits, and the path ahead",
+      "matched_title": "Green Revolution: Impacts, limits, and the path ahead",
+      "matched_doi": "10.1073/pnas.0912953109",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "sen1981",
+      "declared_title": "Poverty and Famines: An Essay on Entitlement and Deprivation",
+      "matched_title": "The Entitlement Approach",
+      "matched_doi": "10.1093/0198284632.003.0005",
+      "similarity": 0.429,
+      "year_agrees": true,
+      "tier": "weak"
+    },
+    {
+      "key": "ihgsc2001",
+      "declared_title": "Initial sequencing and analysis of the human genome",
+      "matched_title": "Erratum: Initial sequencing and analysis of the human genome",
+      "matched_doi": "10.1038/35079657",
+      "similarity": 0.919,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "polack2020",
+      "declared_title": "Safety and efficacy of the BNT162b2 mRNA Covid-19 vaccine",
+      "matched_title": "Review of: \"Six Month Safety and Efficacy of the BNT162b2 mRNA COVID-19 Vaccine\"",
+      "matched_doi": "10.32388/7442hq",
+      "similarity": 0.832,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "doudna2014",
+      "declared_title": "The new frontier of genome engineering with CRISPR-Cas9",
+      "matched_title": "The new frontier of genome engineering with CRISPR-Cas9",
+      "matched_doi": "10.1126/science.1258096",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "schelling1966",
+      "declared_title": "Arms and Influence",
+      "matched_title": "Arms, Exports, Influence: Institutional Corruption in the German Arms Export Regime",
+      "matched_doi": "10.2139/ssrn.2476633",
+      "similarity": 0.297,
+      "year_agrees": false,
+      "tier": "unmatched"
+    },
+    {
+      "key": "rees2018",
+      "declared_title": "Refrigeration Nation: A History of Ice, Appliances, and Enterprise in America",
+      "matched_title": "Refrigeration Nation: A History of Ice, Appliances, and Enterprise in America",
+      "matched_doi": "10.1093/jahist/jav579",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "cooper1998",
+      "declared_title": "Air-Conditioning America",
+      "matched_title": "Air-conditioning America",
+      "matched_doi": "10.56021/9780801857164",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "hunt2007",
+      "declared_title": "Inventing Human Rights",
+      "matched_title": "Inventing Human Dignity",
+      "matched_doi": "10.4324/9781315778372-18",
+      "similarity": 0.844,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "abbate2000",
+      "declared_title": "Inventing the Internet",
+      "matched_title": "Inventing the Internet",
+      "matched_doi": "10.1108/oir.2001.25.4.271.2",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "leiner2009",
+      "declared_title": "A brief history of the Internet",
+      "matched_title": "A Very Brief History of Internet Jurisdiction",
+      "matched_doi": "10.1093/oso/9780198795674.003.0004",
+      "similarity": 0.711,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "headrick1991",
+      "declared_title": "The Invisible Weapon: Telecommunications and International Politics 1851-1945",
+      "matched_title": "The Invisible Weapon: Telecommunications and International Politics, 1851-1945",
+      "matched_doi": "10.1163/2468-1733_shafr_sim040140146",
+      "similarity": 0.994,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "iea2023",
+      "declared_title": "World Energy Outlook 2023",
+      "matched_title": "World Energy Outlook 2023",
+      "matched_doi": "10.1787/827374a6-en",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "faostat2022",
+      "declared_title": "FAOSTAT Food Balance Sheets",
+      "matched_title": "Food balance sheets 2010\u20132023",
+      "matched_doi": "10.4060/cd7162en",
+      "similarity": 0.679,
+      "year_agrees": false,
+      "tier": "weak"
+    },
+    {
+      "key": "igme2023",
+      "declared_title": "Levels and Trends in Child Mortality",
+      "matched_title": "Levels and trends in child mortality estimation",
+      "matched_doi": "10.1136/archdischild-2024-327211",
+      "similarity": 0.867,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "ucdp2023",
+      "declared_title": "Organized violence 1989-2022 and the return of conflicts between states",
+      "matched_title": "Organized violence 1989\u20132022, and the return of conflict between states",
+      "matched_doi": "10.1177/00223433231185169",
+      "similarity": 0.972,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "lecun2015",
+      "declared_title": "Deep learning",
+      "matched_title": "Deep Learning in Action",
+      "matched_doi": "10.4135/9781506368603.n4",
+      "similarity": 0.722,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "krippner2011",
+      "declared_title": "Capitalizing on Crisis: The Political Origins of the Rise of Finance",
+      "matched_title": "Capitalizing on Crisis: The Political Origins of the Rise of Finance",
+      "matched_doi": "10.1163/2468-1733_shafr_sim280020435",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "smil2017",
+      "declared_title": "Energy and Civilization: A History",
+      "matched_title": "Energy and Civilization",
+      "matched_doi": "10.7551/mitpress/9780262035774.001.0001",
+      "similarity": 0.807,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "smil2001",
+      "declared_title": "Enriching the Earth: Fritz Haber, Carl Bosch, and the Transformation of World Food Production",
+      "matched_title": "Synthetic Fertilizers",
+      "matched_doi": "10.7551/mitpress/2767.003.0009",
+      "similarity": 0.228,
+      "year_agrees": true,
+      "tier": "unmatched"
+    },
+    {
+      "key": "erisman2008",
+      "declared_title": "How a century of ammonia synthesis changed the world",
+      "matched_title": "How a century of ammonia synthesis changed the world",
+      "matched_doi": "10.1038/ngeo325",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "mokyr2016",
+      "declared_title": "A Culture of Growth: The Origins of the Modern Economy",
+      "matched_title": "A Culture of Growth",
+      "matched_doi": "10.1515/9780691292502",
+      "similarity": 0.521,
+      "year_agrees": true,
+      "tier": "weak"
+    },
+    {
+      "key": "mokyr1990",
+      "declared_title": "The Lever of Riches: Technological Creativity and Economic Progress",
+      "matched_title": "The lever of riches: Technological creativity and economic progress",
+      "matched_doi": "10.1016/0024-6301(91)90105-w",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "landes1998",
+      "declared_title": "The Wealth and Poverty of Nations",
+      "matched_title": "The Wealth of Cities and the Poverty of Nations",
+      "matched_doi": "10.3366/9781788215602",
+      "similarity": 0.825,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "diamond1997",
+      "declared_title": "Guns, Germs, and Steel",
+      "matched_title": "Guns, Germs, and Steel",
+      "matched_doi": "10.1037/e524022011-001",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "mcneill1976",
+      "declared_title": "Plagues and Peoples",
+      "matched_title": "Of Plagues and Peoples",
+      "matched_doi": "10.2307/j.ctvx1hsvh.10",
+      "similarity": 0.927,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "mcneill2003",
+      "declared_title": "The Human Web: A Bird's-Eye View of World History",
+      "matched_title": "The Human Web: A Bird's-Eye View of World History",
+      "matched_doi": "10.2307/20033586",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "north1990",
+      "declared_title": "Institutions, Institutional Change and Economic Performance",
+      "matched_title": "Institutions, Institutional Change and Economic Performance in Emerging Markets",
+      "matched_doi": "10.1142/9789814719766_0001",
+      "similarity": 0.855,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "tainter1988",
+      "declared_title": "The Collapse of Complex Societies",
+      "matched_title": "The Collapse of Complex Societies",
+      "matched_doi": "10.2307/4350705",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "tilly1990",
+      "declared_title": "Coercion, Capital, and European States, AD 990-1992",
+      "matched_title": "Coercion, capital, and European states, AD 990-1990",
+      "matched_doi": "10.5860/choice.28-2311",
+      "similarity": 0.98,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "allen2009",
+      "declared_title": "The British Industrial Revolution in Global Perspective",
+      "matched_title": "The British Industrial Revolution in Global Perspective",
+      "matched_doi": "10.5871/bacad/9780197264775.003.0007",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "allen2011",
+      "declared_title": "Global Economic History: A Very Short Introduction",
+      "matched_title": "Global Economic History",
+      "matched_doi": "10.1093/actrade/9780199596652.001.0001",
+      "similarity": 0.63,
+      "year_agrees": true,
+      "tier": "plausible"
+    },
+    {
+      "key": "rockstrom2009",
+      "declared_title": "A safe operating space for humanity",
+      "matched_title": "\u201cA Safe Operating Space for Humanity\u201d (2009)",
+      "matched_doi": "10.12987/9780300188479-042",
+      "similarity": 0.886,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "holdren1974",
+      "declared_title": "Human population and the global environment",
+      "matched_title": "Population Health, Environment and Economic Development",
+      "matched_doi": "10.1023/a:1019692328162",
+      "similarity": 0.531,
+      "year_agrees": false,
+      "tier": "weak"
+    },
+    {
+      "key": "bolt2020",
+      "declared_title": "Maddison style estimates of the evolution of the world economy: A new 2020 update",
+      "matched_title": "Maddison\u2010style estimates of the evolution of the world economy: A new 2023 update",
+      "matched_doi": "10.1111/joes.12618",
+      "similarity": 0.975,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "barrolee2013",
+      "declared_title": "A new data set of educational attainment in the world, 1950-2010",
+      "matched_title": "A New Data Set of Educational Attainment in the World, 1950-2010",
+      "matched_doi": "10.3386/w15902",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "kleingoldewijk2017",
+      "declared_title": "Anthropogenic land use estimates for the Holocene - HYDE 3.2",
+      "matched_title": "Anthropogenic land use estimates for the Holocene \u2013 HYDE 3.2",
+      "matched_doi": "10.5194/essd-9-927-2017",
+      "similarity": 0.983,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "coppedge2023",
+      "declared_title": "V-Dem Codebook v13",
+      "matched_title": "The  Greeks of V13",
+      "matched_doi": "10.61565/trivium.i2.726",
+      "similarity": 0.389,
+      "year_agrees": false,
+      "tier": "unmatched"
+    },
+    {
+      "key": "gcp2023",
+      "declared_title": "Global Carbon Budget 2023",
+      "matched_title": "Global Carbon Budget 2016",
+      "matched_doi": "10.3334/cdiac/gcp_2016",
+      "similarity": 0.92,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "gbd2020",
+      "declared_title": "Global burden of 87 risk factors in 204 countries and territories, 1990-2019",
+      "matched_title": "Review for \"Global burden and attributable risk factors of acute lymphoblastic leukemia in 204 countries and territories in 1990\u20132019: Estimation based on Global Burden of Disease Study 2019\"",
+      "matched_doi": "10.1002/hon.2936/v2/review1",
+      "similarity": 0.524,
+      "year_agrees": true,
+      "tier": "weak"
+    },
+    {
+      "key": "lpi2022",
+      "declared_title": "Living Planet Report 2022",
+      "matched_title": "LIVING PLANET REPORT 2022",
+      "matched_doi": "10.1163/9789004322714_cclc_2022-0074-0232",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "wpp2022",
+      "declared_title": "World Population Prospects 2022",
+      "matched_title": "World Population Prospects 2022",
+      "matched_doi": "10.18356/9789210014380",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "owid2024",
+      "declared_title": "Our World in Data catalog",
+      "matched_title": "Our catalog /",
+      "matched_doi": "10.5962/bhl.title.143151",
+      "similarity": 0.579,
+      "year_agrees": false,
+      "tier": "weak"
+    },
+    {
+      "key": "wdi2023",
+      "declared_title": "World Development Indicators",
+      "matched_title": "World Development Indicators 2017",
+      "matched_doi": "10.1596/26447",
+      "similarity": 0.918,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "boyer1991",
+      "declared_title": "A History of Mathematics (2nd ed.)",
+      "matched_title": "Pessimism: A history and a criticism (2nd ed.).",
+      "matched_doi": "10.1037/14108-000",
+      "similarity": 0.642,
+      "year_agrees": false,
+      "tier": "weak"
+    },
+    {
+      "key": "cardwell1971",
+      "declared_title": "From Watt to Clausius: The Rise of Thermodynamics in the Early Industrial Age",
+      "matched_title": "From Watts to Clausius: The Rise of Thermodynamics in the Early Industrial Age",
+      "matched_doi": "10.2307/3102621",
+      "similarity": 0.994,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "kragh1999",
+      "declared_title": "Quantum Generations: A History of Physics in the Twentieth Century",
+      "matched_title": "Quantum Generations",
+      "matched_doi": "10.2307/j.ctv10crfmk",
+      "similarity": 0.447,
+      "year_agrees": false,
+      "tier": "weak"
+    },
+    {
+      "key": "stigler1986",
+      "declared_title": "The History of Statistics: The Measurement of Uncertainty before 1900",
+      "matched_title": "The History of Statistics: The Measurement of Uncertainty Before 1900.",
+      "matched_doi": "10.2307/2069855",
+      "similarity": 0.993,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "whittaker1951",
+      "declared_title": "A History of the Theories of Aether and Electricity",
+      "matched_title": "A History of the Theories of Aether and Electricity",
+      "matched_doi": "10.5840/thought195328254",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "kline1986",
+      "declared_title": "An overview of innovation",
+      "matched_title": "Overview of Free Innovation",
+      "matched_doi": "10.7551/mitpress/9780262035217.003.0001",
+      "similarity": 0.846,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "leontief1936",
+      "declared_title": "Quantitative input and output relations in the economic system of the United States",
+      "matched_title": "Quantitative Input and Output Relations in the Economic Systems of the United States",
+      "matched_doi": "10.2307/1927837",
+      "similarity": 0.994,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "hirschman1958",
+      "declared_title": "The Strategy of Economic Development",
+      "matched_title": "Sources of Economic Growth and Development Strategy in Dubai",
+      "matched_doi": "10.1057/9781137001115.0011",
+      "similarity": 0.542,
+      "year_agrees": false,
+      "tier": "weak"
+    },
+    {
+      "key": "shannon1948",
+      "declared_title": "A mathematical theory of communication",
+      "matched_title": "A Mathematical Theory of Communication",
+      "matched_doi": "10.1109/9780470544242.ch1",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "cover2006",
+      "declared_title": "Elements of Information Theory (2nd ed.)",
+      "matched_title": "Entropy and Information Theory (2nd ed.)",
+      "matched_doi": "10.1108/14684521211241477",
+      "similarity": 0.825,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "dantzig1963",
+      "declared_title": "Linear Programming and Extensions",
+      "matched_title": "1. The Linear Programming Concept",
+      "matched_doi": "10.1515/9781400884179-002",
+      "similarity": 0.636,
+      "year_agrees": true,
+      "tier": "plausible"
+    },
+    {
+      "key": "bennett1996",
+      "declared_title": "A History of Control Engineering 1930-1955",
+      "matched_title": "A History of Control Engineering 1930-1955",
+      "matched_doi": "10.1049/pbce047e",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "hidalgo2007",
+      "declared_title": "The product space conditions the development of nations",
+      "matched_title": "The Product Space Conditions the Development of Nations",
+      "matched_doi": "10.1126/science.1144581",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "ball1989",
+      "declared_title": "Finding the most vital arcs in a network",
+      "matched_title": "Finding the most vital arcs in a network",
+      "matched_doi": "10.1016/0167-6377(89)90003-5",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "dixit1994",
+      "declared_title": "Investment under Uncertainty",
+      "matched_title": "Dynamic Optimization under Uncertainty",
+      "matched_doi": "10.2307/j.ctt7sncv.7",
+      "similarity": 0.606,
+      "year_agrees": false,
+      "tier": "weak"
+    },
+    {
+      "key": "kauffman2000",
+      "declared_title": "Investigations",
+      "matched_title": "Drug Investigations",
+      "matched_doi": "10.1201/9781420040647.ch2",
+      "similarity": 0.848,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "arrow1974",
+      "declared_title": "Environmental preservation, uncertainty, and irreversibility",
+      "matched_title": "Environmental Preservation, Uncertainty, and Irreversibility",
+      "matched_doi": "10.4337/9781035351183.00017",
+      "similarity": 1.0,
+      "year_agrees": false,
+      "tier": "plausible"
+    },
+    {
+      "key": "krippendorff2019",
+      "declared_title": "Content Analysis: An Introduction to Its Methodology (4th ed.)",
+      "matched_title": "The Logic of Content Analysis Designs",
+      "matched_doi": "10.4135/9781071878781.n5",
+      "similarity": 0.384,
+      "year_agrees": true,
+      "tier": "unmatched"
+    },
+    {
+      "key": "landis1977",
+      "declared_title": "The measurement of observer agreement for categorical data",
+      "matched_title": "The Measurement of Observer Agreement for Categorical Data",
+      "matched_doi": "10.2307/2529310",
+      "similarity": 1.0,
+      "year_agrees": true,
+      "tier": "verified"
+    },
+    {
+      "key": "hidalgo2021",
+      "declared_title": "Economic complexity theory and applications",
+      "matched_title": "ECONOMIC COMPLEXITY THEORY AND ITS APPLICATIONS: A CASE\nSTUDY OF ARMENIA",
+      "matched_doi": "10.55528/18292828-2024.4-97",
+      "similarity": 0.748,
+      "year_agrees": false,
+      "tier": "plausible"
+    }
+  ]
+}

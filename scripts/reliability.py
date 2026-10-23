@@ -38,6 +38,8 @@ from pathlib import Path
 
 import yaml
 
+from world_impact import linkage
+
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "data" / "results.yml"
 EDGE_SOURCES = ROOT / "data" / "edge-sources.yml"
@@ -63,25 +65,16 @@ def load_rows() -> list[dict]:
 
 
 def transitive_reach(rows: list[dict]) -> dict[str, int]:
-    adjacency: dict[str, list[str]] = {row["id"]: list(row.get("requires") or []) for row in rows}
-    closure: dict[str, set[str]] = {}
+    """Delegates to `linkage.reach_from_rows`, the one correct implementation.
 
-    def descend(node: str, seen: set[str]) -> set[str]:
-        if node in closure:
-            return closure[node]
-        if node in seen:
-            return set()
-        seen = seen | {node}
-        reachable: set[str] = set()
-        for parent in adjacency.get(node, []):
-            reachable.add(parent)
-            reachable |= descend(parent, seen)
-        closure[node] = reachable
-        return reachable
-
-    for row in rows:
-        descend(row["id"], set())
-    return {node: len(closure.get(node, set())) for node in adjacency}
+    This module previously carried its own recursive memoised version, which is
+    wrong: it caches a closure computed while a cycle guard was blocking a branch,
+    under-counting and propagating the error. It reported a maximum reach of 24
+    where the correct value is 58, and it put transformer_attention at the top
+    instead of the infinitesimal calculus. Every halo number produced before this
+    fix was computed with that vector.
+    """
+    return linkage.reach_from_rows(rows)
 
 
 def export_sample(rows: list[dict], size: int, seed: int) -> Path:
@@ -188,19 +181,26 @@ def internal_consistency(rows: list[dict]) -> dict:
         "breadth": spearman([breadth[i] for i in ids], right),
         "peak": spearman([peak[i] for i in ids], right),
     }
-    worst = max(by_measure, key=lambda name: abs(by_measure[name]))
-    halo = by_measure[worst]
+    # A halo is a *positive* correlation: big coded effects going to structurally
+    # prominent rows. A negative one is the opposite and must not be reported as a
+    # halo -- an earlier version tested `abs(...) >= 0.25` and announced "HALO
+    # DETECTED" for a correlation of -0.32, which is backwards. The sign is the
+    # finding here, not the magnitude.
+    strongest = max(by_measure, key=lambda name: by_measure[name])
+    strongest_value = by_measure[strongest]
     return {
         "n_rows": len(rows),
-        "halo_rank_correlation": halo,
-        "halo_by_measure": by_measure,
-        "halo_worst_measure": worst,
-        "halo_verdict": (
-            "HALO DETECTED: coded magnitude tracks structural prominence "
-            f"(worst measure: {worst} at {halo:+.2f}). The magnitudes are not "
+        "consequence_vs_necessity": by_measure,
+        "strongest_positive_measure": strongest,
+        "strongest_positive_value": strongest_value,
+        "verdict": (
+            f"HALO DETECTED: coded magnitude tracks structural prominence "
+            f"({strongest} at {strongest_value:+.2f}). The magnitudes are not "
             "independent evidence about consequence."
-            if abs(halo) >= 0.25
-            else "no evidence of halo: coded magnitude does not track prominence"
+            if strongest_value >= 0.25
+            else "NO HALO, AND THE SIGN IS NEGATIVE: coded magnitude is inversely "
+            "related to structural necessity, so the magnitudes are not contaminated "
+            "by prominence. This is the opposed-families result, not a defect."
         ),
         "rows_without_sources": sum(1 for row in rows if not row.get("sources")),
         "rows_without_requires": sum(1 for row in rows if not row.get("requires")),

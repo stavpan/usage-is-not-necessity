@@ -166,6 +166,28 @@ def linkage(
     )
 
 
+def reach_from_rows(rows: list[dict[str, Any]]) -> dict[str, int]:
+    """Transitive reach per row, from ``requires`` lists. The one implementation.
+
+    There were three copies of this and two of them were wrong. A recursive
+    memoised version returns 24 where the correct answer is 58, because it caches a
+    closure that was computed while a cycle guard was blocking a branch -- the
+    cached value is an under-estimate and the error propagates upward. It also
+    produced a completely different ranking (transformer_attention first instead of
+    the infinitesimal calculus), which is how it was caught: two implementations
+    disagreed and the disagreement was investigated rather than averaged.
+
+    This delegates to :func:`reachability`, which does a bounded boolean closure and
+    is the version the paper's numbers come from. Everything that needs transitive
+    reach should call this.
+    """
+    ids = tuple(row["id"] for row in rows)
+    edges = [
+        (row["id"], provider) for row in rows for provider in (row.get("requires") or [])
+    ]
+    return dict(zip(ids, reachability(adjacency(ids, edges)).tolist(), strict=True))
+
+
 def reachability(requires: np.ndarray) -> np.ndarray:
     """Number of developments that transitively depend on each development.
 

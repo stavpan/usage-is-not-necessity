@@ -141,13 +141,12 @@ def main() -> None:
     import yaml
 
     coded = yaml.safe_load((ROOT / "data" / "results.yml").read_text(encoding="utf-8"))
-    coded_dev = yaml.safe_load((ROOT / "data" / "developments.yml").read_text(encoding="utf-8"))
 
     def normalise(text: str) -> set[str]:
         keep = "".join(c if c.isalnum() or c == " " else " " for c in str(text).lower())
         return set(keep.split())
 
-    coded_tokens = [normalise(row.get("name") or "") for row in coded + coded_dev]
+    coded_tokens = [normalise(row.get("name") or "") for row in coded]
     matched: list[dict[str, Any]] = []
     for row in unique.values():
         tokens = normalise(row["label"] or "")
@@ -161,7 +160,7 @@ def main() -> None:
         "min_sitelinks": args.min_sitelinks,
         "limit": args.limit,
         "n_candidates": len(unique),
-        "n_coded_rows": len(coded) + len(coded_dev),
+        "n_coded_rows": len(coded),
         "n_matched_to_coded": len(matched),
         "overlap_rate": len(matched) / max(len(unique), 1),
         "matched": matched[:200],

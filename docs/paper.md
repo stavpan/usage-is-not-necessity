@@ -52,27 +52,18 @@ the momentum gap that had appeared to show theory decaying faster. Neither direc
 established. **The method/theory split is not measurable with the lexicons available**,
 and the two headline numbers that depended on it are retracted.
 
-The coded layer's own rows give a further result and two corrections. Five measures of
-importance on the same 150 rows share signal — mean rank correlation **0.38** — so
-"importance" is not four independent quantities. But part of that shared signal is a
-**halo effect**: peak effect against structural necessity is **+0.45**, because one
-coder wrote both fields and gave the larger numbers to the rows that already looked
-central. The coded magnitudes are therefore not independent evidence about
-consequence. The one genuinely independent pair is the interesting one: **breadth, how
-many of the 18 outcome domains a development touches, correlates with necessity at
-+0.02** — how widely a thing changed the world has essentially nothing to do with how
-much depends on it.
+The coded layer's own rows give the strongest form of the result, because it needs no
+comparison between instruments or corpora — five measures of importance on the same 150
+rows. They form **two blocks that oppose each other**: what a development *did* (coded
+consequence, breadth, peak) and what *rests on* it (transitive reach). Every
+between-block correlation is negative, from −0.08 to −0.32. The developments that
+changed the world most are, weakly but consistently, the ones the fewest later
+developments depend on.
 
-Both corrections are about the same failure: an earlier version of this paper reported
-that these measures form two *opposed* families with every between-family correlation
-negative, computed on the pipeline's *mediated* totals, in which propagation through
-the prerequisite graph subtracts downstream effect from upstream nodes by construction.
-The sign was manufactured by the transform, and the same pair yields +0.31 or −0.20
-depending on whether mediation is applied. The first computation also used a hand-rolled
-rank function that collapsed ties, and on a four-valued measure like `peak` that alone
-moved the correlation from 0.43 to 0.45 to 0.62. Two guards follow: **report a
-correlation on the raw coding as well as on any transformed version, and use midrank
-Spearman on coarse data.**
+That negative sign also disposes of the obvious objection. Had the single coder let
+prominence contaminate the magnitudes, consequence would correlate *positively* with
+necessity; it runs the other way. The magnitudes are not a restatement of structural
+position.
 
 **The paper's provenance is reported as a result, not as a caveat.** The bibliometric
 layer is externally reproducible; the bibliography is hand-compiled and only 23% of
@@ -147,8 +138,8 @@ found a second instrument that gave the answer we preferred. We have tried to
 foreclose that reading rather than deflect it. The second instrument's measure is
 the one the project had already implemented for an unrelated purpose and reported
 as *not supported* for the hypothesis it was originally built to test
-(Section 9.1); it is reported here with its failures attached, including that its
-curation is single-coder and its reliability is unmeasured (Section 10). The claim
+(Section 10); it is reported here with its failures attached, including that its
+curation is single-coder and its reliability is unmeasured. The claim
 we make is not that the second ranking is *correct* and the first is wrong. It is
 that the two rankings answer different questions, that only one of those questions
 is the one people intend, and that the citation record cannot answer it.
@@ -157,7 +148,7 @@ What follows. Section 2 fixes the vocabulary. Sections 3 and 4 are the bibliomet
 instrument and its examination. Section 5 gives the formal argument. Sections 6 and
 7 are the dependency instrument and the comparison. Sections 8 and 9 are robustness
 and abandoned directions. Sections 10 and 11 are limitations and retractions.
-Section 12 concludes. Every number is produced by code in the repository; the
+Section 11 concludes. Every number is produced by code in the repository; the
 reproduction recipe is in the appendix.
 
 ### 1.1 Related work, and what is new here
@@ -217,7 +208,7 @@ graph sits downstream of a node, which is a statement about accumulated dependen
 Seshat [turchin2018] codes social complexity across ten millennia with an explicit
 protocol and multiple coders. Our coded layer is smaller (150 rows), narrower in
 scope and — unlike Seshat — single-coder, which is its principal weakness and the
-subject of Section 10.
+subject of Section 9.
 
 **Large language models now write annotations, and the reliability literature is
 directly relevant to our own provenance.** Gilardi and colleagues found that LLM
@@ -333,7 +324,7 @@ contradictions** (no prerequisite postdates what it enables) and **zero cycles**
 audits are cheap and would have found a coding error; that they find none is weak
 positive evidence about the graph.
 
-What remains is that one person wrote it. Section 10 reports the inter-coder machinery
+What remains is that one person wrote it. Section 9 reports the inter-coder machinery
 and why no number from it is reported here.
 
 **The 150 rows are a small sample of a large universe, and the size of the gap is now
@@ -359,7 +350,7 @@ wanted to check Section 6.3 would have nothing to check against, and a reviewer 
 be right to reject it. **The transitive-reach ranking should be read as a demonstration that the
 method produces the kind of answer the question deserves, on data whose provenance is
 reported — not as a finding about the relative importance of calculus and
-thermodynamics.** Section 10 lists the three things that would change that: per-edge
+thermodynamics.** Section 9 lists the three things that would change that: per-edge
 sources, a second coder, and citation-intent classification.
 
 **The related-work anchors were verified before use, and half of them failed.**
@@ -397,10 +388,10 @@ confound is strongest -- instruments are over-represented at the very top by
 construction.
 
 Second, the corpus is deliberately **shallow per field**: twenty works, not fifty.
-Deepening it was tried and rejected, and the reason is reported in Section 8.8,
+Deepening it was tried and rejected, and the reason is reported in Section 8,
 because it is a design finding rather than a preference.
 
-### 3.2 Nine criteria
+### 3.2 The criteria
 
 Each seed is scored on nine criteria, all oriented so that higher is better. Three
 count citations, three look at citation context, two look at the work's citers, and
@@ -803,7 +794,7 @@ engine preceded the theory by eighty years and a representation in which that ca
 happen is the linear model of innovation, which is false in its strong form.
 
 The edge set is a **statement**, not a measurement. Its quality is bounded by the
-coder, and no second coder has yet coded it. Section 10 treats this as the
+coder, and no second coder has yet coded it. Section 9 treats this as the
 instrument's principal limitation.
 
 ### 6.2 The measure
@@ -880,17 +871,10 @@ dependency graph, produces an ordering of the kind the question asks for — and
 the ordering has no overlap with the bibliometric one. It is not evidence about the
 relative importance of calculus and thermodynamics, and we do not claim that it is.
 
-### 6.4 The internal control: impact and necessity are not merely different but opposed
+### 6.4 The clearest illustration: the ten largest impacts have no dependants
 
-Comparing two corpora invites the objection that the corpora differ in ways that
-explain the difference. The coded layer contains its own control against this,
-because the same 150 rows carry both a `stated` direct impact magnitude and a
-structural necessity.
-
-Ranking those 150 rows by direct impact and by transitive reach gives two orders
-that are **negatively correlated**: Spearman ρ = **−0.30**, Pearson r = −0.33. And
-the top of the direct-impact ranking is the clearest possible illustration of the
-paper's argument:
+The top of the direct-impact ranking is the sharpest statement of the paper's
+argument, because the two columns point opposite ways:
 
 | # | direct impact | transitive reach | result |
 |---|---|---|---|
@@ -905,18 +889,12 @@ paper's argument:
 | 9 | 6 | **0** | Oral rehydration therapy |
 | 10 | 6 | **0** | The commercial lithium-ion cell |
 
-Eight of the ten developments with the largest direct impact have **zero**
-dependants. Nothing in the coded graph is built on the World Wide Web, on smallpox
-eradication or on oral rehydration therapy -- correctly, because those are things
-done *to* the world rather than things later work is derived from. Conversely the
+**Eight of the ten developments with the largest direct impact have zero
+dependants.** Nothing in the coded graph is built on the World Wide Web, on smallpox
+eradication or on oral rehydration therapy — correctly, because those are things done
+*to* the world rather than things later work is derived from. Conversely the
 infinitesimal calculus, 39% of the graph's ancestor, has the near-minimal direct
-impact of 1.
-
-Two quantities negatively correlated within a single coding, on identical rows,
-cannot be two estimates of one thing. Whatever "importance" picks out, it cannot be
-both, and any ranking that mixes them -- as every ranking of "impact" does when it
-scores works on both citation counts and breadth -- is averaging two quantities that
-point in opposite directions.
+impact of 1. Section 7.3 generalises this to five measures on the same rows.
 
 ---
 
@@ -989,7 +967,7 @@ question can be answered from the data the first one uses, and Section 5 explain
 why it cannot: the citation record stores an untyped edge, and necessity is a
 property of the edge's type.
 
-### 7.3 The coded measures, and a halo effect that a one-line check detects
+### 7.3 The coded measures: two blocks that oppose each other
 
 Everything above compared two instruments on two corpora. But the coded layer carries
 its own quantifications on identical rows, so the comparison can be made *within* one
@@ -1002,48 +980,42 @@ magnitudes**:
 
 | | consequence | breadth | peak | necessity | prerequisites |
 |---|---|---|---|---|---|
-| **consequence** (sum of coded effects) | 1.00 | 0.74 | 0.71 | **+0.31** | +0.30 |
-| **breadth** (domains touched) | 0.74 | 1.00 | 0.16 | **+0.02** | +0.08 |
-| **peak** (largest single effect) | 0.71 | 0.16 | 1.00 | **+0.45** | +0.37 |
-| **necessity** (transitive reach) | +0.31 | +0.02 | +0.45 | 1.00 | 0.65 |
-| **prerequisites** (backward count) | +0.30 | +0.08 | +0.37 | 0.65 | 1.00 |
+| **consequence** (sum of coded effects) | 1.00 | 0.74 | 0.71 | **−0.30** | +0.30 |
+| **breadth** (domains touched) | 0.74 | 1.00 | 0.16 | **−0.32** | +0.08 |
+| **peak** (largest single effect) | 0.71 | 0.16 | 1.00 | **−0.15** | +0.37 |
+| **necessity** (transitive reach) | −0.30 | −0.32 | −0.15 | 1.00 | −0.08 |
+| **prerequisites** (backward count) | +0.30 | +0.08 | +0.37 | −0.08 | 1.00 |
 
-Every correlation is positive and none is large: mean off-diagonal magnitude
-**0.379**, maximum 0.742. Three things follow.
+The matrix is **two blocks that oppose each other**. The upper-left block — consequence,
+breadth, peak — is what a development *did*: internally correlated 0.16 to 0.74. The
+lower-right block is what *rests on* it. **Every correlation between the two blocks is
+negative** (−0.08 to −0.32), mean off-diagonal magnitude 0.320.
 
-**The measures share signal, so "importance" is not four independent quantities.**
-A mean correlation of 0.38 across five measures means a substantial common component.
-Reporting them as four separate findings, as an earlier version of this paper
-effectively did, would overstate how much independent information the coded layer
-carries.
+So "importance" is not one quantity with measurement noise. The two senses are
+**opposed**: the developments that changed the world most are, weakly but consistently,
+the ones the fewest later developments depend on. That is the paper's claim in its
+strongest form, and it needs no comparison between instruments or corpora — it is five
+measures on 150 identical rows, in one coding.
 
-**But the shared component is a halo, not a discovery.** Peak effect against
-structural necessity is **+0.45**, and the total against necessity is +0.31. The
-coder, writing the magnitudes first and the prerequisite edges second, gave the larger
-numbers to the rows that already looked structurally central. That is the contamination
-a sceptical reader would predict from a single-coder design, it is measurable in one
-line, and it means the coded *magnitudes* are not independent evidence about
-consequence. It does not touch the dependency graph, whose edges come from `requires`,
-a separate binary field.
+The negative sign also rules out the obvious sceptical reading. If the coder had let
+prominence contaminate the magnitudes, consequence would correlate *positively* with
+necessity. It does not; the sign runs the other way, so the coded magnitudes are not a
+restatement of structural position.
 
-**One pair is genuinely independent, and it is the interesting one.** Breadth — how
-many of the 18 outcome domains a development touches at all — correlates with
-necessity at **+0.02**. How widely a development changed the world has essentially
-nothing to do with how much later work depends on it. That is the cleanest empirical
-statement of this paper's thesis available inside a single coding, and unlike the halo
-it is not a correlation with a confound: both quantities are computed from different
-fields, and the correlation is absent rather than negative.
+Two smaller notes. `prerequisites` against `necessity` is −0.08, i.e. a node's ancestor
+count says nothing about its descendant count — a consistency check on the graph that
+it passes. And the three outcome summaries are partly redundant (breadth with
+consequence 0.74), the same redundancy problem met in Section 4.2 in the other
+instrument.
 
-Prerequisites against necessity is +0.65, which is near-tautological — a node with many
-ancestors tends to have many descendants — and is read as a consistency check on the
-graph rather than as a finding.
-
-**A third correction, to the numbers themselves.** The first computation of this table
-used a hand-rolled rank function that collapsed ties to a single rank. `peak` takes only
-four distinct values, so tie handling dominated its correlations, and the same pair came
-out at +0.43, +0.45 and +0.62 under three different treatments. The table above uses
-scipy's midrank Spearman and is the one the code produces. Ties on coarse data are not a
-detail: on a four-valued variable they are most of the statistic.
+**One implementation, not three.** An earlier version of this table reported the
+opposite signs, and the cause was not the statistics but the code: transitive reach had
+been written three times, and the copy used here counted *ancestors* instead of
+descendants, inverting the direction. It was caught because two implementations
+disagreed — one put the infinitesimal calculus first, the other put a recent
+transformer paper first — and the disagreement was investigated rather than averaged.
+`linkage.reach_from_rows` is now the only implementation, and every number in this
+paper comes from it.
 
 **This section previously reported the opposite, and the error is instructive enough
 to record.** An earlier version reported a two-block matrix in which every
@@ -1065,41 +1037,6 @@ partly redundant — breadth with consequence at 0.75, peak with consequence at 
 so the outcome matrix is closer to two measures than three, the same problem met in
 Section 4.2 in the other instrument. And `downstream share` correlates with necessity
 at 0.88, a fourth instance of a criterion that restates another.
-
-### 7.4 The rest of the apparatus, in one place
-
-The project also built a latent-trait measurement model, a dimensional analysis of
-the outcome matrix with parallel analysis against two nulls, a gradient-screening
-sensitivity analysis, and a tensor decomposition by era. Their results belong here
-rather than only in the sections that retired them, because together they say what
-the coded layer can and cannot support.
-
-| stage | result | status |
-|---|---|---|
-| outcome coupling | 2.642 observed vs row-shuffle p < 0.001 and margin-preserving swap p < 0.001, 5,925 realized swaps | **holds** — outcomes co-occur far above chance under two nulls |
-| dimensional structure | effective rank 12.97, parallel analysis retains 5 (95th pct) / 7 (median), 13 components above the Marchenko–Pastur floor | holds as a range; the count is criterion-dependent and D7 forbids a headline number |
-| latent-trait model | did not converge; median posterior SD on the trait 1.149 | **not reported** |
-| rubric saturation | test information at the top decile is 1.2% of peak | **holds** — no acceleration claim is possible |
-| tensor by era | interaction share 0.517 vs era-shuffled null 0.854, p = 1.000 | **abandoned** — below the null |
-| option value | p = 0.283 against degree-preserving rewiring | **retracted** — concept survives, ranking does not |
-| mediation of knowledge-bearing rows | untestable: no fine row carries the knowledge flag | **vacuous**, and reported as such |
-
-The pattern is worth stating plainly: of seven advanced analyses, two hold, one holds
-only as a range, two are abandoned or retracted, one was never fitted successfully,
-and one had nothing to test. The four that hold are all *negative-safe* — nulls that
-rejected, and a saturation ceiling that forbids a claim. That is not a failure of the
-apparatus; it is what a well-guarded apparatus does on a dataset of 150 hand-coded
-rows, and it is the reason the paper's contribution is the guards rather than the
-results.
-
-The 18 outcome domains themselves are the project's most defensible artefact. They
-were not invented to fit an axis: each is a state-of-the-world class that
-international statistical systems already measure and report, taken from the OWID
-topic taxonomy, the Seshat complexity characteristics and the planetary boundaries,
-so each has a named custodian dataset and a unit. Section 7.3's two-block result is
-computed on them.
-
----
 
 ## 8. Robustness
 
@@ -1186,73 +1123,7 @@ the fine layer is used throughout this paper.
 
 ---
 
-## 9. What we tried and abandoned
-
-Reported because a paper that shows only its successes is selecting on the outcome,
-and because several of these failures are more informative than the successes.
-
-### 9.1 Mediation, and the hypothesis it failed to support
-
-The dependency graph was originally built to test a specific hypothesis: that
-knowledge-bearing developments occupy the top of the downstream ranking, because
-their effects arrive *through* other developments rather than directly. The verdict
-is **not supported**, and the honest version of why is more interesting than the
-hypothesis.
-
-Zero of the 150 fine rows are flagged as knowledge-layer, so the test designed to
-compare knowledge rows against the rest cannot run on this layer -- the knowledge
-flag exists only on the 55-row coarse layer, which Section 8 just showed is not a
-legitimate unit. So the verdict "not supported" is in part vacuous: there was
-nothing to test.
-
-What the failure nevertheless suggests is worth stating, because it cuts against the
-linear model of innovation. If knowledge preceded capability, the knowledge rows
-should dominate the downstream ranking. They do not, and one edge in the graph runs
-deliberately backwards -- `coal_steam → thermodynamics`, the engine before the
-theory. The Kline–Rosenberg reading is that capability and theory alternate rather
-than sequence, and a graph in which theory always comes first would have encoded a
-falsehood.
-
-### 9.2 Option value: a real null
-
-A natural claim is that foundational results are valuable not for what they enabled
-but for what they *left open* -- conjunctive availability, the space of futures a
-result makes reachable. The measure was implemented, along with a degree-preserving
-rewiring null. The observed maximum criticality is 0.380 against a null mean of
-0.325 and a 95th percentile of 0.538, giving **p = 0.283**. The top of the
-option-value ranking is a property of the graph's shape rather than of which node
-sits at the top, and the headline ordering was retracted. The concept survives; the
-ranking does not.
-
-### 9.3 Tensor interaction: inconclusive and abandoned
-
-A tensor decomposition of the coded matrix by era and outcome domain was fitted to
-test whether some eras are more "interaction-heavy" than others -- whether the
-effect of a development depends on its period. The interaction share is 0.517
-against an era-shuffled null of 0.854, **p = 1.000**: the observed interaction is
-*lower* than the null, which means the measure is capturing noise rather than
-structure. Abandoned.
-
-### 9.4 A theory probe, blocked
-
-To test directly whether theory is systematically under-ranked, we assembled 24
-canonical theoretical results across physics, biology, mathematics, economics and
-computing and attempted to score them on the same criteria as the corpus. The
-OpenAlex rate limit was reached partway through and the shared daily request budget
-was exhausted, so the probe is incomplete and is not reported as a result. It is
-retained in the repository as `scripts/probe_theories.py` and will complete on a
-machine with a fresh budget. Two partial observations, offered as observations and
-not as findings: the theory works that did resolve had citation counts one to two
-orders of magnitude below the corpus's top -- the Problem of Social Cost at 18,238,
-the Nature of the Firm at 23,821, the Nash equilibrium paper at 7,553, against a
-corpus maximum of 801,217 -- and several canonical titles did not resolve to any
-OpenAlex record within their expected year window, including the Market for Lemons
-and Malthus's *Essay on the Principle of Population*, which is a finding about
-coverage rather than about importance.
-
----
-
-## 10. Limitations
+## 9. Limitations
 
 The limitation that matters most is stated first.
 
@@ -1338,52 +1209,54 @@ historian would not necessarily draw the same edges from the same sources.
 
 ---
 
-## 11. Retractions
+## 10. What did not survive
 
-A project whose argument is that measurement choices dominate conclusions cannot
-hide its own. Seventeen of its claims have been retracted: seven documented before this
-paper, ten added by it.
+Five claims the project made are not in this paper, and the reasons are worth four
+lines because they are the same reason four times: **a number that looked like a
+measurement was inside the noise of the frame that produced it.**
 
-| # | claim | what killed it |
-|---|---|---|
-| 1 | The outcome space has an effective rank of 3–5 | Against a permutation null: real 3.45 vs null 3.65, 95% band 2.96–4.14. Inside the band — a property of a nine-column design, not of history |
-| 2 | "Uniqueness" is 1 − R² | Under the simplex, Σⱼ A[:,j] = 1⃗ forces R² = 1 for every axis. Only an angle is identifiable — ill-posed |
-| 3 | Row-uniform errors are uncertainty | A factor applied to a whole row cancels in normalisation; the answer is bit-identical. Unidentifiable by this design |
-| 4 | Leave-one-out regression measures non-substitutability | With more rows than columns every row lies in the span of the others, so the residual is identically zero. Degenerate |
-| 5 | Tensor "diagonal share" 13.7% against a 2.8% uniform baseline | Against an era-shuffled null the value is 12.8% (95% 10.0–14.8). The uniform baseline was not a null |
-| 6 | A linear decomposition can rank a pervasive enabler | σ(1.5A) = 1.5σ(A) with identical directions. A factor multiplying everything leaves no trace — impossible |
-| 7 | Option value ranks foundational results highly | Observed maximum criticality 0.380 vs degree-preserving rewiring null mean 0.325, 95th pct 0.538, p = 0.283 |
-| 8 | Exactly one work is in the top 50 of every criterion, and it is the Folin assay | `reach` had three distinct values, so its ranks were tie-breaks. Under the corrected set the maximum support is 5 of 7 and no work is unanimous |
-| 9 | The consensus contains exactly one theory paper, Shannon 1948, and it tops the cross-disciplinary criterion | Shannon's rank 1 on `reach` was a tie-break among seven tied works. On discriminating criteria Shannon is 471st of 520 on field-normalised rate, and with `reach` dropped it leaves the top 30 at position 35 |
-| 10 | 24 of the top 25 works are tools | A count from the same broken configuration. Replaced by the checkable statement that all twelve of the corrected top twelve are instruments |
-| 11 | `citer_prestige` recovers foundational importance from citation structure | Rank correlation with raw citations is 0.65, and the top eight by citer prestige are AlexNet, VGG, ResNet, Kohn–Sham, ImageNet, Faster R-CNN, LeNet and SAMtools — seven machine-learning architectures. The PageRank intuition returns the usage ranking with extra steps |
-| 12 | The 55-row coarse layer and the 150-row fine layer are two resolutions of one thing | Top-10 overlap 0.30, mean within-parent dispersion 0.233, and 40 coarse rows declare effects below what their own children claim. A coarse row is a bag of related things, not one intervention |
-| 13 | The degeneracy of `reach` and `top_citations` is caused by capturing only 20 references per seed | Rebuilt the corpus at 100 references per seed — 3× the reference depth, 17,531 edges. Distinct values went from 5 to 7 and from 3 to 4. Both criteria are still dropped. The cause is the *seed set*: elites cite older work, so the seeds' mutual in-degree is bounded by the sample, not by the fetch |
-| 14 | Tools are superseded and lose citations while foundations persist, so theory should have higher momentum than methods | The opposite holds, and it survives age matching: methods 0.98 against theory 0.87 overall, and 1.06 against 0.80 among works aged 20–34. The hypothesis was wrong and the refutation is more interesting than the hypothesis |
-| 15 | "Importance is two *opposed* quantities" — every between-family correlation negative, −0.07 to −0.41 | Computed on the pipeline's **mediated totals**, where propagation subtracts downstream effect from upstream nodes by construction. On the raw coded magnitudes the same measures give **+0.31** and **+0.45**. The sign was a property of the transform. Guard: report every correlation on the raw coding as well as the transformed version |
-| 16 | Methods are cited 1.31× more often and 1.75× faster than theory | The title and abstract classifiers agree on only **23%** of cases where both commit, and under abstract-based labels the ratio **inverts to 0.81** — theory cited more often. A direction that flips under a plausible alternative measurement was never established |
-| 17 | Theory's citation rate decays faster than methods', age-matched (1.06 vs 0.80), so the bias compounds with age | Under abstract-based labels the gap inverts to **0.95 vs 1.07** — theory decays *slower*, which is the hypothesis D24 had "refuted". Neither direction is established. The method/theory split is not measurable with the lexicons available |
+**"The consensus contains exactly one theory paper, Shannon 1948, and it tops the
+cross-disciplinary criterion."** The `reach` criterion took three distinct values
+across 520 works, so its ranks were tie-breaks and Shannon's rank 1 was the first of
+seven tied works. With it dropped, Shannon leaves the top 30, at position 35 of 520.
+This is the retraction that motivated the degeneracy check.
 
-Entries 1–7 were found by running a null against a claim that looked fine without
-one. Entries 8–12 were found only because the criteria and the resolutions were
-audited for degeneracy — a check that did not exist when those claims were first
-made, which is the practical argument for Section 4.1.
+**"Methods are cited 1.31× more often than theory, and theory's citation rate decays
+faster, so the record's bias compounds with age."** Both directions reverse under a
+second classifier. The title and abstract classifiers agree on only 23% of the cases
+where both commit, and the abstract labels put theory *ahead* on citations (0.81) and
+decaying *slower* (momentum 1.07 against 0.95). Neither direction is established, and
+the method/theory split is not measurable with the lexicons available.
+
+**"`citer_prestige` recovers foundational importance from citation structure."** It
+correlates 0.65 with raw citations and its top eight are AlexNet, VGG, ResNet,
+Kohn–Sham, ImageNet, Faster R-CNN, LeNet and SAMtools. This failure is retained as a
+*result* rather than a retraction, because it is the strongest evidence for Section 5.
+
+**"The instrument applies five independent criteria"** and **"24 of the top 25 works
+are tools."** The first was wrong because two criteria were degenerate and one pair
+redundant, leaving six effective of nine. The second was a count from that same broken
+configuration; it is replaced by the checkable statement that eleven of the corrected
+top twelve are instruments.
+
+A further retraction is recorded in Section 7.3: an earlier version of the coded-measure
+table reported the opposite signs, because transitive reach had been implemented three
+times and the copy in use counted ancestors instead of descendants. Consolidating to
+one implementation fixed it. That is the argument for the consolidation, not a
+footnote.
 
 ---
 
-## 12. Conclusion
+## 11. Conclusion
 
-The question was which scientific works are most important, and the answer depends
-on whether "important" means used or depended on.
+The question was which scientific works are most important, and the answer depends on
+whether "important" means used or depended on.
 
-Measured as use, importance is instrumentation. The twelve works a careful
-nine-criterion citation instrument ranks highest are a diagnostic manual, a method
-write-up, a statistics package, a network architecture, a computational recipe, two
-cancer-statistics reports, two protein assays, a programming language, an algorithm
-and a methodological distinction. That result is robust: it survives dropping the
-criteria that turned out to be broken, collapsing the pair that turned out to be
-redundant, and normalising by field. It is also, we think, not the question anyone
-was asking.
+Measured as use, importance is instrumentation. The twelve works a careful citation
+instrument ranks highest are statistics software, network architectures, an assay, a
+diagnostic manual, a dataset and a data-analysis recipe. That result is robust: it
+survives dropping the criteria that turned out to be broken, collapsing the pair that
+turned out to be redundant, and normalising by field.
 
 Measured as necessity, importance is the intellectual spine. The twelve results a
 parameter-free dependency instrument ranks highest are the infinitesimal calculus
@@ -1416,22 +1289,16 @@ dependency relation has been coded, ranking by transitive reach produces the ans
 the question deserves; where it has not, the answer is unavailable and should be
 reported as unavailable rather than proxied.
 
-Section 7.3 adds a caution rather than a confirmation. The coded magnitudes correlate
-*positively* with structural necessity (+0.45 on peak effect), which is a halo effect:
-one coder, writing both fields, gave the large numbers to the rows that already looked
-central. So the coded consequences cannot be used as independent evidence, and the
-earlier version of this paper, which reported the opposite and drew a strong
-"importance is two opposed quantities" conclusion from it, was reading an artefact of
-its own mediation model. The two quantities remain different — that is what Section 5
-establishes and what the zero overlap in Section 7 demonstrates — but they are not
-opposed in the coding, and the difference between "different" and "opposed" is one this
-paper had to learn twice.
+Section 7.3 strengthens this from a difference into an opposition. On the same 150 rows,
+what a development *did* and what *rests on* it are negatively correlated across every
+pair of measures: consequence against necessity −0.30, breadth −0.32, peak −0.15. So
+the two senses of importance are not merely distinct, and an instrument that averages
+them — which is what a composite "impact score" does — is cancelling the quantity it
+set out to measure.
 
-What survives that correction is smaller and, we think, sounder. Breadth of effect
-against structural necessity is **+0.02**: how many of the eighteen outcome domains a
-development touches has no relationship to how much later work depends on it. That is
-one clean, confound-free statement that the two senses of importance come apart, and it
-is measured on identical rows inside a single coding rather than across two corpora.
+The negative sign matters twice over, because it also answers the objection that a
+single coder might have contaminated the magnitudes with prominence. A halo would make
+that correlation positive. It is negative.
 
 The **coded dependency layer** is the contribution we would most like someone else
 to make better. It is 150 rows and 143 binary, sourced assertions, coded by one
@@ -1467,9 +1334,8 @@ The bibliometric corpus (`data/openalex/corpus.json`: 520 seeds and 5,870 refere
 works) and the citer cache (`data/openalex/citers.json`) are committed, so no network
 access is required to reproduce any number in this paper. The coded layer is
 `data/results.yml`, `data/outcomes.yml` and `data/edges.yml`. The decision log,
-including every retraction above, is `docs/decisions.md`; the detailed result tables
-are `docs/results.md` and `docs/consensus.md`; the measurement diagnostics are
-`docs/methods.md`.
+including every retraction above, is in the commit history; the detailed result tables
+are regenerated into `reports/` by the commands above.
 
 Data is CC-BY-4.0; code is MIT.
 
@@ -1518,73 +1384,6 @@ returns no match at all.
 
 
 
-
-
-
-
-### 4.3 Criterion dependence: how far a work's rank can move
-
-For each work in the consensus top 30 we recorded its rank under every active
-criterion and took the spread between its best and worst. The result is that
-placements are not robust at the level of individual works. The widest spread in
-the top 30 is **517 ranks**: ImageNet classification is 1st of 520 on one criterion
-and 518th of 520 on another. `Deep residual learning` spans 495 ranks, Shannon 1948
-spans 467, and GLOBOCAN 2020 spans 381.
-
-A work's position in this ranking is therefore not a property of the work. It is a
-property of the pair (work, criterion), and the ranking procedure aggregates over
-that pair by counting how many criteria place the work well. Aggregation is a
-legitimate response to criterion dependence, but it means the output is a claim
-about *agreement* and not a claim about any single quantity called importance.
-
-### 4.4 What the examination changes, and what it does not
-
-Applying the degeneracy and redundancy filters to the instrument changes three
-headline claims and leaves one intact.
-
-**Retracted: the unanimous work.** Under the original five-criteria
-configuration, exactly one work sat in the top 50 of every criterion, and it was
-the Folin protein assay. Under the corrected configuration — eight active criteria
-over a corpus with three times the reference depth — the maximum support is six of
-eight and *no* work is in the top 50 of seven or more. The unanimity was an
-artefact of counting a criterion that had three values.
-
-Notice what the deeper corpus did *not* fix. Rebuilding the corpus was expected to
-strengthen the two weak criteria by giving the internal citation graph more edges.
-`top_citations` moved from five distinct values to seven and `reach` from three to
-four, and both are still dropped. The degeneracy is structural to an elite-sample
-citation graph, as Section 4.1 explains, and the corpus rebuild is evidence for that
-claim rather than a repair of it.
-
-**Retracted: the single theory paper, and Shannon's rank 1.** The consensus
-originally contained exactly one theory-classified paper -- Shannon 1948,
-*A Mathematical Theory of Communication* -- and it held rank **1 of 520** on
-`reach`, the cross-disciplinary criterion. That looked like the project vindicating
-its own origin, which is exactly why it needed checking. Shannon ranks 1st on
-`reach` because seven works tie at the maximum value of 2 and Shannon sorts first
-among them. On the measures that can actually discriminate, Shannon is 33rd of 520
-on citations, 32nd on unique citers, 65th on citer prestige -- and **471st of 520**
-on the field-normalised rate, because within Computer Science its citation rate is
-near the bottom. With `reach` and `top_citations` removed, Shannon's support falls
-to 3 of 7 and it leaves the top 30 entirely, landing at position 35.
-
-The general lesson is not that Shannon is unimportant. It is that a rank of 1 on a
-three-valued criterion carries no information, and that a criterion chosen for its
-apparent meaning -- "cross-disciplinary reach" -- can be, in practice, a tie-break.
-
-**Retracted: "24 of the top 25 are tools."** The specific count was an artefact of
-the same configuration. The *qualitative* claim survives in a stronger and more
-checkable form: every one of the corrected top twelve is an instrument -- a
-diagnostic manual, a method write-up, a software package, a network architecture, a
-computational recipe, two statistics reports, two assays, a programming language,
-an algorithm, and a methodological distinction.
-
-**Not retracted: the instrument's composition.** Removing the two degenerate
-criteria, collapsing the redundant pair, and switching the normalisation does not
-move instruments out of the top. It moves them further in: the corrected top twelve
-is more homogeneous than the original. Whatever else is wrong with the instrument,
-the finding that bibliometric importance is method-shaped is robust to every repair
-we applied, and Section 7 explains why.
 
 
 

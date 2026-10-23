@@ -36,22 +36,27 @@ docs = { features = ["docs"], solve-group = "default" }
 # --- quality gates -------------------------------------------------------
 test = { cmd = "pytest", description = "run the test suite" }
 cov = { cmd = "pytest --cov=world_impact --cov-report=term-missing --cov-fail-under=70" }
-lint = { cmd = "ruff check src tests", description = "lint" }
-fmt = { cmd = "ruff format src tests && ruff check --fix src tests" }
+lint = { cmd = "ruff check src tests scripts", description = "lint" }
+fmt = { cmd = "ruff format src tests scripts && ruff check --fix src tests scripts" }
 typecheck = { cmd = "mypy src" }
 gate = { depends-on = ["lint", "typecheck", "test"], description = "all quality gates" }
 
-# --- pipeline ------------------------------------------------------------
-validate = { cmd = "world-impact validate", description = "schema + provenance validation" }
-fetch = { cmd = "world-impact fetch-reference", description = "download OWID reference series" }
-fetch-openalex = { cmd = "python scripts/fetch_openalex.py --per-field 20", description = "build the automated corpus from OpenAlex (network)" }
-figures-openalex = { cmd = "python scripts/make_figures.py", description = "figures + reports/fields.json for the automated layer" }
-contrast = { cmd = "python scripts/make_contrast.py", description = "the paper's central figure: use vs necessity, and their overlap" }
-analyse = { cmd = "world-impact analyse", description = "full analysis, writes reports/" }
-figures = { cmd = "world-impact figures", description = "regenerate figures" }
-report = { cmd = "world-impact report", description = "render the markdown report" }
-pipeline = { depends-on = ["validate", "analyse", "figures", "report"] }
-all = { depends-on = ["gate", "pipeline"], description = "everything, from a clean checkout" }
+# --- fetch (network; cached to data/, so each runs once) -----------------
+fetch-openalex = { cmd = "python scripts/fetch_openalex.py --per-field 20", description = "the corpus: 520 seeds, their references, their citers" }
+fetch-abstracts = { cmd = "python scripts/fetch_abstracts.py", description = "abstracts for the seeds, for classification" }
+fetch-contexts = { cmd = "python scripts/fetch_contexts.py", description = "citation contexts (Semantic Scholar; needs a key)" }
+fetch-literature = { cmd = "python scripts/fetch_literature.py", description = "verify the related-work anchors against Crossref" }
+pool = { cmd = "python scripts/expand_pool.py", description = "the systematic candidate universe from Wikidata" }
+
+# --- build (offline) -----------------------------------------------------
+edges = { cmd = "python scripts/source_edges.py --write", description = "per-edge warrants + chronology and acyclicity audits" }
+bibliography = { cmd = "python scripts/verify_bibliography.py", description = "grade the bibliography against Crossref" }
+figures = { cmd = "python scripts/make_figures.py", description = "the bibliometric figures" }
+contrast = { cmd = "python scripts/make_contrast.py", description = "the central figure, and the overlap number" }
+measure = { cmd = "python scripts/reliability.py", description = "the five measures, the halo check, the second-coder export" }
+classify = { cmd = "python scripts/classify_abstracts.py", description = "title vs abstract classification, and the disagreement" }
+
+all = { depends-on = ["gate", "edges", "bibliography", "figures", "contrast"], description = "everything that needs no network" }
 
 # --- docs ----------------------------------------------------------------
 docs = { cmd = "mkdocs serve", description = "serve documentation" }
