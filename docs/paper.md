@@ -41,15 +41,16 @@ cycle (49), the mechanical equivalent of heat (47), entropy and the second law
 (34), the H-theorem (33), Planck's quantum hypothesis (32), the Bohr model (31) and
 the Schrödinger equation (17).
 
-The two top-twelve lists share **zero** entries. The gap is quantified, and it is
-worse than a gap: methods are cited 1.31× more often and 1.75× faster than theory,
-theory's citers are 1.58× heavier, and **theory's citation rate decays faster than
-methods' even age-matched** (momentum 0.80 against 1.06 among works aged 20–34). The
-hypothesis that tools get superseded while foundations persist is therefore refuted
-by the data, and the better reading is that methods are *renewed* by each cohort of
-users while foundations are *absorbed* into common knowledge and stop being cited.
-The citation record's bias against necessity is not a constant offset; it compounds
-with the age of the work.
+The two top-twelve lists share **zero** entries.
+
+We then tried to *measure* the usage/necessity gap rather than argue it, and failed in
+a way worth reporting. Classifying works as method or theory by title gives methods a
+1.31× citation advantage; classifying the same works from their abstracts — 338 of 520
+were fetched — gives theory a 0.81× advantage. The two classifiers agree on only **23%**
+of cases where both commit, and the sign of every gap inverts between them, including
+the momentum gap that had appeared to show theory decaying faster. Neither direction is
+established. **The method/theory split is not measurable with the lexicons available**,
+and the two headline numbers that depended on it are retracted.
 
 The coded layer's own rows give a further result and two corrections. Five measures of
 importance on the same 150 rows share signal — mean rank correlation **0.38** — so
@@ -80,8 +81,8 @@ unmatched; and the 143 prerequisite edges that produce the necessity ranking car
 **no sources at all**. The transitive-reach ranking is therefore offered as a
 demonstration that the method yields the kind of answer the question deserves, not as
 a finding about the relative importance of calculus and thermodynamics, and the paper
-states what would be required to make it the latter. We report fifteen retractions
-of our own claims, seven documented before this paper and eight added by it, plus a
+states what would be required to make it the latter. We report seventeen retractions
+of our own claims, seven documented before this paper and ten added by it, plus a
 degeneracy check that generalises to any composite ranking.
 
 ---
@@ -681,20 +682,20 @@ two groups compared on the criteria.
 | theory | 33 | 22,513 | 592.5 | **3,710** | 0.87 |
 | unclassified | 339 | 19,592 | 709.0 | 2,538 | 0.95 |
 
-Methods are cited **1.31×** more often and **1.75×** faster than theory. Yet
-theory's citers are **1.58×** heavier: the ratio of method to theory citer prestige
-is 0.63. So the usage/necessity distinction is not hypothetical -- within a single
-corpus, the works cited more often are cited by lighter works, and the works cited
-less often are cited by heavier ones. The gap is real, it points the right way, and
-it is modest: a factor of 1.3 on counts against 1.6 on citers. That modest
-asymmetry is not enough to move theory into a top twelve built from counts, which
-is why the fix has to be a change of observable rather than a reweighting.
+On these labels, methods are cited **1.31×** more often and **1.75×** faster than
+theory, while theory's citers are **1.58×** heavier (method/theory citer prestige 0.63).
 
-The classification is title-based, which is a real weakness: it finds 33 theory
-works in 520, and a title like *On the electrodynamics of moving bodies* contains no
-theory keyword at all, so 33 is a lower bound and the group is biased toward works
-whose titles happen to advertise their genre. The comparison in this table should be
-read as indicative of direction, not as a measurement of magnitude.
+**These numbers should not be used, and the reason is in Section 5.5.** The labels come
+from a title classifier, and the corpus now also supports an abstract classifier, which
+agrees with it on only 23% of cases and reverses the citation ratio to 0.81. A
+direction that flips under a plausible alternative measurement is not established. The
+table is kept because deleting it would hide the disagreement, not because it is a
+result.
+
+The classification weakness was flagged when the table was first written — a title like
+*On the electrodynamics of moving bodies* contains no theory keyword, so 33 theory
+works in 520 is a lower bound biased toward titles that advertise their genre. What was
+not anticipated is that fixing it would *invert* the finding rather than sharpen it.
 
 ### 5.5 The citation record's bias against necessity grows over time
 
@@ -726,25 +727,45 @@ Momentum by age band shows the expected gradient — 1.47 for works aged under t
 years, 1.12 for ten to nineteen, and about 0.90 from twenty years onward — so the
 measure is behaving sensibly and the method/theory gap is not that gradient.
 
-The interpretation that fits is the opposite of the tool-versus-foundation story and
-is more interesting. A **method is renewed** by each new cohort of users: every
-generation that runs BLAST or fits a mixed-effects model cites it afresh, so its
-citation rate is sustained. A **foundation is absorbed**: once a result has passed
-into a field's common knowledge it stops being cited at all, because there is no
-need to cite Newton to use calculus. Citation is a claim about *provenance of a
-method* and only incidentally about *dependence on an idea*.
+The interpretation that fits is that a **method is renewed** by each new cohort of
+users — every generation that runs BLAST or fits a mixed-effects model cites it afresh
+— while a **foundation is absorbed**: once a result has passed into a field's common
+knowledge it stops being cited, because there is no need to cite Newton to use
+calculus. Citation would then be a claim about the provenance of a *method* and only
+incidentally about dependence on an *idea*, and the bias documented in Section 5 would
+not merely be present but **compounding** with the age of the work.
 
-If that is right, the bias documented in Section 5 is not merely present, it is
-**compounding**. Foundations were cited less often to begin with (Section 5.4) and
-their citation rate decays faster as absorption proceeds. A count-based ranking is
-therefore not a biased snapshot of necessity; it is a snapshot whose bias increases
-with the age of the work being measured, which is precisely backwards from what a
-measure of cumulative importance should do.
+**That interpretation is not supported, and the reason is decisive.** Every result in
+Sections 5.4 and 5.5 rests on classifying works as method or theory, and the
+classification used was based on titles. The corpus now carries abstracts for 338 of
+the 520 seeds, which allows a second classification from the abstract text — and the
+two classifiers agree on only **23% of the works where both commit**. They are not two
+estimates of one thing; they are close to independent.
 
-Two caveats. The groups are small (33 theory works in 520, 11 in the age-matched
-band), the classification is title-based, and momentum is not a clean measure of
-supersession because global citation volume grows. The direction is consistent
-across every cut we tried; the magnitude should not be trusted.
+Under the abstract-based labels the findings do not merely weaken, they **reverse**:
+
+| classifier | n (method / theory) | citation ratio | age-matched momentum | direction |
+|---|---|---|---|---|
+| title | 148 / 33 | 1.31 | 1.06 vs 0.80 | theory decays faster |
+| abstract | 38 / 26 | **0.81** | **0.95 vs 1.07** | theory decays **slower** |
+
+The citation ratio flips from 1.31 to 0.81 — from "methods cited more often" to
+"theory cited more often" — and the momentum gap flips from "theory decays faster" to
+"theory decays slower", which is the hypothesis this section set out to test. So
+Section 5.4's direction and Section 5.5's refutation are both **classifier artefacts**,
+and neither survives. Both are recorded as retractions.
+
+The abstract classifier is also crude — a marker lexicon over 338 abstracts, committing
+on only 64 works — so this is not a case of the better classifier overturning the worse
+one. It is a case of **two bad classifiers disagreeing**, which establishes neither
+direction. What can be said is that the method/theory split is not measurable with the
+lexicons available, and that a finding which reverses under a plausible alternative
+measurement was never a finding.
+
+What survives in this section is the part that does not depend on any classifier: the
+formal argument of Sections 5.1–5.3, the failure of the citer-prestige repair
+(r = 0.65 with raw citations, top eight all machine learning), and the zero overlap
+between the two rankings in Section 7. Those stand on their own.
 
 The same criterion also shows that *instrument* is not a stable category, which the
 counting criteria cannot see. Within the consensus top fifteen, the diagnostic
@@ -1320,8 +1341,8 @@ historian would not necessarily draw the same edges from the same sources.
 ## 11. Retractions
 
 A project whose argument is that measurement choices dominate conclusions cannot
-hide its own. Fifteen of its claims have been retracted: seven documented before this
-paper, eight added by it.
+hide its own. Seventeen of its claims have been retracted: seven documented before this
+paper, ten added by it.
 
 | # | claim | what killed it |
 |---|---|---|
@@ -1339,7 +1360,9 @@ paper, eight added by it.
 | 12 | The 55-row coarse layer and the 150-row fine layer are two resolutions of one thing | Top-10 overlap 0.30, mean within-parent dispersion 0.233, and 40 coarse rows declare effects below what their own children claim. A coarse row is a bag of related things, not one intervention |
 | 13 | The degeneracy of `reach` and `top_citations` is caused by capturing only 20 references per seed | Rebuilt the corpus at 100 references per seed — 3× the reference depth, 17,531 edges. Distinct values went from 5 to 7 and from 3 to 4. Both criteria are still dropped. The cause is the *seed set*: elites cite older work, so the seeds' mutual in-degree is bounded by the sample, not by the fetch |
 | 14 | Tools are superseded and lose citations while foundations persist, so theory should have higher momentum than methods | The opposite holds, and it survives age matching: methods 0.98 against theory 0.87 overall, and 1.06 against 0.80 among works aged 20–34. The hypothesis was wrong and the refutation is more interesting than the hypothesis |
-| 15 | "Importance is two *opposed* quantities" — every between-family correlation negative, −0.07 to −0.41 | Computed on the pipeline's **mediated totals**, where propagation subtracts downstream effect from upstream nodes by construction. On the raw coded magnitudes the same measures give **+0.42** and **+0.62**. The sign was a property of the transform. Guard: report every correlation on the raw coding as well as the transformed version |
+| 15 | "Importance is two *opposed* quantities" — every between-family correlation negative, −0.07 to −0.41 | Computed on the pipeline's **mediated totals**, where propagation subtracts downstream effect from upstream nodes by construction. On the raw coded magnitudes the same measures give **+0.31** and **+0.45**. The sign was a property of the transform. Guard: report every correlation on the raw coding as well as the transformed version |
+| 16 | Methods are cited 1.31× more often and 1.75× faster than theory | The title and abstract classifiers agree on only **23%** of cases where both commit, and under abstract-based labels the ratio **inverts to 0.81** — theory cited more often. A direction that flips under a plausible alternative measurement was never established |
+| 17 | Theory's citation rate decays faster than methods', age-matched (1.06 vs 0.80), so the bias compounds with age | Under abstract-based labels the gap inverts to **0.95 vs 1.07** — theory decays *slower*, which is the hypothesis D24 had "refuted". Neither direction is established. The method/theory split is not measurable with the lexicons available |
 
 Entries 1–7 were found by running a null against a claim that looked fine without
 one. Entries 8–12 were found only because the criteria and the resolutions were

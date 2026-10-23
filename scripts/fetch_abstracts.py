@@ -22,6 +22,7 @@ import argparse
 import json
 import time
 from pathlib import Path
+from typing import Any
 
 import requests
 
@@ -44,24 +45,39 @@ def reconstruct(inverted: dict[str, list[int]] | None) -> str:
 
 
 def fetch(ids: list[str], batch: int = 50, delay: float = 0.3) -> dict[str, str]:
+    """Batched abstract fetch, using the shared key plumbing.
+
+    The first version built its own request and never attached the API key, so it hit
+    the shared unauthenticated budget and got 429 on all eleven batches while the key
+    sat unused on disk. It now asks `world_impact.openalex` for the key and reports the
+    response body on failure rather than only the exception class.
+    """
+    from world_impact import openalex
+
+    key = openalex.api_key()
+    print(f"  api key: {'present' if key else 'ABSENT'}")
     out: dict[str, str] = {}
     for start in range(0, len(ids), batch):
         chunk = ids[start : start + batch]
+        params: dict[str, Any] = {
+            "filter": "ids.openalex:" + "|".join(chunk),
+            "per-page": batch,
+            "select": "id,abstract_inverted_index",
+            "mailto": MAILTO,
+        }
+        if key:
+            params["api_key"] = key
         try:
             response = requests.get(
                 f"{BASE}/works",
-                params={
-                    "filter": "ids.openalex:" + "|".join(chunk),
-                    "per-page": batch,
-                    "select": "id,abstract_inverted_index",
-                    "mailto": MAILTO,
-                },
+                params=params,
                 headers={"User-Agent": UA},
                 timeout=90.0,
             )
             response.raise_for_status()
         except requests.RequestException as error:
-            print(f"  batch {start // batch}: {type(error).__name__}")
+            body = getattr(getattr(error, "response", None), "text", "")[:160]
+            print(f"  batch {start // batch}: {type(error).__name__} {body}")
             time.sleep(3.0)
             continue
         for row in response.json().get("results", []):
