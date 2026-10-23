@@ -34,6 +34,29 @@ import requests
 
 BASE = "https://api.openalex.org"
 MAILTO = "panagist32@gmail.com"
+
+
+def api_key() -> str | None:
+    """The OpenAlex key, from the environment or from a gitignored file.
+
+    Without a key every request shares one daily budget with everyone on the network's
+    IP address. That budget was exhausted twice during this project and silently
+    truncated one citer cache -- 1,300 seeds were requested and 520 came back, with
+    every failure swallowed by an exception handler. A key has its own budget.
+
+    Read from ``OPENALEX_API_KEY`` first, then from ``data/.secrets/openalex_key``,
+    which is gitignored, so a key is never committed and the code path is identical
+    either way.
+    """
+    import os
+
+    key = os.environ.get("OPENALEX_API_KEY")
+    if key:
+        return key.strip()
+    path = Path(__file__).resolve().parents[2] / "data" / ".secrets" / "openalex_key"
+    if path.exists():
+        return path.read_text(encoding="utf-8").strip() or None
+    return None
 DEFAULT_CACHE = Path(__file__).resolve().parents[2] / "data" / "openalex"
 USER_AGENT = f"world-impact/0.1 (research; {MAILTO})"
 WORK_SELECT = (
@@ -61,6 +84,9 @@ def _get(
 ) -> dict[str, Any]:
     """GET with polite pacing and exponential backoff on rate limiting."""
     merged = {**params, "mailto": MAILTO}
+    key = api_key()
+    if key:
+        merged["api_key"] = key
     last: Exception | None = None
     for attempt in range(retries):
         try:

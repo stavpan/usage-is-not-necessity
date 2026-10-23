@@ -38,3 +38,8 @@ data/raw/owid/*.csv
 # abstract fetch output: written by scripts/fetch_abstracts.py when the
 # OpenAlex request budget allows; absent rather than empty when it does not
 data/openalex/abstracts.json
+
+# API keys: never committed. The OpenAlex key is read from
+# data/.secrets/openalex_key or $OPENALEX_API_KEY; the Semantic Scholar key from
+# data/.secrets/s2_key or $S2_API_KEY.
+data/.secrets/
