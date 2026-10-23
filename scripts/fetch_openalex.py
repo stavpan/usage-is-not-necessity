@@ -17,7 +17,24 @@ def main() -> None:
     parser.add_argument("--per-field", type=int, default=20)
     parser.add_argument("--year-from", type=int, default=1900)
     parser.add_argument("--year-to", type=int, default=2024)
-    parser.add_argument("--max-refs", type=int, default=20)
+    parser.add_argument(
+        "--max-refs",
+        type=int,
+        default=100,
+        help="references captured per seed; 20 was the cause of the two degenerate criteria",
+    )
+    parser.add_argument(
+        "--min-ref-indegree",
+        type=int,
+        default=1,
+        help="only resolve metadata for references cited by at least this many seeds",
+    )
+    parser.add_argument(
+        "--max-refs-to-resolve",
+        type=int,
+        default=12000,
+        help="cap on reference metadata fetches, taken highest-in-degree first",
+    )
     parser.add_argument("--refresh", action="store_true")
     args = parser.parse_args()
 
@@ -26,6 +43,8 @@ def main() -> None:
         year_from=args.year_from,
         year_to=args.year_to,
         max_refs_per_work=args.max_refs,
+        min_ref_indegree=args.min_ref_indegree,
+        max_refs_to_resolve=args.max_refs_to_resolve,
         refresh=args.refresh,
         verbose=True,
     )
@@ -35,9 +54,14 @@ def main() -> None:
         f"{corpus['n_referenced_resolved']} resolved"
     )
 
-    print("\nfetching citers for every seed (one request each)...")
+    # Citers are cached separately from the corpus and cost 520 requests, so they
+    # are NOT refreshed with the corpus: rebuilding the corpus is cheap (26 seed
+    # requests plus one batch per 50 references) and the citer cache is not. Passing
+    # `refresh=args.refresh` here would have spent the whole daily budget re-fetching
+    # data that had not changed.
+    print("\nciters: reusing the cache unless it is missing...")
     citers = openalex.fetch_citers(
-        [work["id"] for work in corpus["seeds"]], verbose=True, refresh=args.refresh
+        [work["id"] for work in corpus["seeds"]], verbose=True, refresh=False
     )
     print(f"CITERS: resolved for {len(citers)} of {len(corpus['seeds'])} seeds")
 

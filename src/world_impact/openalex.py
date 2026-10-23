@@ -37,8 +37,13 @@ MAILTO = "panagist32@gmail.com"
 DEFAULT_CACHE = Path(__file__).resolve().parents[2] / "data" / "openalex"
 USER_AGENT = f"world-impact/0.1 (research; {MAILTO})"
 WORK_SELECT = (
-    "id,doi,title,publication_year,cited_by_count,referenced_works,primary_topic,authorships,type"
+    "id,doi,title,publication_year,cited_by_count,referenced_works,primary_topic,"
+    "authorships,type,counts_by_year"
 )
+"""``counts_by_year`` is requested because citation *trajectory* is the one measured
+signal that can separate an instrument from a foundation without coding anything: a
+tool that gets superseded loses citations, and a foundation does not. It costs
+nothing extra -- it arrives with the seed request that was already being made."""
 
 
 POLITE_DELAY = 0.12
@@ -146,6 +151,13 @@ def _slim(row: dict[str, Any]) -> dict[str, Any]:
         if authorships
         else None,
         "referenced_works": [short_id(x) for x in (row.get("referenced_works") or [])],
+        # {year: citations}. Compacted from the API's list-of-objects because the
+        # only thing computed from it is a year-indexed series.
+        "counts_by_year": {
+            int(entry["year"]): int(entry.get("cited_by_count") or 0)
+            for entry in (row.get("counts_by_year") or [])
+            if entry.get("year") is not None
+        },
     }
 
 
@@ -153,7 +165,9 @@ def build_corpus(
     per_field: int = 25,
     year_from: int = 1900,
     year_to: int = 2024,
-    max_refs_per_work: int = 20,
+    max_refs_per_work: int = 100,
+    min_ref_indegree: int = 2,
+    max_refs_to_resolve: int = 12000,
     cache: Path = DEFAULT_CACHE,
     refresh: bool = False,
     verbose: bool = False,
@@ -164,6 +178,22 @@ def build_corpus(
     per field (selection by citation count, not by judgement). The *reference*
     set is whatever those works cite, fetched only for its field label, which is
     what makes a field-to-field citation flow computable.
+
+    Two parameters control the trade between graph density and request cost, and
+    the earlier version got both wrong.
+
+    ``max_refs_per_work`` was **20**, which was the cause of the degeneracy that
+    broke two criteria: with only twenty references captured per seed, seeds almost
+    never cited the same work, so internal in-degree was compressed into 0-4 and
+    both ``top_citations`` and ``reach`` had to be dropped for failing to
+    discriminate. Capturing the full reference list costs nothing -- it arrives with
+    the seed request -- so the cap is now 100 and the degeneracy is a property of the
+    old fetch rather than of the world.
+
+    ``min_ref_indegree`` exists because resolving *metadata* for every reference does
+    cost requests. References cited by at least two seeds are the ones that carry
+    in-degree and field-flow signal; singletons are counted in the seed records
+    (so in-degree is complete) but not resolved.
     """
     path = cache / "corpus.json"
     if path.exists() and not refresh:
@@ -185,9 +215,25 @@ def build_corpus(
             print(f"  {field['name']:<44} {len(works)} works")
 
     seed_ids = {work["id"] for work in seeds}
-    referenced = sorted({ref for work in seeds for ref in work["referenced_works"]} - seed_ids)
+    indegree: dict[str, int] = {}
+    for work in seeds:
+        for ref in work["referenced_works"]:
+            indegree[ref] = indegree.get(ref, 0) + 1
+    all_referenced = sorted(set(indegree) - seed_ids)
+    # Highest in-degree first, so if the cap binds it binds on singletons, which
+    # carry no in-degree and contribute one field label each to the flow matrix.
+    ranked = sorted(all_referenced, key=lambda ref: -indegree[ref])
+    referenced = [ref for ref in ranked if indegree[ref] >= min_ref_indegree]
+    if len(referenced) > max_refs_to_resolve:
+        # A cap close to the in-degree floor would bias field flow toward
+        # frequently-cited references, so when the cap bites it takes the top slice
+        # and the flow coverage is reported rather than silently degraded.
+        referenced = referenced[:max_refs_to_resolve]
     if verbose:
-        print(f"  fetching metadata for {len(referenced)} referenced works")
+        print(
+            f"  {len(all_referenced)} referenced works, "
+            f"{len(referenced)} resolved (floor {min_ref_indegree}, cap {max_refs_to_resolve})"
+        )
     ref_records = works_by_ids(referenced)
 
     corpus = {
@@ -196,6 +242,7 @@ def build_corpus(
         "year_to": year_to,
         "per_field": per_field,
         "max_refs_per_work": max_refs_per_work,
+        "min_ref_indegree": min_ref_indegree,
         "n_fields": len(fields),
         "n_seeds": len(seeds),
         "n_referenced": len(referenced),
@@ -240,12 +287,17 @@ def fetch_citers(
 
     # Merge into any existing cache rather than overwriting it: this function is
     # called both for the whole corpus and for ad-hoc subsets (the theory probe),
-    # and an overwrite would silently destroy 520 seeds' worth of fetches.
+    # and an overwrite would silently destroy seeds' worth of fetches.
     out: dict[str, Any] = {}
     if path.exists():
         out = json.loads(path.read_text(encoding="utf-8"))
-    out = {key: value for key, value in out.items() if key not in set(seed_ids)}
-    for index, work_id in enumerate(seed_ids, start=1):
+    # Skip works already cached. Without this, growing the corpus from 520 to 1,300
+    # seeds would re-fetch the 520 that are already on disk -- 520 wasted requests
+    # against a shared daily budget.
+    pending = [work_id for work_id in seed_ids if work_id not in out]
+    if verbose and pending:
+        print(f"    {len(seed_ids) - len(pending)} cached, {len(pending)} to fetch")
+    for index, work_id in enumerate(pending, start=1):
         try:
             payload = _get(
                 "/works",
@@ -264,7 +316,7 @@ def fetch_citers(
             "top_citers": [_slim(row) for row in payload.get("results", [])],
         }
         if verbose and index % 50 == 0:
-            print(f"    {index}/{len(seed_ids)} seeds")
+            print(f"    {index}/{len(pending)} seeds")
 
     cache.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(out, indent=2), encoding="utf-8")

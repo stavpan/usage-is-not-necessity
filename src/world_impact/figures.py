@@ -349,8 +349,16 @@ def criterion_agreement(
     path: Path,
     title: str = "Do the criteria agree? Spearman correlation between rank orders",
 ) -> Path:
-    """Annotated heatmap of the rank-correlation matrix between criteria."""
-    keys = list(labels)
+    """Annotated heatmap of the rank-correlation matrix between criteria.
+
+    ``keys`` is intersected with the agreement matrix rather than taken from
+    ``labels`` directly: dropped criteria (degenerate or uncovered) have no entry in
+    the matrix, and the earlier version raised ``KeyError: ('citations',
+    'top_citations')`` when the criterion set changed. A figure should show the
+    criteria that actually ranked, and should not be able to crash on a criterion
+    that did not.
+    """
+    keys = [key for key in labels if (key, key) in agreement]
     matrix = np.array([[agreement[(a, b)] for b in keys] for a in keys])
     fig, ax = plt.subplots(figsize=(1.7 * len(keys) + 2.6, 1.5 * len(keys) + 2.0))
     image = ax.imshow(matrix, cmap="RdBu_r", vmin=-1.0, vmax=1.0)

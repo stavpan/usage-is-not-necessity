@@ -34,6 +34,18 @@ from typing import Any
 
 import numpy as np
 
+MIN_COVERAGE = 0.95
+"""A criterion must have its input present for this share of rows to be allowed to rank.
+
+The citer cache covers 520 of the 1,300 seeds in the extended corpus. Letting the
+citer criteria rank anyway would score 780 works at zero for a reason that has
+nothing to do with the works -- the criterion would be measuring *cache coverage* and
+would present that as a property of the papers. That is the same failure as the
+degenerate ``reach`` criterion, one level up: a criterion must not rank on missing
+data. Criteria below the coverage floor are dropped and named, exactly as degenerate
+ones are.
+"""
+
 MIN_DISTINCT_VALUES = 10
 """A criterion must take at least this many distinct values to be allowed to rank.
 
@@ -41,10 +53,14 @@ Below it, the ranks of the top works are decided by tie-breaking rather than by
 measurement. ``reach`` took three distinct values and put Shannon 1948 at rank 1.
 """
 
+RECENT_WINDOW = 5
+"""Years at the end of the corpus window over which ``momentum`` is measured."""
+
 CRITERIA = (
     "citations",
     "rate",
     "field_zscore",
+    "momentum",
     "top_citations",
     "reach",
     "upstream",
@@ -56,6 +72,7 @@ CRITERION_LABEL = {
     "citations": "total citations",
     "rate": "citations per year",
     "field_zscore": "rate z-score within field",
+    "momentum": "recent rate / lifetime rate",
     "top_citations": "cited by other top works",
     "reach": "distinct citing fields",
     "upstream": "upstreamness of its field",
@@ -63,6 +80,16 @@ CRITERION_LABEL = {
     "citer_prestige": "median citations of its citers",
     "citer_reach": "distinct fields among its citers",
 }
+
+CRITERION_INPUT = {
+    "momentum": "counts_by_year",
+    "unique_citers": "citers",
+    "citer_prestige": "citers",
+    "citer_reach": "citers",
+}
+"""Which input each criterion needs, so missing input is detectable as missingness
+rather than as a zero. Criteria absent from this map need nothing beyond the seed
+record and are always available."""
 """The ``citer_*`` criteria exist to break the usage bias.
 
 ``citations`` and ``unique_citers`` count how many use a work. ``citer_prestige``
@@ -75,7 +102,39 @@ theory should rank low on the counting criteria and higher on the prestige one.
 ``field_zscore`` removes the field-size effect that raw counts carry: it is the
 work's citations-per-year standardised within its own field, so a small field's best
 work is not punished for its field being small.
+
+``momentum`` is the one criterion derived from the citation *trajectory* rather than
+the citation total, and it exists to separate an instrument from a foundation with a
+measurement instead of a judgement. A tool that gets superseded loses citations once
+the successor appears; a foundation does not. Momentum is the mean annual citations
+over the last ``RECENT_WINDOW`` years divided by the work's lifetime mean annual
+citations, so it is dimensionless and roughly age-independent: a work accruing
+citations at its historical average scores 1.0, and a work that has been displaced
+scores below 1.0. It is not a clean measure of supersession -- global citation volume
+grows, so the corpus median is above 1, and a decaying work in a fast-growing field
+can still score above 1 -- which is why it is used comparatively, to contrast groups,
+rather than as an absolute threshold.
 """
+
+
+def trajectory_momentum(counts_by_year: dict[Any, Any], reference_year: int) -> float:
+    """Recent annual rate divided by lifetime annual rate.
+
+    Zero when a work has no trajectory data, so the column is constant for a corpus
+    fetched without ``counts_by_year`` and the ``active`` mechanism drops it rather
+    than letting a tie-break pretend it ranked something.
+    """
+    if not counts_by_year:
+        return 0.0
+    series = {int(year): float(count) for year, count in counts_by_year.items()}
+    first = min(series)
+    lifetime_years = max(reference_year - first + 1, 1)
+    lifetime_mean = sum(series.values()) / lifetime_years
+    if lifetime_mean <= 0:
+        return 0.0
+    window = range(reference_year - RECENT_WINDOW + 1, reference_year + 1)
+    recent = [series.get(year, 0.0) for year in window]
+    return float(sum(recent) / RECENT_WINDOW / lifetime_mean)
 
 
 def criteria_table(
@@ -108,6 +167,7 @@ def criteria_table(
         citations = float(work.get("cited_by_count") or 0)
         field = work.get("field") or "unknown"
         record = citers.get(str(work.get("id"))) or {}
+        momentum = trajectory_momentum(work.get("counts_by_year") or {}, reference_year)
         top_citers = record.get("top_citers") or []
         citer_citations = sorted(
             float(citer.get("cited_by_count") or 0) for citer in top_citers
@@ -124,9 +184,14 @@ def criteria_table(
                 "citations": citations,
                 "age": age,
                 "rate": citations / age,
+                "momentum": momentum,
                 "top_citations": float(referenced_by.get(work.get("id"), 0)),
                 "reach": float(len(citing_fields.get(work.get("id"), set()))),
                 "upstream": float(upstreamness.get(field, {}).get("ratio", 1.0)),
+                "_inputs": {
+                    "counts_by_year": bool(work.get("counts_by_year")),
+                    "citers": bool(record),
+                },
                 "unique_citers": float(record.get("n_citers") or 0),
                 "citer_prestige": (
                     citer_citations[len(citer_citations) // 2] if citer_citations else 0.0
@@ -213,6 +278,15 @@ class ConvergenceResult:
 
     Criteria that vary but only over a handful of values are dropped too; see
     ``degenerate`` and ``MIN_DISTINCT_VALUES``.
+    """
+
+    uncovered: tuple[str, ...] = ()
+    """Criteria dropped because their input is missing for too many rows.
+
+    Distinct from ``degenerate``: a degenerate criterion has its input everywhere and
+    varies too little, while an uncovered one varies fine on the rows that have it and
+    would rank the rest as zero. The citer criteria in the 1,300-seed corpus are the
+    second case, and letting them rank would have measured cache coverage.
     """
 
     degenerate: tuple[str, ...] = ()
@@ -319,6 +393,7 @@ def method_theory_gap(
             "n": float(len(members)),
             "citations": median([row["citations"] for row in members]),
             "rate": median([row["rate"] for row in members]),
+            "momentum": median([row["momentum"] for row in members]),
             "unique_citers": median([row["unique_citers"] for row in members]),
             "citer_prestige": median([row["citer_prestige"] for row in members]),
             "citer_reach": median([row["citer_reach"] for row in members]),
@@ -331,17 +406,29 @@ def method_theory_gap(
             key: (m[key] / t[key] if t[key] else float("inf"))
             for key in ("citations", "rate", "unique_citers")
         }
-        prestige = (
-            m["citer_prestige"] / t["citer_prestige"]
-            if t["citer_prestige"]
-            else float("inf")
-        )
+        # The prestige leg only means anything when citer data exists for the corpus.
+        # In the extended corpus it does not, and a ratio of zero to zero would have
+        # been reported as `inf` -- an infinite finding generated by missing data.
+        have_prestige = bool(m["citer_prestige"]) and bool(t["citer_prestige"])
+        prestige = m["citer_prestige"] / t["citer_prestige"] if have_prestige else float("nan")
+        momentum_ratio = t["momentum"] / m["momentum"] if m["momentum"] else float("nan")
         # The verdict is the *contrast*, not an absolute threshold. An earlier
         # version required every counting ratio to exceed 1.5 and therefore
         # reported "no gap" for a sample whose whole point was a 1.31x counting
         # gap against a 0.63x prestige ratio -- i.e. theory cited less often by
         # heavier works, which is the informative case, missed by a threshold.
-        if prestige < 0.95 and min(counting.values()) > 1.05:
+        counting_gap = min(counting.values()) > 1.05
+        decay_gap = momentum_ratio > 1.05
+        if counting_gap and decay_gap:
+            verdict = (
+                "BIAS CONFIRMED and DIAGNOSED: methods are cited more often "
+                f"(x{counting['citations']:.2f} on citations, x{counting['rate']:.2f} on "
+                f"rate) AND decay faster (theory/method momentum ratio "
+                f"{momentum_ratio:.2f} -- theory retains its citation rate better). The "
+                "counting criteria therefore reward instruments twice: for being used "
+                "and for being used now."
+            )
+        elif counting_gap and have_prestige and prestige < 0.95:
             verdict = (
                 "CONFIRMED and informative: methods are cited more often "
                 f"(x{counting['citations']:.2f} on citations, x{counting['rate']:.2f} "
@@ -349,18 +436,16 @@ def method_theory_gap(
                 f"prestige ratio {prestige:.2f}). Counting measures usage; usage and "
                 "importance come apart -- modestly, not dramatically."
             )
-        elif prestige >= 0.95 and min(counting.values()) > 1.05:
+        elif counting_gap:
             verdict = (
                 "BIAS CONFIRMED, no rescue: methods dominate the counting criteria "
-                f"(x{counting['citations']:.2f} on citations) and are no worse on "
-                f"prestige (ratio {prestige:.2f}). A count-based consensus is a usage "
-                "ranking."
+                f"(x{counting['citations']:.2f} on citations) with no compensating "
+                "signal. A count-based consensus is a usage ranking."
             )
         else:
             verdict = (
                 "no material method/theory gap in this sample "
-                f"(citations ratio {counting['citations']:.2f}, prestige ratio "
-                f"{prestige:.2f})"
+                f"(citations ratio {counting['citations']:.2f})"
             )
     return {"profile": profile, "verdict": verdict}
 
@@ -379,15 +464,29 @@ def convergence(
     cardinality = {
         criterion: len({round(row[criterion], 9) for row in rows}) for criterion in CRITERIA
     }
+    coverage = {
+        criterion: (
+            sum(1 for row in rows if row.get("_inputs", {}).get(CRITERION_INPUT[criterion]))
+            / max(len(rows), 1)
+            if criterion in CRITERION_INPUT
+            else 1.0
+        )
+        for criterion in CRITERIA
+    }
     active = tuple(
         criterion
         for criterion in CRITERIA
         if cardinality[criterion] >= MIN_DISTINCT_VALUES
+        and coverage[criterion] >= MIN_COVERAGE
     )
     degenerate = tuple(
         criterion
         for criterion in CRITERIA
         if 1 < cardinality[criterion] < MIN_DISTINCT_VALUES
+        and coverage[criterion] >= MIN_COVERAGE
+    )
+    uncovered = tuple(
+        criterion for criterion in CRITERIA if coverage[criterion] < MIN_COVERAGE
     )
     rank_table = {criterion: ranks(rows, criterion) for criterion in active}
     agreement: dict[tuple[str, str], float] = {}
@@ -403,6 +502,7 @@ def convergence(
         n=len(rows),
         active=active,
         degenerate=degenerate,
+        uncovered=uncovered,
     )
 
 

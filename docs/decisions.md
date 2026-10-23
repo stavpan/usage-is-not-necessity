@@ -28,6 +28,8 @@ dominate conclusions" cannot hide its own.
 | D20 | `citer_prestige` recovers foundational importance from citation structure | **retracted — it is citations one hop out** | Rank correlation with raw citations is 0.65, and the top eight by citer prestige are AlexNet, VGG, ResNet, Kohn–Sham, ImageNet, Faster R-CNN, LeNet and SAMtools — seven machine-learning architectures. The PageRank intuition returns the usage ranking with extra steps, which is the strongest single piece of evidence that necessity cannot be recovered from an untyped edge |
 | D21 | "119/119 bibliography entries matched to a DOI" | **RETRACTED — a DOI hit is not verification** | Crossref returns its best guess for any query, so an ungated match rate rises toward 100% regardless of correctness. The checker now grades hits into `verified` / `plausible` / `weak` / `unmatched` on title similarity **and** year agreement. True yield: 27 verified, 59 plausible, 21 weak, 12 unmatched out of 119 |
 | D22 | The 143 prerequisite edges are auditable claims | **retracted — zero carry a source** | `edges.yml` has no `sources` field, so the transitive-reach ranking's entire input is unsourced assertion. The 150 rows do carry bibliographic keys, so a row's existence is attributable; the edges are not. This is the project's weakest data and the paper says so at the point of the claim rather than only in the limitations |
+| D23 | The degeneracy of `reach` and `top_citations` is caused by capturing only 20 references per seed | **RETRACTED — wrong diagnosis** | Rebuilt the corpus at 100 references per seed: 3× the reference depth, 17,531 edges, in-degree maximum up from 4 to 12. Distinct values moved from 5 to 7 and 3 to 4 — both criteria still dropped. The cause is the *seed set*: a top-20-per-field sample cites older work, so mutual in-degree is bounded by the sample size, not the reference cap. The rebuild is evidence for the corrected claim rather than a repair |
+| D24 | Tools get superseded and lose citations while foundations persist, so theory should have higher momentum than methods | **RETRACTED — the opposite holds** | Methods 0.98 against theory 0.87, and the gap survives age matching (1.06 against 0.80 among works aged 20–34 years). The refutation is the better finding: methods are *renewed* by each cohort of users, foundations are *absorbed* and stop being cited, so the citation record's bias against necessity compounds with age |
 
 ## The five claims that survived, and their status
 
@@ -55,12 +57,17 @@ dominate conclusions" cannot hide its own.
 
 ## Status of the retractions, counted
 
-Twenty decisions are logged; **eleven of them are retractions** (D5, D7, D9, D10,
-D11, D14, D16, D17, D18, D19, D20) and **one is a fixed trap caught before
-publication** (D12, the forward-linkage denominator). The option-value ordering was
-retracted separately, in `results.md`. That makes twelve retractions in total, seven
-of them documented before the paper and five added by it. D16–D20 were all found by a
-single check that did not exist when the earlier claims were made: **count each
-criterion's distinct values before letting it rank anything.**
+Twenty-four decisions are logged; **thirteen of them are retractions** (D5, D7, D9,
+D10, D11, D14, D16, D17, D18, D19, D20, D23, D24) and **one is a fixed trap caught
+before publication** (D12, the forward-linkage denominator). The option-value ordering
+was retracted separately, in `results.md`. That makes fourteen retractions in total,
+seven of them documented before the paper and seven added by it.
+
+Two of them were produced by *rebuilding the data and re-running the analysis*, which
+is the discipline this project keeps having to relearn: D23 because a diagnosis that
+sounded complete was never tested against a rebuild, and D24 because a hypothesis in a
+docstring was treated as a finding. The other five were produced by a single check
+that did not exist when the earlier claims were made: **count each criterion's
+distinct values before letting it rank anything.**
 
 

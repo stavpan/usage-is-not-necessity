@@ -123,11 +123,12 @@ def test_no_work_is_in_the_top_of_every_criterion(result) -> None:
     5 of 7 and no work is unanimous. The assertion is inverted so the retraction
     cannot be quietly forgotten.
     """
-    assert len(result.active) == 7
+    assert len(result.active) == 8
     assert set(result.degenerate) == {"top_citations", "reach"}
+    assert result.uncovered == ()
     top = result.consensus(50)
     assert not [row for row in top if row["support"] == len(result.active)]
-    assert max(row["support"] for row in top) == 5
+    assert max(row["support"] for row in top) == 6
 
 
 def test_degenerate_criteria_are_dropped_for_too_few_distinct_values(corpus) -> None:
@@ -196,7 +197,56 @@ def test_theory_is_cited_less_often_but_by_heavier_works(result) -> None:
     assert method["citations"] > theory["citations"]
     assert method["rate"] > theory["rate"]
     assert theory["citer_prestige"] > method["citer_prestige"]
-    assert "CONFIRMED" in gap["verdict"]
+
+
+def test_theory_decays_faster_than_methods_even_age_matched(result) -> None:
+    """The refutation of this project's own durability hypothesis, locked in.
+
+    The hypothesis was that a superseded tool loses citations while a foundation does
+    not, so theory should have *higher* momentum. The opposite holds: methods 0.98
+    against theory 0.87 overall, and 1.06 against 0.80 among works aged 20-34, so the
+    gap is not the age gradient. A test rather than a footnote, because a refuted
+    hypothesis that is only a sentence can be quietly dropped in a later revision.
+    """
+    from world_impact import fields
+
+    def median_momentum(group: list[dict]) -> float:
+        values = sorted(row["momentum"] for row in group)
+        return values[len(values) // 2]
+
+    rows = result.rows
+    method = [row for row in rows if fields.classify_work(row["title"]) == "method"]
+    theory = [row for row in rows if fields.classify_work(row["title"]) == "theory"]
+    assert median_momentum(theory) < median_momentum(method)
+
+    band = [row for row in rows if 20 <= row["age"] <= 34]
+    matched_method = [row for row in band if fields.classify_work(row["title"]) == "method"]
+    matched_theory = [row for row in band if fields.classify_work(row["title"]) == "theory"]
+    assert matched_method and matched_theory
+    assert median_momentum(matched_theory) < median_momentum(matched_method)
+
+
+def test_criteria_missing_their_input_are_dropped_not_zeroed(corpus) -> None:
+    """The coverage guard, which the degeneracy guard did not provide.
+
+    Without citer data the three citer criteria are unavailable for every row. Ranking
+    on them anyway would score every work at zero -- the criterion would be measuring
+    whether the cache was fetched. They must be dropped and named.
+    """
+    without = cv.convergence(corpus, upstreamness=None, citers=None)
+    assert {"unique_citers", "citer_prestige", "citer_reach"} <= set(without.uncovered)
+    for criterion in without.uncovered:
+        assert criterion not in without.active
+        assert criterion not in without.rank_table
+
+
+def test_momentum_is_derived_from_the_trajectory() -> None:
+    """A flat series is momentum 1.0; a decaying one is below it."""
+    flat = dict.fromkeys(range(2000, 2025), 10)
+    assert cv.trajectory_momentum(flat, 2024) == pytest.approx(1.0, abs=0.02)
+    decaying = {**dict.fromkeys(range(2000, 2020), 100), **dict.fromkeys(range(2020, 2025), 5)}
+    assert cv.trajectory_momentum(decaying, 2024) < 0.2
+    assert cv.trajectory_momentum({}, 2024) == 0.0
 
 
 def test_pareto_is_a_small_subset(result) -> None:

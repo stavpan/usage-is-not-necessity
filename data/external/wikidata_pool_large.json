@@ -1,0 +1,372 @@
+{
+  "min_sitelinks": 4,
+  "limit": 40000,
+  "n_candidates": 44918,
+  "n_coded_rows": 205,
+  "n_matched_to_coded": 32,
+  "overlap_rate": 0.0007124092791308607,
+  "matched": [
+    {
+      "qid": "Q41751",
+      "pool_label": "pendulum clock",
+      "coded_index": 11
+    },
+    {
+      "qid": "Q192803",
+      "pool_label": "double-entry bookkeeping",
+      "coded_index": 9
+    },
+    {
+      "qid": "Q11472",
+      "pool_label": "paper",
+      "coded_index": 166
+    },
+    {
+      "qid": "Q1203873",
+      "pool_label": "Korean paper",
+      "coded_index": 166
+    },
+    {
+      "qid": "Q2224989",
+      "pool_label": "Newcomen atmospheric engine",
+      "coded_index": 21
+    },
+    {
+      "qid": "Q1931541",
+      "pool_label": "paper machine",
+      "coded_index": 166
+    },
+    {
+      "qid": "Q988780",
+      "pool_label": "Electromagnetic induction",
+      "coded_index": 29
+    },
+    {
+      "qid": "Q672506",
+      "pool_label": "paper pulp",
+      "coded_index": 166
+    },
+    {
+      "qid": "Q11427",
+      "pool_label": "steel",
+      "coded_index": 22
+    },
+    {
+      "qid": "Q189859",
+      "pool_label": "steam turbine",
+      "coded_index": 56
+    },
+    {
+      "qid": "Q45728",
+      "pool_label": "open hearth furnace",
+      "coded_index": 36
+    },
+    {
+      "qid": "Q421922",
+      "pool_label": "paper shredder",
+      "coded_index": 166
+    },
+    {
+      "qid": "Q38867",
+      "pool_label": "laser",
+      "coded_index": 120
+    },
+    {
+      "qid": "Q755662",
+      "pool_label": "relational model",
+      "coded_index": 133
+    },
+    {
+      "qid": "Q1515631",
+      "pool_label": "point-contact transistor",
+      "coded_index": 96
+    },
+    {
+      "qid": "Q80831",
+      "pool_label": "integrated circuit",
+      "coded_index": 117
+    },
+    {
+      "qid": "Q4226194",
+      "pool_label": "Coding",
+      "coded_index": 103
+    },
+    {
+      "qid": "Q466",
+      "pool_label": "World Wide Web",
+      "coded_index": 144
+    },
+    {
+      "qid": "Q17105475",
+      "pool_label": "relational quantum mechanics",
+      "coded_index": 202
+    },
+    {
+      "qid": "Q38433",
+      "pool_label": "Newton's laws of motion",
+      "coded_index": 13
+    },
+    {
+      "qid": "Q4094391",
+      "pool_label": "Bohr model of the chemical bond",
+      "coded_index": 76
+    },
+    {
+      "qid": "Q477921",
+      "pool_label": "Hamiltonian mechanics",
+      "coded_index": 48
+    },
+    {
+      "qid": "Q83913",
+      "pool_label": "cathode ray tube",
+      "coded_index": 67
+    },
+    {
+      "qid": "Q360686",
+      "pool_label": "Bohr-Sommerfeld atom model",
+      "coded_index": 76
+    },
+    {
+      "qid": "Q690207",
+      "pool_label": "perceptron",
+      "coded_index": 116
+    },
+    {
+      "qid": "Q2054182",
+      "pool_label": "Parsons turbine",
+      "coded_index": 56
+    },
+    {
+      "qid": "Q210793",
+      "pool_label": "MOSFET",
+      "coded_index": 119
+    },
+    {
+      "qid": "Q25504",
+      "pool_label": "light-emitting diode",
+      "coded_index": 124
+    },
+    {
+      "qid": "Q623950",
+      "pool_label": "fast Fourier transform",
+      "coded_index": 125
+    },
+    {
+      "qid": "Q379754",
+      "pool_label": "paper bag",
+      "coded_index": 166
+    },
+    {
+      "qid": "Q3247134",
+      "pool_label": "Liquid Paper",
+      "coded_index": 166
+    },
+    {
+      "qid": "Q5645293",
+      "pool_label": "Hamiltonian",
+      "coded_index": 48
+    }
+  ],
+  "largest": [
+    {
+      "qid": "Q46",
+      "label": "Europe",
+      "sitelinks": 408
+    },
+    {
+      "qid": "Q408",
+      "label": "Australia",
+      "sitelinks": 400
+    },
+    {
+      "qid": "Q155",
+      "label": "Brazil",
+      "sitelinks": 387
+    },
+    {
+      "qid": "Q51",
+      "label": "Antarctica",
+      "sitelinks": 317
+    },
+    {
+      "qid": "Q75",
+      "label": "Internet",
+      "sitelinks": 299
+    },
+    {
+      "qid": "Q68",
+      "label": "computer",
+      "sitelinks": 298
+    },
+    {
+      "qid": "Q2736",
+      "label": "association football",
+      "sitelinks": 296
+    },
+    {
+      "qid": "Q143",
+      "label": "Esperanto",
+      "sitelinks": 283
+    },
+    {
+      "qid": "Q897",
+      "label": "gold",
+      "sitelinks": 277
+    },
+    {
+      "qid": "Q289",
+      "label": "television",
+      "sitelinks": 269
+    },
+    {
+      "qid": "Q828",
+      "label": "Americas",
+      "sitelinks": 267
+    },
+    {
+      "qid": "Q324",
+      "label": "Uranus",
+      "sitelinks": 261
+    },
+    {
+      "qid": "Q223",
+      "label": "Greenland",
+      "sitelinks": 256
+    },
+    {
+      "qid": "Q677",
+      "label": "iron",
+      "sitelinks": 254
+    },
+    {
+      "qid": "Q332",
+      "label": "Neptune",
+      "sitelinks": 252
+    },
+    {
+      "qid": "Q769",
+      "label": "Grenada",
+      "sitelinks": 251
+    },
+    {
+      "qid": "Q1420",
+      "label": "car",
+      "sitelinks": 246
+    },
+    {
+      "qid": "Q1090",
+      "label": "silver",
+      "sitelinks": 238
+    },
+    {
+      "qid": "Q556",
+      "label": "hydrogen",
+      "sitelinks": 238
+    },
+    {
+      "qid": "Q629",
+      "label": "oxygen",
+      "sitelinks": 234
+    },
+    {
+      "qid": "Q10693",
+      "label": "periodic table",
+      "sitelinks": 230
+    },
+    {
+      "qid": "Q753",
+      "label": "copper",
+      "sitelinks": 229
+    },
+    {
+      "qid": "Q339",
+      "label": "Pluto",
+      "sitelinks": 223
+    },
+    {
+      "qid": "Q623",
+      "label": "carbon",
+      "sitelinks": 219
+    },
+    {
+      "qid": "Q11035",
+      "label": "telephone",
+      "sitelinks": 218
+    },
+    {
+      "qid": "Q5372",
+      "label": "basketball",
+      "sitelinks": 217
+    },
+    {
+      "qid": "Q19860",
+      "label": "Indo-European",
+      "sitelinks": 216
+    },
+    {
+      "qid": "Q11633",
+      "label": "photography",
+      "sitelinks": 211
+    },
+    {
+      "qid": "Q12725",
+      "label": "electricity",
+      "sitelinks": 210
+    },
+    {
+      "qid": "Q663",
+      "label": "aluminium",
+      "sitelinks": 210
+    },
+    {
+      "qid": "Q12199",
+      "label": "HIV/AIDS",
+      "sitelinks": 209
+    },
+    {
+      "qid": "Q560",
+      "label": "helium",
+      "sitelinks": 208
+    },
+    {
+      "qid": "Q627",
+      "label": "nitrogen",
+      "sitelinks": 205
+    },
+    {
+      "qid": "Q11442",
+      "label": "bicycle",
+      "sitelinks": 205
+    },
+    {
+      "qid": "Q11032",
+      "label": "newspaper",
+      "sitelinks": 204
+    },
+    {
+      "qid": "Q11472",
+      "label": "paper",
+      "sitelinks": 198
+    },
+    {
+      "qid": "Q682",
+      "label": "sulfur",
+      "sitelinks": 196
+    },
+    {
+      "qid": "Q11412",
+      "label": "gravity",
+      "sitelinks": 196
+    },
+    {
+      "qid": "Q197",
+      "label": "airplane",
+      "sitelinks": 195
+    },
+    {
+      "qid": "Q12156",
+      "label": "malaria",
+      "sitelinks": 195
+    }
+  ]
+}
