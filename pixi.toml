@@ -56,7 +56,11 @@ contrast = { cmd = "python scripts/make_contrast.py", description = "the central
 measure = { cmd = "python scripts/reliability.py", description = "the five measures, the halo check, the second-coder export" }
 classify = { cmd = "python scripts/classify_abstracts.py", description = "title vs abstract classification, and the disagreement" }
 
-all = { depends-on = ["gate", "edges", "bibliography", "figures", "contrast"], description = "everything that needs no network" }
+# `all` deliberately does NOT depend on `gate`: the quality gates need the `dev`
+# environment (ruff, mypy) while the build tasks are pure Python and run in the
+# default one, so chaining them makes `pixi run all` fail with "ruff: command not
+# found". CI runs the two separately, both in `dev`.
+all = { depends-on = ["edges", "bibliography", "figures", "contrast"], description = "everything that needs no network" }
 
 # --- docs ----------------------------------------------------------------
 docs = { cmd = "mkdocs serve", description = "serve documentation" }

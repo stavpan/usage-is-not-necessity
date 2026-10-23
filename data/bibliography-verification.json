@@ -1,21 +1,21 @@
 {
   "n_entries": 119,
   "counts_by_tier": {
+    "unmatched": 11,
     "plausible": 47,
-    "verified": 47,
-    "weak": 16,
-    "unmatched": 9
+    "verified": 43,
+    "weak": 18
   },
-  "summary": "47 verified, 47 plausible, 16 weak, 9 unmatched, out of 119",
+  "summary": "43 verified, 47 plausible, 18 weak, 11 unmatched, out of 119",
   "entries": [
     {
       "key": "arrow1951",
       "declared_title": "Social Choice and Individual Values",
-      "matched_title": "Social Choice and Individual Values",
-      "matched_doi": "10.12987/9780300186987",
-      "similarity": 1.0,
+      "matched_title": "INDEX",
+      "matched_doi": "10.12987/9780300186987-012",
+      "similarity": 0.2,
       "year_agrees": false,
-      "tier": "plausible"
+      "tier": "unmatched"
     },
     {
       "key": "sen1970",
@@ -146,27 +146,27 @@
     {
       "key": "morris2013",
       "declared_title": "The Measure of Civilization: How Social Development Decides the Fate of Nations",
-      "matched_title": "Illustrations",
-      "matched_doi": "10.1515/9781400844760-001",
-      "similarity": 0.196,
+      "matched_title": "The Measure of Civilization",
+      "matched_doi": "10.1515/9781400844760",
+      "similarity": 0.509,
       "year_agrees": true,
-      "tier": "unmatched"
+      "tier": "weak"
     },
     {
       "key": "morris2010",
       "declared_title": "Why the West Rules - For Now",
-      "matched_title": "Why the West rules \u2013 for now: the patterns of history and what they reveal about the future",
-      "matched_doi": "10.1017/s1740022811000623",
-      "similarity": 0.454,
+      "matched_title": "Why the West rules--for now: the patterns of history, and what they reveal about the future",
+      "matched_doi": "10.5860/choice.48-6438",
+      "similarity": 0.437,
       "year_agrees": true,
       "tier": "weak"
     },
     {
       "key": "rogers2003",
       "declared_title": "Diffusion of Innovations (5th ed.)",
-      "matched_title": "The Diffusion of Product Innovations",
-      "matched_doi": "10.1093/oso/9780198816676.003.0009",
-      "similarity": 0.686,
+      "matched_title": "Diffusion of innovations: Smartphones and wireless anatomy learning resources",
+      "matched_doi": "10.1002/ase.58",
+      "similarity": 0.523,
       "year_agrees": false,
       "tier": "weak"
     },
@@ -199,7 +199,12 @@
     },
     {
       "key": "fortunato2018",
-      "error": "no match"
+      "declared_title": "Science of science",
+      "matched_title": "",
+      "matched_doi": "10.15407/sofs2025.02",
+      "similarity": 0.0,
+      "year_agrees": false,
+      "tier": "unmatched"
     },
     {
       "key": "ferguson1997",
@@ -231,11 +236,11 @@
     {
       "key": "parfit1984",
       "declared_title": "Reasons and Persons",
-      "matched_title": "Reasons and Persons",
-      "matched_doi": "10.1093/019824908x.001.0001",
-      "similarity": 1.0,
-      "year_agrees": true,
-      "tier": "verified"
+      "matched_title": "Reasons and conscious persons",
+      "matched_doi": "10.4324/9780429488450-11",
+      "similarity": 0.792,
+      "year_agrees": false,
+      "tier": "plausible"
     },
     {
       "key": "wrangham2009",
@@ -366,9 +371,9 @@
     {
       "key": "jaspers1953",
       "declared_title": "The Origin and Goal of History",
-      "matched_title": "The Origin and Goal of History",
-      "matched_doi": "10.4324/9781003133674",
-      "similarity": 1.0,
+      "matched_title": "The Origin and Goal of History (Routledge Revivals)",
+      "matched_doi": "10.4324/9781315823683",
+      "similarity": 0.741,
       "year_agrees": false,
       "tier": "plausible"
     },
@@ -402,11 +407,11 @@
     {
       "key": "eisenstein1979",
       "declared_title": "The Printing Press as an Agent of Change",
-      "matched_title": "The Printing Press as an Agent of Change",
-      "matched_doi": "10.1017/cbo9781107049963",
-      "similarity": 1.0,
+      "matched_title": "Preface",
+      "matched_doi": "10.1017/cbo9781107049963.002",
+      "similarity": 0.213,
       "year_agrees": true,
-      "tier": "verified"
+      "tier": "unmatched"
     },
     {
       "key": "shapin1985",
@@ -510,9 +515,9 @@
     {
       "key": "sen1981",
       "declared_title": "Poverty and Famines: An Essay on Entitlement and Deprivation",
-      "matched_title": "The Entitlement Approach",
-      "matched_doi": "10.1093/0198284632.003.0005",
-      "similarity": 0.429,
+      "matched_title": "Exchange Entitlement",
+      "matched_doi": "10.1093/0198284632.005.0001",
+      "similarity": 0.4,
       "year_agrees": true,
       "tier": "weak"
     },
@@ -573,20 +578,20 @@
     {
       "key": "hunt2007",
       "declared_title": "Inventing Human Rights",
-      "matched_title": "Inventing Human Dignity",
-      "matched_doi": "10.4324/9781315778372-18",
-      "similarity": 0.844,
+      "matched_title": "Inventing Rights",
+      "matched_doi": "10.1017/9781108659192.002",
+      "similarity": 0.842,
       "year_agrees": false,
       "tier": "plausible"
     },
     {
       "key": "abbate2000",
       "declared_title": "Inventing the Internet",
-      "matched_title": "Inventing the Internet",
-      "matched_doi": "10.1108/oir.2001.25.4.271.2",
-      "similarity": 1.0,
-      "year_agrees": true,
-      "tier": "verified"
+      "matched_title": "(Re)Inventing The Internet",
+      "matched_doi": "10.1007/978-94-6091-734-9",
+      "similarity": 0.917,
+      "year_agrees": false,
+      "tier": "plausible"
     },
     {
       "key": "leiner2009",
@@ -654,11 +659,11 @@
     {
       "key": "krippner2011",
       "declared_title": "Capitalizing on Crisis: The Political Origins of the Rise of Finance",
-      "matched_title": "Capitalizing on Crisis: The Political Origins of the Rise of Finance",
-      "matched_doi": "10.1163/2468-1733_shafr_sim280020435",
-      "similarity": 1.0,
-      "year_agrees": false,
-      "tier": "plausible"
+      "matched_title": "References",
+      "matched_doi": "10.2307/j.ctvjk2x23.15",
+      "similarity": 0.179,
+      "year_agrees": true,
+      "tier": "unmatched"
     },
     {
       "key": "smil2017",
@@ -672,9 +677,9 @@
     {
       "key": "smil2001",
       "declared_title": "Enriching the Earth: Fritz Haber, Carl Bosch, and the Transformation of World Food Production",
-      "matched_title": "Synthetic Fertilizers",
-      "matched_doi": "10.7551/mitpress/2767.003.0009",
-      "similarity": 0.228,
+      "matched_title": "Appendixes",
+      "matched_doi": "10.7551/mitpress/2767.003.0014",
+      "similarity": 0.097,
       "year_agrees": true,
       "tier": "unmatched"
     },
@@ -708,10 +713,10 @@
     {
       "key": "landes1998",
       "declared_title": "The Wealth and Poverty of Nations",
-      "matched_title": "The Wealth of Cities and the Poverty of Nations",
-      "matched_doi": "10.3366/9781788215602",
-      "similarity": 0.825,
-      "year_agrees": false,
+      "matched_title": "The Poverty of Politics",
+      "matched_doi": "10.7551/mitpress/7182.003.0008",
+      "similarity": 0.643,
+      "year_agrees": true,
       "tier": "plausible"
     },
     {
@@ -726,9 +731,9 @@
     {
       "key": "mcneill1976",
       "declared_title": "Plagues and Peoples",
-      "matched_title": "Of Plagues and Peoples",
-      "matched_doi": "10.2307/j.ctvx1hsvh.10",
-      "similarity": 0.927,
+      "matched_title": "Plagues, Pandemics, and Peoples",
+      "matched_doi": "10.1891/9780826144829.0022",
+      "similarity": 0.76,
       "year_agrees": false,
       "tier": "plausible"
     },
@@ -754,7 +759,7 @@
       "key": "tainter1988",
       "declared_title": "The Collapse of Complex Societies",
       "matched_title": "The Collapse of Complex Societies",
-      "matched_doi": "10.2307/4350705",
+      "matched_doi": "10.2307/2803349",
       "similarity": 1.0,
       "year_agrees": true,
       "tier": "verified"
@@ -762,9 +767,9 @@
     {
       "key": "tilly1990",
       "declared_title": "Coercion, Capital, and European States, AD 990-1992",
-      "matched_title": "Coercion, capital, and European states, AD 990-1990",
-      "matched_doi": "10.5860/choice.28-2311",
-      "similarity": 0.98,
+      "matched_title": "Coercion, capital, and European states AD 990\u20131990",
+      "matched_doi": "10.1016/0305-750x(91)90113-v",
+      "similarity": 0.95,
       "year_agrees": true,
       "tier": "verified"
     },
@@ -789,18 +794,18 @@
     {
       "key": "rockstrom2009",
       "declared_title": "A safe operating space for humanity",
-      "matched_title": "\u201cA Safe Operating Space for Humanity\u201d (2009)",
-      "matched_doi": "10.12987/9780300188479-042",
-      "similarity": 0.886,
+      "matched_title": "Safe operating space for humanity at a regional scale",
+      "matched_doi": "10.5751/es-10171-230243",
+      "similarity": 0.75,
       "year_agrees": false,
       "tier": "plausible"
     },
     {
       "key": "holdren1974",
       "declared_title": "Human population and the global environment",
-      "matched_title": "Population Health, Environment and Economic Development",
-      "matched_doi": "10.1023/a:1019692328162",
-      "similarity": 0.531,
+      "matched_title": "Women\u2019s Rights and the Global Population Crisis",
+      "matched_doi": "10.2307/j.ctv2vt04x7.11",
+      "similarity": 0.467,
       "year_agrees": false,
       "tier": "weak"
     },
@@ -906,11 +911,11 @@
     {
       "key": "cardwell1971",
       "declared_title": "From Watt to Clausius: The Rise of Thermodynamics in the Early Industrial Age",
-      "matched_title": "From Watts to Clausius: The Rise of Thermodynamics in the Early Industrial Age",
-      "matched_doi": "10.2307/3102621",
-      "similarity": 0.994,
-      "year_agrees": true,
-      "tier": "verified"
+      "matched_title": "From Watt to Clausius. The Rise of Thermodynamics in the Early Industrial Age",
+      "matched_doi": "10.1017/s0007087400013157",
+      "similarity": 0.987,
+      "year_agrees": false,
+      "tier": "plausible"
     },
     {
       "key": "kragh1999",
@@ -960,18 +965,18 @@
     {
       "key": "hirschman1958",
       "declared_title": "The Strategy of Economic Development",
-      "matched_title": "Sources of Economic Growth and Development Strategy in Dubai",
-      "matched_doi": "10.1057/9781137001115.0011",
-      "similarity": 0.542,
+      "matched_title": "Economic Performance and China\u2019s Development Strategy",
+      "matched_doi": "10.2307/j.ctv1fj84hd.10",
+      "similarity": 0.449,
       "year_agrees": false,
       "tier": "weak"
     },
     {
       "key": "shannon1948",
       "declared_title": "A mathematical theory of communication",
-      "matched_title": "A Mathematical Theory of Communication",
-      "matched_doi": "10.1109/9780470544242.ch1",
-      "similarity": 1.0,
+      "matched_title": "Mathematical Theory of Communication",
+      "matched_doi": "10.4135/9781412959384.n229",
+      "similarity": 0.973,
       "year_agrees": false,
       "tier": "plausible"
     },
@@ -1050,9 +1055,9 @@
     {
       "key": "krippendorff2019",
       "declared_title": "Content Analysis: An Introduction to Its Methodology (4th ed.)",
-      "matched_title": "The Logic of Content Analysis Designs",
-      "matched_doi": "10.4135/9781071878781.n5",
-      "similarity": 0.384,
+      "matched_title": "Validity",
+      "matched_doi": "10.4135/9781071878781.n14",
+      "similarity": 0.2,
       "year_agrees": true,
       "tier": "unmatched"
     },
@@ -1068,11 +1073,11 @@
     {
       "key": "hidalgo2021",
       "declared_title": "Economic complexity theory and applications",
-      "matched_title": "ECONOMIC COMPLEXITY THEORY AND ITS APPLICATIONS: A CASE\nSTUDY OF ARMENIA",
-      "matched_doi": "10.55528/18292828-2024.4-97",
-      "similarity": 0.748,
-      "year_agrees": false,
-      "tier": "plausible"
+      "matched_title": "Some important applications of systems theory",
+      "matched_doi": "10.1016/b978-0-12-818594-0.00010-6",
+      "similarity": 0.5,
+      "year_agrees": true,
+      "tier": "weak"
     }
   ]
 }

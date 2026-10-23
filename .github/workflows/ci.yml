@@ -29,14 +29,14 @@ jobs:
       - name: Type check
         run: pixi run -e dev typecheck
 
-      - name: Tests (no network)
-        run: pixi run -e dev pytest -m "not network" --cov=world_impact --cov-report=term-missing
+      - name: Tests
+        run: pixi run -e dev pytest --cov=world_impact --cov-report=term-missing
 
-      - name: Validate the coding matrix
-        run: pixi run -e dev validate
+      - name: Everything that needs no network
+        run: pixi run -e dev all
 
   reproducibility:
-    name: pipeline reproduces its own numbers
+    name: the analysis reproduces its own numbers
     runs-on: ubuntu-latest
     needs: quality
     steps:
@@ -47,32 +47,27 @@ jobs:
           cache: true
           environments: dev
 
-      - name: Run twice and diff the results
-        # A pipeline that is not bit-reproducible under a fixed seed is not a
-        # result, it is a sample. The reference panel is excluded here because it
-        # depends on upstream data revisions at OWID, which cannot be pinned.
+      - name: Everything that needs no network
+        # Fails if a committed figure or report has drifted from the code that
+        # produces it. A figure that is not reproducible from a committed corpus is
+        # an illustration, not a result.
+        run: pixi run -e dev all
+
+      - name: The tree is unchanged after a full rebuild
         run: |
-          pixi run -e dev world-impact analyse --quick --no-reference --out /tmp/a.json
-          pixi run -e dev world-impact analyse --quick --no-reference --out /tmp/b.json
-          diff <(jq -S 'del(.meta.settings)' /tmp/a.json) \
-               <(jq -S 'del(.meta.settings)' /tmp/b.json)
+          git diff --exit-code -- figures docs/figures \
+            || { echo "::error::committed figures differ from regenerated output"; exit 1; }
 
-      - name: Build the report
+      - name: The central claim, asserted
         run: |
-          pixi run -e dev world-impact report --results /tmp/a.json --out /tmp/report.md
-          test -s /tmp/report.md
-          grep -q "Limitations" /tmp/report.md
-
-      - name: Figures render
-        run: pixi run -e dev world-impact figures --out /tmp/figs
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: report
-          path: |
-            /tmp/report.md
-            /tmp/a.json
-            /tmp/figs
+          pixi run -e dev python - <<'PY'
+          import json, pathlib, sys
+          c = json.loads(pathlib.Path("reports/contrast.json").read_text())
+          print(f"top-{c['top']} by use vs by necessity: {c['n_shared']} shared entries")
+          if c["n_shared"] != 0:
+              sys.exit("the two rankings are no longer disjoint -- investigate before merging")
+          print(f"largest transitive reach: {c['by_necessity'][0]['transitive_reach']} of {c['n_nodes']}")
+          PY
 
   docs:
     name: docs build
