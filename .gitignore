@@ -34,3 +34,7 @@ figures/*.svg
 # small curated reference extract so the pipeline runs offline.
 data/raw/owid/*.csv
 !data/raw/owid/.gitkeep
+
+# abstract fetch output: written by scripts/fetch_abstracts.py when the
+# OpenAlex request budget allows; absent rather than empty when it does not
+data/openalex/abstracts.json
