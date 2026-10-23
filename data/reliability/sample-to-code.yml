@@ -1,0 +1,50 @@
+# Blinded edge sample for a second coder.
+#
+# For each edge below, replace `necessary: null` with `necessary: true` if the user
+# would not have been possible, as it occurred, without the provider, and
+# `necessary: false` otherwise. Do not consult `data/results.yml`.
+#
+# Save as data/reliability/second-coder.yml and run:
+#     python scripts/reliability.py --score
+#
+# 40 edges, stratified so that high-reach and low-reach providers are both represented.
+- {user: nmr_mri, user_name: "Nuclear magnetic resonance, and later MRI", provider: dirac_equation, provider_name: "The Dirac equation and spin", necessary: null}
+- {user: mosfet, user_name: "The MOSFET", provider: hoerni_planar, provider_name: "Hoerni's planar process", necessary: null}
+- {user: national_accounts_kuznets, user_name: "National income accounting", provider: census_periodic, provider_name: "The periodic census", necessary: null}
+- {user: junction_transistor, user_name: "Shockley's junction transistor and p-n theory", provider: point_contact_transistor, provider_name: "The point-contact transistor", necessary: null}
+- {user: crispr_cas9, user_name: "CRISPR-Cas9 programmable editing", provider: pcr_mullis, provider_name: "The polymerase chain reaction", necessary: null}
+- {user: container_ship_idealx, user_name: "The Ideal-X and container shipping", provider: diesel_compression_ignition, provider_name: "Diesel compression ignition", necessary: null}
+- {user: lithium_ion, user_name: "The commercial lithium-ion cell", provider: gibbs_free_energy, provider_name: "Gibbs free energy and chemical potential", necessary: null}
+- {user: clausius_entropy, user_name: "Entropy and the second law", provider: carnot_cycle, provider_name: "The Carnot cycle and the ideal efficiency bound", necessary: null}
+- {user: gi_bill, user_name: "The GI Bill: mass tertiary education", provider: horace_mann_common_school, provider_name: "The common-school movement", necessary: null}
+- {user: carrier_air_conditioning, user_name: "Carrier's air conditioning", provider: perkins_vapour_compression, provider_name: "Perkins's vapour-compression refrigeration", necessary: null}
+- {user: maxwell_equations, user_name: "Maxwell's equations and the displacement current", provider: faraday_induction, provider_name: "Electromagnetic induction", necessary: null}
+- {user: pill_1960, user_name: "Approval and diffusion of the oral contraceptive", provider: norethynodrel, provider_name: "Synthesis of norethynodrel", necessary: null}
+- {user: ring_vaccination_foege, user_name: "Foege's ring vaccination strategy", provider: jenner_smallpox, provider_name: "Jenner's smallpox vaccination", necessary: null}
+- {user: zone_refining_pfann, user_name: "Zone refining to ultrapure semiconductor", provider: junction_transistor, provider_name: "Shockley's junction transistor and p-n theory", necessary: null}
+- {user: planck_quantum, user_name: "Planck's quantum hypothesis", provider: boltzmann_h_theorem, provider_name: "The H-theorem: entropy as counting", necessary: null}
+- {user: kirchhoff_circuit_laws, user_name: "Kirchhoff's circuit laws", provider: faraday_induction, provider_name: "Electromagnetic induction", necessary: null}
+- {user: pcr_mullis, user_name: "The polymerase chain reaction", provider: sanger_sequencing, provider_name: "Sanger sequencing", necessary: null}
+- {user: czochralski_silicon, user_name: "Czochralski growth of single-crystal silicon", provider: junction_transistor, provider_name: "Shockley's junction transistor and p-n theory", necessary: null}
+- {user: hoerni_planar, user_name: "Hoerni's planar process", provider: kilby_noyce_ic, provider_name: "The integrated circuit", necessary: null}
+- {user: norethynodrel, user_name: "Synthesis of norethynodrel", provider: progesterone_isolation, provider_name: "Isolation of progesterone", necessary: null}
+- {user: fibre_optics, user_name: "Low-loss optical fibre", provider: laser, provider_name: "The laser", necessary: null}
+- {user: transformer_attention, user_name: "The attention architecture", provider: alexnet_imagenet, provider_name: "AlexNet and the ImageNet breakthrough", necessary: null}
+- {user: transatlantic_cable, user_name: "The working transatlantic telegraph cable", provider: telegraph_morse, provider_name: "The Morse telegraph and its code", necessary: null}
+- {user: point_contact_transistor, user_name: "The point-contact transistor", provider: band_theory, provider_name: "Band theory of solids", necessary: null}
+- {user: mrna_platform, user_name: "The mRNA vaccine platform", provider: pcr_mullis, provider_name: "The polymerase chain reaction", necessary: null}
+- {user: national_accounts_kuznets, user_name: "National income accounting", provider: pearson_regression, provider_name: "Correlation and the regression line", necessary: null}
+- {user: kilby_noyce_ic, user_name: "The integrated circuit", provider: junction_transistor, provider_name: "Shockley's junction transistor and p-n theory", necessary: null}
+- {user: beveridge_report, user_name: "The Beveridge Report on social insurance", provider: national_accounts_kuznets, provider_name: "National income accounting", necessary: null}
+- {user: sanger_sequencing, user_name: "Sanger sequencing", provider: dna_double_helix, provider_name: "The double helix", necessary: null}
+- {user: shotgun_sequencing, user_name: "Whole-genome shotgun sequencing", provider: pcr_mullis, provider_name: "The polymerase chain reaction", necessary: null}
+- {user: progesterone_isolation, user_name: "Isolation of progesterone", provider: pauli_exclusion, provider_name: "The Pauli exclusion principle and the periodic table", necessary: null}
+- {user: laser, user_name: "The laser", provider: kirchhoff_circuit_laws, provider_name: "Kirchhoff's circuit laws", necessary: null}
+- {user: pearl_street_station, user_name: "Pearl Street: the central generating station", provider: parsons_turbine, provider_name: "The Parsons steam turbine", necessary: null}
+- {user: codices_parchment, user_name: "Parchment codices and the bound book", provider: papyrus_scroll, provider_name: "Papyrus and the portable record", necessary: null}
+- {user: hamiltonian_mechanics, user_name: "Hamiltonian mechanics", provider: variational_calculus, provider_name: "The calculus of variations", necessary: null}
+- {user: penicillin_fleming, user_name: "Fleming's observation of penicillin", provider: koch_postulates, provider_name: "Koch's postulates: assigning a cause", necessary: null}
+- {user: alexnet_imagenet, user_name: "AlexNet and the ImageNet breakthrough", provider: hoerni_planar, provider_name: "Hoerni's planar process", necessary: null}
+- {user: hamming_codes, user_name: "Hamming error-correcting codes", provider: shannon_capacity, provider_name: "The channel capacity theorem", necessary: null}
+- {user: moores_law, user_name: "Moore's law as an industry roadmap", provider: mosfet, provider_name: "The MOSFET", necessary: null}
+- {user: hoerni_planar, user_name: "Hoerni's planar process", provider: czochralski_silicon, provider_name: "Czochralski growth of single-crystal silicon", necessary: null}

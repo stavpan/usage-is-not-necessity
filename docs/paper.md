@@ -51,15 +51,27 @@ users while foundations are *absorbed* into common knowledge and stop being cite
 The citation record's bias against necessity is not a constant offset; it compounds
 with the age of the work.
 
-The strongest form of the result needs no comparison between instruments at all,
-only the coded layer's own rows, where five measures of importance are computable at
-once. They form **two opposed families**: what a development *did* (coded consequence,
-breadth, peak; internally correlated 0.32 to 0.75) and what *rests on* it (transitive
-reach, downstream share; internally correlated 0.88). **Every correlation between the
-two families is negative**, from −0.07 to −0.41. Eight of the ten developments with
-the largest direct impact have no dependants at all. "Importance" is not one quantity
-with measurement noise; it is two opposed quantities, and a ranking is a choice
-between them.
+The coded layer's own rows give a further result and two corrections. Five measures of
+importance on the same 150 rows share signal — mean rank correlation **0.38** — so
+"importance" is not four independent quantities. But part of that shared signal is a
+**halo effect**: peak effect against structural necessity is **+0.45**, because one
+coder wrote both fields and gave the larger numbers to the rows that already looked
+central. The coded magnitudes are therefore not independent evidence about
+consequence. The one genuinely independent pair is the interesting one: **breadth, how
+many of the 18 outcome domains a development touches, correlates with necessity at
++0.02** — how widely a thing changed the world has essentially nothing to do with how
+much depends on it.
+
+Both corrections are about the same failure: an earlier version of this paper reported
+that these measures form two *opposed* families with every between-family correlation
+negative, computed on the pipeline's *mediated* totals, in which propagation through
+the prerequisite graph subtracts downstream effect from upstream nodes by construction.
+The sign was manufactured by the transform, and the same pair yields +0.31 or −0.20
+depending on whether mediation is applied. The first computation also used a hand-rolled
+rank function that collapsed ties, and on a four-valued measure like `peak` that alone
+moved the correlation from 0.43 to 0.45 to 0.62. Two guards follow: **report a
+correlation on the raw coding as well as on any transformed version, and use midrank
+Spearman on coarse data.**
 
 **The paper's provenance is reported as a result, not as a caveat.** The bibliometric
 layer is externally reproducible; the bibliography is hand-compiled and only 23% of
@@ -68,8 +80,8 @@ unmatched; and the 143 prerequisite edges that produce the necessity ranking car
 **no sources at all**. The transitive-reach ranking is therefore offered as a
 demonstration that the method yields the kind of answer the question deserves, not as
 a finding about the relative importance of calculus and thermodynamics, and the paper
-states what would be required to make it the latter. We report fourteen retractions
-of our own claims, seven documented before this paper and seven added by it, plus a
+states what would be required to make it the latter. We report fifteen retractions
+of our own claims, seven documented before this paper and eight added by it, plus a
 degeneracy check that generalises to any composite ranking.
 
 ---
@@ -297,14 +309,31 @@ entries matched to a DOI" without gating, and the tooling now states plainly tha
 DOI hit is not verification*. That earlier number was in this project's own commit
 history, which is why the tiers are reported here rather than a match rate.
 
-**(c) The dependency layer is `stated`, unsourced, and single-coder.** This is the
-weak point, and it is worse than Section 10's general caveat suggests. Of the 143
-prerequisite edges in `edges.yml`, **zero carry a source.** The 150 rows carry
-bibliographic keys into `sources.yml`, so a row's *existence* is attributable, but
-the *edges* — claims of the form "X would not have been possible without Y", which are
-the entire input to the transitive-reach ranking — are assertions with no citation
-attached. The ranking in Section 6.3 is therefore a statement about what one coder
-wrote down, not a measurement of history.
+**(c) The dependency layer is `stated` and single-coder, and its edges are now
+traceable.** This is the weak point, and its shape was a schema problem rather than an
+oversight. The fine layer's 150 rows carry bibliographic keys into `sources.yml`, so a
+row's *existence* is attributable. But its dependency graph is encoded in `results.yml`
+as `requires: [id, ...]` — a bare list of identifiers, which has **nowhere to put a
+source for the edge**. The 143 claims of the form "X would not have been possible
+without Y", which are the entire input to the transitive-reach ranking, therefore
+carried no citation at all.
+
+That is fixed. `data/edge-sources.yml` now gives every edge the union of its two
+endpoints' declared sources: **143 of 143 edges warranted**, mean 1.55 sources per
+edge, with 76 resting on a single source. What this buys is **traceability** — every
+edge now resolves to at least one citable work — and what it does *not* buy is
+**verification**: a source documenting Maxwell's equations does not assert that the
+calculus was necessary for them. Verifying the dependency itself needs a dedicated
+citation per edge, and that remains open. The distinction is in the file's header so
+it cannot be lost.
+
+Two audits run over the same graph and both are clean: **zero chronological
+contradictions** (no prerequisite postdates what it enables) and **zero cycles**. The
+audits are cheap and would have found a coding error; that they find none is weak
+positive evidence about the graph.
+
+What remains is that one person wrote it. Section 10 reports the inter-coder machinery
+and why no number from it is reported here.
 
 **The 150 rows are a small sample of a large universe, and the size of the gap is now
 measured.** The rows were chosen by judgement, which is a selection problem, and 150
@@ -939,42 +968,82 @@ question can be answered from the data the first one uses, and Section 5 explain
 why it cannot: the citation record stores an untyped edge, and necessity is a
 property of the edge's type.
 
-### 7.3 Three quantifications of importance, and they are opposed
+### 7.3 The coded measures, and a halo effect that a one-line check detects
 
-Everything above compared two instruments on two corpora. But the coded layer
-carries its own quantifications on identical rows, so the comparison can be made
-*within* one coding, where no corpus difference can explain the result.
+Everything above compared two instruments on two corpora. But the coded layer carries
+its own quantifications on identical rows, so the comparison can be made *within* one
+coding, where no corpus difference can explain the result.
 
 Those rows carry an impact profile across 18 outcome domains — what a development did
 to the world — and a prerequisite edge list — what depends on it. That yields five
-measures of importance for the same 150 rows. Their rank correlations:
+measures of importance for the same 150 rows. Rank correlations, **on the raw coded
+magnitudes**:
 
-| | consequence | breadth | peak | necessity | downstream share |
+| | consequence | breadth | peak | necessity | prerequisites |
 |---|---|---|---|---|---|
-| **consequence** (sum of coded effects) | 1.00 | 0.75 | 0.72 | **−0.20** | **−0.32** |
-| **breadth** (domains touched) | 0.75 | 1.00 | 0.32 | **−0.32** | **−0.41** |
-| **peak** (largest single effect) | 0.72 | 0.32 | 1.00 | −0.07 | −0.16 |
-| **necessity** (transitive reach) | −0.20 | −0.32 | −0.07 | 1.00 | 0.88 |
-| **downstream share** (mediated fraction) | −0.32 | −0.41 | −0.16 | 0.88 | 1.00 |
+| **consequence** (sum of coded effects) | 1.00 | 0.74 | 0.71 | **+0.31** | +0.30 |
+| **breadth** (domains touched) | 0.74 | 1.00 | 0.16 | **+0.02** | +0.08 |
+| **peak** (largest single effect) | 0.71 | 0.16 | 1.00 | **+0.45** | +0.37 |
+| **necessity** (transitive reach) | +0.31 | +0.02 | +0.45 | 1.00 | 0.65 |
+| **prerequisites** (backward count) | +0.30 | +0.08 | +0.37 | 0.65 | 1.00 |
 
-The matrix has a two-block structure. The upper-left block — consequence, breadth,
-peak — is what a development *did*: internally correlated from 0.32 to 0.75. The
-lower-right block — necessity, downstream share — is what *rests on* it: internally
-correlated at 0.88. **Every correlation between the two blocks is negative**, from
-−0.07 to −0.41, with a mean off-diagonal magnitude of 0.415 overall.
+Every correlation is positive and none is large: mean off-diagonal magnitude
+**0.379**, maximum 0.742. Three things follow.
 
-So "importance" is not one quantity with measurement noise, and it is not even two
-independent quantities. It is two opposed families, and a ranking is a choice of
-family. Consequence and necessity are negatively correlated on the same rows, in one
-coding, by one coder — which is the strongest form of the paper's claim, because it
-requires no comparison between instruments or corpora to hold.
+**The measures share signal, so "importance" is not four independent quantities.**
+A mean correlation of 0.38 across five measures means a substantial common component.
+Reporting them as four separate findings, as an earlier version of this paper
+effectively did, would overstate how much independent information the coded layer
+carries.
 
-Two further observations from the same table. The upper-left block is itself partly
-redundant: breadth and consequence correlate at 0.75 and peak with consequence at
-0.72, so the outcome matrix's three summary statistics are closer to two measures
-than three — the same redundancy problem met in Section 4.2, in the other
-instrument. And downstream share at 0.88 with necessity is a fourth instance of a
-criterion that is a monotone restatement of another.
+**But the shared component is a halo, not a discovery.** Peak effect against
+structural necessity is **+0.45**, and the total against necessity is +0.31. The
+coder, writing the magnitudes first and the prerequisite edges second, gave the larger
+numbers to the rows that already looked structurally central. That is the contamination
+a sceptical reader would predict from a single-coder design, it is measurable in one
+line, and it means the coded *magnitudes* are not independent evidence about
+consequence. It does not touch the dependency graph, whose edges come from `requires`,
+a separate binary field.
+
+**One pair is genuinely independent, and it is the interesting one.** Breadth — how
+many of the 18 outcome domains a development touches at all — correlates with
+necessity at **+0.02**. How widely a development changed the world has essentially
+nothing to do with how much later work depends on it. That is the cleanest empirical
+statement of this paper's thesis available inside a single coding, and unlike the halo
+it is not a correlation with a confound: both quantities are computed from different
+fields, and the correlation is absent rather than negative.
+
+Prerequisites against necessity is +0.65, which is near-tautological — a node with many
+ancestors tends to have many descendants — and is read as a consistency check on the
+graph rather than as a finding.
+
+**A third correction, to the numbers themselves.** The first computation of this table
+used a hand-rolled rank function that collapsed ties to a single rank. `peak` takes only
+four distinct values, so tie handling dominated its correlations, and the same pair came
+out at +0.43, +0.45 and +0.62 under three different treatments. The table above uses
+scipy's midrank Spearman and is the one the code produces. Ties on coarse data are not a
+detail: on a four-valued variable they are most of the statistic.
+
+**This section previously reported the opposite, and the error is instructive enough
+to record.** An earlier version reported a two-block matrix in which every
+between-block correlation was negative (−0.07 to −0.41), and drew the strong
+conclusion that "importance" is two *opposed* families. That matrix was computed on
+the pipeline's **mediated totals**, which propagate a row's effects through the
+prerequisite graph before correlating. The propagation subtracts downstream effect
+from upstream nodes by construction, so the opposition was **manufactured by the
+transform**: the same five measures give +0.42 and −0.20 for the same pair depending
+on whether mediation is applied.
+
+The generalisable lesson, and the reason this is now a documented guard rather than a
+footnote: **a correlation must be reported on the raw coding as well as on any
+transformed version, because a monotone-in-expectation transform can flip a sign.**
+The check that caught this was computing the same correlation twice. It is D25.
+
+Two smaller observations from the corrected table. The three outcome summaries are
+partly redundant — breadth with consequence at 0.75, peak with consequence at 0.72 —
+so the outcome matrix is closer to two measures than three, the same problem met in
+Section 4.2 in the other instrument. And `downstream share` correlates with necessity
+at 0.88, a fourth instance of a criterion that restates another.
 
 ### 7.4 The rest of the apparatus, in one place
 
@@ -1166,20 +1235,39 @@ coverage rather than about importance.
 
 The limitation that matters most is stated first.
 
-**The dependency graph is single-coder, its edges are unsourced, and its reliability
-is unmeasured.** The 150 rows and 143 edges were coded by one person, who is also the
-author of this paper, who also chose the corpus, the measures and the criteria.
-Section 2.1 gives the numbers: **zero of the 143 edges carry a citation**, so an
-individual "X required Y" claim cannot be checked against a source by any reader.
-The design mitigates this in one specific way — edges are binary and *intended* to be
-citable, so "was A necessary for B?" is in principle a claim with a source rather than
-a judgement call, and it has a much higher expected inter-coder agreement rate than
-"was this a 2 or a 3?" — but *expected* is not *measured* and *intended* is not
-*attached*. The three repairs, in order of value: attach a citation to each of the 143
-edges and recompute the ranking over the sourced subgraph only; obtain a second coder
-and report agreement; and classify citation intent from abstracts. Until at least the
-first is done, Section 6.3 is a demonstration rather than a result, and the most
-useful thing a reader could do with this paper is perform it.
+**The dependency graph is single-coder, and its reliability is unmeasured.**
+The 150 rows and 143 edges were coded by one person, who is also the author of this
+paper, who also chose the corpus, the measures and the criteria. Section 2.1 reports
+what has been fixed and what has not: every edge is now traceable to a source, and the
+graph passes a chronology audit and an acyclicity audit — but those are *internal*
+consistency checks, and a single coder can pass every internal check and still be
+wrong in the same way throughout.
+
+**The reliability measurement is set up and its result is withheld, because the person
+who would produce it is the person who produced the coding.** `scripts/reliability.py`
+exports a stratified, blinded sample of 40 edges — half drawn from the top of the reach
+ranking, where a disagreement changes the headline — with the primary verdict withheld.
+A second coder fills in `necessary: true/false` per edge; `--score` then reports Cohen's
+κ, observed agreement and the full confusion counts. Until that file exists, the script
+prints that reliability is unmeasured, and no substitute number is reported here. A
+self-agreement figure would be worthless and an LLM re-derivation would be circular in
+exactly the way this paper is about, so neither is offered.
+
+What can be measured without a second coder is the halo effect, and it fails.
+Section 7.3 reports that coded consequence correlates with structural necessity at
++0.42, and peak effect at +0.62: one coder writing both fields gave the large numbers
+to the rows that already looked central. The dependency graph is unaffected — reach
+comes from `requires`, a separate binary field — but **the coded magnitudes are not
+independent evidence about consequence**, and the two-block "opposed families" result
+that an earlier version of this paper drew from them was an artefact of the mediation
+model (D25).
+
+The remaining repairs, in order of value: a second coder for the 40-edge sample; a
+dedicated citation per edge rather than an inherited warrant; and citation-intent
+classification, which needs citation *contexts* and is the one experiment that could
+falsify Section 5 rather than corroborate it. Abstract fetching for that purpose is
+implemented (`scripts/fetch_abstracts.py`) but abstracts are not contexts, and the
+request budget was exhausted before either could be obtained.
 
 **The bibliometric corpus is the elite tail.** Twenty most-cited works per field is
 the top of the citation distribution, which is exactly where instrumentation is most
@@ -1232,8 +1320,8 @@ historian would not necessarily draw the same edges from the same sources.
 ## 11. Retractions
 
 A project whose argument is that measurement choices dominate conclusions cannot
-hide its own. Fourteen of its claims have been retracted: seven documented before this
-paper, seven added by it.
+hide its own. Fifteen of its claims have been retracted: seven documented before this
+paper, eight added by it.
 
 | # | claim | what killed it |
 |---|---|---|
@@ -1251,6 +1339,7 @@ paper, seven added by it.
 | 12 | The 55-row coarse layer and the 150-row fine layer are two resolutions of one thing | Top-10 overlap 0.30, mean within-parent dispersion 0.233, and 40 coarse rows declare effects below what their own children claim. A coarse row is a bag of related things, not one intervention |
 | 13 | The degeneracy of `reach` and `top_citations` is caused by capturing only 20 references per seed | Rebuilt the corpus at 100 references per seed — 3× the reference depth, 17,531 edges. Distinct values went from 5 to 7 and from 3 to 4. Both criteria are still dropped. The cause is the *seed set*: elites cite older work, so the seeds' mutual in-degree is bounded by the sample, not by the fetch |
 | 14 | Tools are superseded and lose citations while foundations persist, so theory should have higher momentum than methods | The opposite holds, and it survives age matching: methods 0.98 against theory 0.87 overall, and 1.06 against 0.80 among works aged 20–34. The hypothesis was wrong and the refutation is more interesting than the hypothesis |
+| 15 | "Importance is two *opposed* quantities" — every between-family correlation negative, −0.07 to −0.41 | Computed on the pipeline's **mediated totals**, where propagation subtracts downstream effect from upstream nodes by construction. On the raw coded magnitudes the same measures give **+0.42** and **+0.62**. The sign was a property of the transform. Guard: report every correlation on the raw coding as well as the transformed version |
 
 Entries 1–7 were found by running a null against a claim that looked fine without
 one. Entries 8–12 were found only because the criteria and the resolutions were
@@ -1299,15 +1388,27 @@ caught three retractions in this project.
 
 The **in-degree / transitive-in-degree distinction** is the analytical contribution.
 "Cited by many" and "depended on by much" are different quantities, they are
-non-monotone in each other, and only the second is what people mean. Section 7.3
-strengthens this well beyond the graph-theoretic statement: on the same 150 rows, in
-one coding, the five available measures of importance split into what a development
-*did* and what *rests on* it, and every between-family correlation is negative. The
-two questions are not merely different. They are opposed, so an instrument that
-averages them — which is what a composite "impact score" does — is cancelling the
-thing it is trying to measure. Where a dependency relation has been coded, ranking by
-transitive reach produces the answer the question deserves; where it has not, the
-answer is unavailable and should be reported as unavailable rather than proxied.
+non-monotone in each other, and only the second is what people mean. Where a
+dependency relation has been coded, ranking by transitive reach produces the answer
+the question deserves; where it has not, the answer is unavailable and should be
+reported as unavailable rather than proxied.
+
+Section 7.3 adds a caution rather than a confirmation. The coded magnitudes correlate
+*positively* with structural necessity (+0.45 on peak effect), which is a halo effect:
+one coder, writing both fields, gave the large numbers to the rows that already looked
+central. So the coded consequences cannot be used as independent evidence, and the
+earlier version of this paper, which reported the opposite and drew a strong
+"importance is two opposed quantities" conclusion from it, was reading an artefact of
+its own mediation model. The two quantities remain different — that is what Section 5
+establishes and what the zero overlap in Section 7 demonstrates — but they are not
+opposed in the coding, and the difference between "different" and "opposed" is one this
+paper had to learn twice.
+
+What survives that correction is smaller and, we think, sounder. Breadth of effect
+against structural necessity is **+0.02**: how many of the eighteen outcome domains a
+development touches has no relationship to how much later work depends on it. That is
+one clean, confound-free statement that the two senses of importance come apart, and it
+is measured on identical rows inside a single coding rather than across two corpora.
 
 The **coded dependency layer** is the contribution we would most like someone else
 to make better. It is 150 rows and 143 binary, sourced assertions, coded by one

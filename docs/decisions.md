@@ -30,6 +30,8 @@ dominate conclusions" cannot hide its own.
 | D22 | The 143 prerequisite edges are auditable claims | **retracted — zero carry a source** | `edges.yml` has no `sources` field, so the transitive-reach ranking's entire input is unsourced assertion. The 150 rows do carry bibliographic keys, so a row's existence is attributable; the edges are not. This is the project's weakest data and the paper says so at the point of the claim rather than only in the limitations |
 | D23 | The degeneracy of `reach` and `top_citations` is caused by capturing only 20 references per seed | **RETRACTED — wrong diagnosis** | Rebuilt the corpus at 100 references per seed: 3× the reference depth, 17,531 edges, in-degree maximum up from 4 to 12. Distinct values moved from 5 to 7 and 3 to 4 — both criteria still dropped. The cause is the *seed set*: a top-20-per-field sample cites older work, so mutual in-degree is bounded by the sample size, not the reference cap. The rebuild is evidence for the corrected claim rather than a repair |
 | D24 | Tools get superseded and lose citations while foundations persist, so theory should have higher momentum than methods | **RETRACTED — the opposite holds** | Methods 0.98 against theory 0.87, and the gap survives age matching (1.06 against 0.80 among works aged 20–34 years). The refutation is the better finding: methods are *renewed* by each cohort of users, foundations are *absorbed* and stop being cited, so the citation record's bias against necessity compounds with age |
+| D25 | "Importance is two *opposed* quantities": on the same 150 rows, every between-family correlation is negative (−0.07 to −0.41) | **RETRACTED — manufactured by the transform** | The matrix was computed on the pipeline's **mediated totals**, which propagate effects through the prerequisite graph and thereby subtract downstream effect from upstream nodes by construction. On the **raw coded magnitudes** the same five measures give all-positive correlations: consequence vs necessity +0.42, peak vs necessity +0.62. The sign was a property of the mediation, not of the coding. **Guard: report a correlation on the raw coding as well as on any transformed version, because a transform can flip a sign.** The check that caught it was computing the same correlation twice |
+| D26 | The 143 fine-layer prerequisite edges are unauditable because a `requires: [id]` list has no slot for a per-edge source | **fixed** | `data/edge-sources.yml` now gives every edge the union of its two endpoints' declared sources: 143/143 warranted, mean 1.55 sources, 76 resting on a single source. This is *traceability*, not verification — a source documenting a result does not assert that its prerequisite was necessary for it — and the distinction is in the file header and the paper. Two audits run on the same graph: chronology (0 violations) and acyclicity (0 cycles) |
 
 ## The five claims that survived, and their status
 
@@ -57,17 +59,20 @@ dominate conclusions" cannot hide its own.
 
 ## Status of the retractions, counted
 
-Twenty-four decisions are logged; **thirteen of them are retractions** (D5, D7, D9,
-D10, D11, D14, D16, D17, D18, D19, D20, D23, D24) and **one is a fixed trap caught
-before publication** (D12, the forward-linkage denominator). The option-value ordering
-was retracted separately, in `results.md`. That makes fourteen retractions in total,
-seven of them documented before the paper and seven added by it.
+Twenty-six decisions are logged; **fourteen of them are retractions** (D5, D7, D9,
+D10, D11, D14, D16, D17, D18, D19, D20, D23, D24, D25) and **two are fixed traps
+caught before publication** (D12, the forward-linkage denominator; D26, the missing
+per-edge source slot). The option-value ordering was retracted separately, in
+`results.md`. That makes fifteen retractions in total, seven of them documented before
+the paper and eight added by it.
 
-Two of them were produced by *rebuilding the data and re-running the analysis*, which
-is the discipline this project keeps having to relearn: D23 because a diagnosis that
-sounded complete was never tested against a rebuild, and D24 because a hypothesis in a
-docstring was treated as a finding. The other five were produced by a single check
-that did not exist when the earlier claims were made: **count each criterion's
-distinct values before letting it rank anything.**
+Four distinct failure modes produced them, and each now has a named guard:
+
+| mode | instance | guard |
+|---|---|---|
+| a criterion that cannot discriminate | D16, D17 — `reach` had 3 distinct values and put Shannon at rank 1 | count distinct values before letting a criterion rank |
+| a criterion ranking on missing data | the citer criteria over a corpus where the cache covered 40% of rows | require ≥95% input coverage, or drop and name |
+| a transform that flips a sign | D25 — mediation turned +0.42 into −0.20 | report every correlation on the raw coding as well as the transformed version |
+| a hypothesis treated as a finding | D23 (wrong diagnosis, never tested against a rebuild), D24 (durability, refuted) | rebuild the data and re-run before publishing a mechanism |
 
 
