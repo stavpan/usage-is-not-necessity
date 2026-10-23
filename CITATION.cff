@@ -1,14 +1,19 @@
 cff-version: 1.2.0
 message: "If you use this software or its coded data, please cite it as below."
-title: "world-impact: an uncertainty-aware, multi-criteria basis for ranking world-historical developments"
+title: "world-impact: usage is not necessity -- two instruments for scientific importance, and a landscape tool built on the result"
 abstract: >-
-  A coded matrix of documented world-historical developments against 18 outcome
-  domains, with axes derived rather than assumed, measurement uncertainty
-  propagated from an ordinal graded-response model through to a stochastic
-  multi-criteria ranking, two nested null models for the structure claim, and an
-  enabling graph for mediated effects. Ships its own negative results, including
-  a demonstrable ceiling in the coding rubric and a retracted effective-rank
-  claim.
+  Two instruments for measuring the importance of scientific work, and the measurement
+  that shows they disagree. A bibliometric instrument over 520 works (the twenty
+  most-cited in each of 26 fields, ten criteria, consensus across criteria) returns a
+  top twelve that is entirely instrumentation -- software, assays, datasets and
+  reporting standards. A dependency instrument over 150 coded results, ranked by
+  transitive reach, returns the infinitesimal calculus, induction, Carnot, entropy,
+  Maxwell, Planck and the Turing machine. The two top-twelve lists share zero entries.
+  Citation count is in-degree (use); importance is transitive in-degree (necessity); a
+  citation edge is untyped, so no refinement of a bibliometric ranking recovers the
+  distinction. Also ships a landscape tool that applies both columns to a narrowed
+  focus -- a seed paper or a topic -- and leads with the works a field structurally
+  depends on and does not cite directly.
 type: software
 authors:
   - family-names: Panagiotidis
@@ -18,55 +23,50 @@ version: 0.1.0
 date-released: "2026-10-22"
 license: MIT
 keywords:
-  - macrohistory
-  - cliometrics
-  - multi-criteria decision analysis
-  - item response theory
-  - sensitivity analysis
-  - tensor decomposition
+  - scientometrics
+  - citation analysis
+  - research evaluation
+  - dependency graphs
+  - transitive closure
+  - science of science
+  - literature mapping
   - reproducibility
 references:
   - type: article
-    title: "SMAA — Stochastic multiobjective acceptability analysis"
+    title: "Citations, citation indicators, and research quality: an overview of basic concepts and theories"
     authors:
-      - family-names: Lahdelma
-        given-names: R.
-      - family-names: Hokkanen
-        given-names: J.
-      - family-names: Salminen
-        given-names: P.
-    year: 1998
-    journal: European Journal of Operational Research
-    volume: 106
-    issue: 1
-    start: 137
-    end: 143
+      - family-names: Aksnes
+        given-names: Dag W.
+      - family-names: Langfeldt
+        given-names: Liv
+      - family-names: Wouters
+        given-names: Paul
+    year: 2019
+    journal: SAGE Open
+    doi: 10.1177/2158244019829575
   - type: article
-    title: "Quantitative historical analysis uncovers a single dimension of complexity that structures global variation in human social organization"
+    title: "Papers and patents are becoming less disruptive over time"
     authors:
-      - family-names: Turchin
+      - family-names: Park
+        given-names: Michael
+      - family-names: Leahey
+        given-names: Erin
+      - family-names: Funk
+        given-names: Russell J.
+    year: 2023
+    journal: Nature
+    doi: 10.1038/s41586-022-05543-x
+  - type: article
+    title: "Finding scientific gems with Google's PageRank"
+    authors:
+      - family-names: Chen
         given-names: P.
-    year: 2018
-    journal: PNAS
-    volume: 115
-    issue: 2
-    start: E144
-    end: E151
-  - type: book
-    title: "The Measure of Civilization: How Social Development Decides the Fate of Nations"
-    authors:
-      - family-names: Morris
-        given-names: I.
-    year: 2013
-    publisher:
-      name: Princeton University Press
-  - type: book
-    title: "An overview of innovation"
-    authors:
-      - family-names: Kline
-        given-names: S. J.
-      - family-names: Rosenberg
-        given-names: N.
-    year: 1986
-    publisher:
-      name: National Academy Press
+      - family-names: Xie
+        given-names: H.
+      - family-names: Maslov
+        given-names: S.
+      - family-names: Redner
+        given-names: S.
+    year: 2007
+    journal: Journal of Informetrics
+    doi: 10.1016/j.joi.2006.06.001

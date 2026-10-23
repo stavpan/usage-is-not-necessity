@@ -43,6 +43,29 @@ three values across 520 works cannot discriminate, and its ranks are the sort fu
 wearing a number's clothes. That check caught the finding that this project had
 vindicated its own origin.
 
+## Use it on a field you care about
+
+Connected Papers, ResearchRabbit, Litmaps, Inciteful and OpenAlex's own graph views all
+show a field's most-cited papers and call that its structure. Every one of them ranks by
+**use**, which is the wrong column — and *opposed* to the right one. So they answer
+confidently and backwards.
+
+```bash
+python scripts/landscape.py --doi 10.1002/j.1538-7305.1948.tb01338.x   # a seed paper
+python scripts/landscape.py --topic "cognitive dissonance"            # a topic
+```
+
+It computes both columns over the local citation graph and leads with the **gap**: the
+works a field structurally depends on and does not cite directly. For Shannon 1948 that
+is Nyquist's 1924 telegraph-speed paper, Hartley's transmission limits and 1930s
+random-number tables — each cited **once** inside the neighbourhood, by Shannon, with a
+reach of 51 because everything downstream of Shannon transitively depends on them. They
+are information theory's invisible foundations.
+
+It also audits its own output: a column whose criterion cannot discriminate is reported
+as dropped rather than presented as a ranking, and momentum separates durable
+infrastructure from standards in the act of being replaced.
+
 ## Read the paper
 
 Everything else — the corpus, the criteria, the two-block result, and an honest account

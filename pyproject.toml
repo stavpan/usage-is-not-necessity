@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "world-impact"
 version = "0.1.0"
-description = "An uncertainty-aware, multi-criteria basis for ranking world-historical developments"
+description = "Usage is not necessity: two instruments for measuring scientific importance, and a landscape tool built on the result"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }

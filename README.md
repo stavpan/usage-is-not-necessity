@@ -2,9 +2,12 @@
 
 **Citation counts measure how much a work is *used*. Importance is how much *depends* on it. Those are two opposed quantities, and the citation record cannot tell them apart.**
 
-This repo builds both instruments, measures the gap, and reports what does and does not survive scrutiny.
+This repo builds both instruments, measures the gap, reports what does and does not survive scrutiny — and ships a **landscape tool** that uses the result to map any field you narrow down to.
 
-![The same question, two instruments](docs/figures/necessity-contrast.svg)
+```bash
+python scripts/landscape.py --doi 10.1002/j.1538-7305.1948.tb01338.x   # a seed paper
+python scripts/landscape.py --topic "cognitive dissonance"            # a topic
+```
 
 ## The answer
 
@@ -54,6 +57,41 @@ On the same 150 coded rows, five measures of importance form **two blocks that o
 | **necessity** | −0.30 | −0.32 | −0.15 | 1.00 |
 
 The developments that changed the world most are, weakly but consistently, the ones the fewest later developments depend on. A composite "impact score" averaging these is cancelling what it set out to measure.
+
+## The landscape tool
+
+Connected Papers, ResearchRabbit, Litmaps, Inciteful and OpenAlex's own graph views all
+show a field's most-cited papers and call that its structure. Every one of them ranks by
+**use**, which this project shows is the wrong column — and *opposed* to the right one.
+So they answer the question confidently and backwards.
+
+Point this at a seed paper or a topic and it computes both columns over the local
+citation graph, then leads with the **gap**: the works a field structurally depends on
+and does not cite directly. For Shannon 1948 that is Nyquist's 1924 telegraph-speed
+paper, Hartley's transmission limits, and 1930s random-number tables — each cited
+**once** inside the neighbourhood, by Shannon, with a reach of 51 because everything
+downstream of Shannon transitively depends on them. They are information theory's
+invisible foundations, and no existing tool surfaces them.
+
+Three things from the research transfer directly:
+
+- **Necessity, not popularity.** Reach counts how many works transitively depend on a
+  node, with no free parameter — the property the paper argues for, because the
+  alternative carries a parameter that changes the top-ten *set*.
+- **The audit.** Before presenting either column the tool counts distinct values and
+  reports what it would drop. A ranking whose criterion cannot discriminate is the sort
+  function wearing a number's clothes.
+- **Trajectory.** Momentum separates durable infrastructure from standards in the act of
+  being replaced. A landscape that cannot tell those apart will recommend a dying tool.
+
+Honest about its own limits, because the research is: reach over a *citation* graph is
+reach over **untyped** edges, so it is an upper bound on necessity rather than necessity.
+Locally, use and necessity also correlate *positively* (about +0.86) rather than
+opposing as they do globally — a local graph is transitive by construction — so the
+tool's value is the gap list, not a disagreement between whole rankings. And the gap
+list is age-confounded: the oldest shared ancestors are the easiest to find.
+
+![The same question, two instruments](docs/figures/necessity-contrast.svg)
 
 ## What is honest about this
 

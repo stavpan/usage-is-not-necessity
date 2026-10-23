@@ -400,6 +400,117 @@ def field_flow(corpus: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def work_by_id(work_id: str) -> dict[str, Any] | None:
+    """One work by OpenAlex ID, slimmed. None if it does not resolve."""
+    try:
+        payload = _get("/works/" + work_id, {"select": WORK_SELECT})
+    except requests.RequestException:
+        return None
+    row = payload if payload.get("id") else None
+    return _slim(row) if row else None
+
+
+def work_by_doi(doi: str) -> dict[str, Any] | None:
+    """One work by DOI, slimmed. None if it does not resolve."""
+    try:
+        payload = _get(
+            "/works", {"filter": f"doi:{doi}", "select": WORK_SELECT, "per-page": 1}
+        )
+    except requests.RequestException:
+        return None
+    rows = payload.get("results") or []
+    return _slim(rows[0]) if rows else None
+
+
+def citing_ids(work_id: str, limit: int = 40) -> list[str]:
+    """The most-cited works citing a work, as IDs.
+
+    Sorted by citation count rather than by date: a landscape tool is looking for the
+    consequential citers, and an arbitrary or recency-sorted slice would make the graph
+    a function of the fetch order.
+    """
+    try:
+        payload = _get(
+            "/works",
+            {
+                "filter": f"cites:{work_id}",
+                "sort": "cited_by_count:desc",
+                "per-page": min(limit, 200),
+                "select": "id",
+            },
+        )
+    except requests.RequestException:
+        return []
+    return [short_id(row.get("id")) for row in payload.get("results", []) if row.get("id")]
+
+
+def resolve_topic(query: str) -> dict[str, Any] | None:
+    """Best OpenAlex *topic* for a query, by search relevance.
+
+    Topics rather than full-text search, and the reason is a failure worth recording.
+    Searching works for the bare word "consciousness" returns whatever mentions it,
+    dominated by history-of-science papers, so a two-hop expansion around that seed set
+    produced Galileo, Dalton and Chinese alchemy as the "foundations of consciousness".
+    Full text matches a word; a topic matches a subject.
+
+    Relevance rather than works count, which is a second failure worth recording:
+    sorting topics by ``works_count`` resolves "consciousness" to *Anesthesia and
+    Sedative Agents*, because that topic is the broadest among those matching the
+    string. The broadest match is not the intended one.
+    """
+    try:
+        payload = _get("/topics", {"search": query, "per-page": 5})
+    except requests.RequestException:
+        return None
+    rows = payload.get("results") or []
+    if not rows:
+        return None
+    best = rows[0]
+    return {
+        "id": short_id(best.get("id")),
+        "name": best.get("display_name"),
+        "works_count": best.get("works_count"),
+        "field": ((best.get("field") or {}).get("display_name")),
+    }
+
+
+def top_works_in_topic(
+    topic_id: str, limit: int = 25, year_from: int = 1900
+) -> list[dict[str, Any]]:
+    """The most-cited works in an OpenAlex topic, as landscape seeds."""
+    try:
+        payload = _get(
+            "/works",
+            {
+                "filter": f"topics.id:{topic_id},publication_year:{year_from}-2025",
+                "sort": "cited_by_count:desc",
+                "per-page": min(limit, 200),
+                "select": WORK_SELECT,
+            },
+        )
+    except requests.RequestException:
+        return []
+    return [_slim(row) for row in payload.get("results", [])]
+
+
+def search_works(query: str, limit: int = 25, year_from: int = 1900) -> list[dict[str, Any]]:
+    """Top-cited works matching a query. Kept for ad-hoc use; prefer `resolve_topic`."""
+    try:
+        payload = _get(
+            "/works",
+            {
+                "search": query,
+                "filter": f"publication_year:{year_from}-2025",
+                "sort": "cited_by_count:desc",
+                "per-page": min(limit, 200),
+                "select": WORK_SELECT,
+            },
+        )
+    except requests.RequestException:
+        return []
+    return [_slim(row) for row in payload.get("results", [])]
+
+
 def works_by_ids(
     ids: list[str], batch: int = 50, timeout: float = 90.0
 ) -> dict[str, dict[str, Any]]:

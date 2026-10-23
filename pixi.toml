@@ -1,6 +1,6 @@
 [workspace]
 name = "world-impact"
-description = "An uncertainty-aware, multi-criteria basis for ranking world-historical developments"
+description = "Usage is not necessity: two instruments for measuring scientific importance, and a landscape tool built on the result"
 channels = ["conda-forge"]
 platforms = ["linux-64", "osx-arm64", "win-64"]
 
@@ -55,6 +55,11 @@ figures = { cmd = "python scripts/make_figures.py", description = "the bibliomet
 contrast = { cmd = "python scripts/make_contrast.py", description = "the central figure, and the overlap number" }
 measure = { cmd = "python scripts/reliability.py", description = "the five measures, the halo check, the second-coder export" }
 classify = { cmd = "python scripts/classify_abstracts.py", description = "title vs abstract classification, and the disagreement" }
+
+# --- use it --------------------------------------------------------------
+# The landscape tool: both columns over the citation graph around a focus you choose,
+# leading with the works the field depends on and does not cite. Network.
+landscape = { cmd = "python scripts/landscape.py", description = "map a field: --doi, --openalex or --topic" }
 
 # `all` deliberately does NOT depend on `gate`: the quality gates need the `dev`
 # environment (ruff, mypy) while the build tasks are pure Python and run in the
