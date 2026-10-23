@@ -6,6 +6,16 @@
 
 ## Abstract
 
+**The idea here is not new and the paper does not claim it is.** That citation counts
+measure *use* rather than importance is the settled position of the field's critical
+literature [bornmann2008, seglen1997, aksnes2019], and the mechanism we report as
+Section 5.5 — that a result stops being cited once it becomes bedrock — was named
+obliteration by incorporation sixty years ago and measured better than we measure it
+[garfield1975, mccain2014]. **What is missing from that literature is the arithmetic.**
+Everyone agrees the two quantities differ; nobody has computed both and reported how
+far apart the orderings are, because no standard tool computes the second one at all.
+That is the narrow contribution here, and it is a measurement rather than a concept.
+
 The standard answer to "which scientific works are most important?" is a citation
 ranking. We built one, carefully: 520 works taken as the twenty most-cited in each
 of 26 OpenAlex fields, 17,531 citation edges over 15,671 referenced works, ten
@@ -154,17 +164,35 @@ reproduction recipe is in the appendix.
 
 ### 1.1 Related work, and what is new here
 
-**That citation counts measure use rather than quality is not a new claim.** It is
-the settled position of the field's own critical literature: Seglen's argument that
-journal impact factors should not be used to evaluate research [seglen1997], the
-MacRoberts' demonstration that citation analysis misses influences that are never
-cited [macroberts2010], and Aksnes, Langfeldt and Wouters' review distinguishing
-what citation indicators do and do not measure [aksnes2019]. Restating that critique
-would add nothing. What this paper adds is a *computable form* for it — in-degree
-versus transitive in-degree — together with the measurement that the two rankings are
-disjoint and, within one corpus, negatively correlated. The literature asserts that
-citations are not importance; it does not, so far as we know, quantify how far apart
-the two orderings are.
+**The distinction this paper is built on is old, and it would be dishonest to present
+it as a discovery.** That citation counts measure use rather than quality is the settled
+position of the field's own critical literature: Bornmann and Daniel's review of what
+citation counts actually measure, which is the canonical treatment [bornmann2008],
+Seglen on impact factors [seglen1997], the MacRoberts on influences that are never
+cited [macroberts2010], Aksnes, Langfeldt and Wouters [aksnes2019], and West and
+colleagues asking what counts count *for* [west2002]. In the philosophy of science the
+underlying relation has its own name and literature: **epistemic dependence**
+[deridder2013]. Restating the critique adds nothing, and this paper does not claim to.
+
+**The specific mechanism we report as a finding was named sixty years ago.** Section 5.5
+measures how a work's citation rate decays as it is absorbed, and draws the conclusion
+that the citation record's bias against foundations compounds with age. That is
+**obliteration by incorporation**: Merton described it, Garfield named it in 1975, and
+**McCain measured it** in a full-text database by checking whether a *concept* appears
+in the literature without a citation to its origin [mccain2014]. McCain's method is
+better than ours — it observes the absence of a citation directly, where we infer it
+from a citation-rate proxy — and Section 5.5 now says so and is downgraded from a
+finding to a weak replication. The honest summary is that we rediscovered a known
+phenomenon with a cruder instrument.
+
+**What this paper is for, then, is not the concept but the arithmetic.** Every standard
+tool in this space ranks by in-degree and none computes transitive in-degree, so the
+question "how far apart are the two orderings" has not been answered by measuring it.
+That is what Section 7 does, and the answer — zero overlap in the top twelve, and a
+negative correlation between the coded measures of consequence and necessity — is the
+contribution. The novelty claim is deliberately narrow and its evidence is weak in one
+direction: it rests on *not finding* prior art, and a bibliographic search is not proof
+of absence. What was searched is described below.
 
 **The most direct threat to our central argument is the citation-function
 literature.** Teufel and colleagues showed that citations carry distinguishable
@@ -220,16 +248,47 @@ understanding — results that feel well-grounded and are not [messeri2024]. Tha
 warning describes the risk this paper's coded layer poses, and Section 2.1 reports
 what we did about it, including what we could not do.
 
-**What is new here.** Four things, in descending order of confidence. (i) A
-**degeneracy check** for composite rankings — count each criterion's distinct values
-before letting it rank — which is one line, general, and caught three retractions in
-this project. (ii) The **in-degree / transitive-in-degree** formalisation of
-use-versus-necessity, with a measured disjointness and a negative within-corpus
-correlation between direct impact and necessity. (iii) A **documented failure** of
-the prestige repair to necessity, which is the strongest evidence that the untyped
-edge is the obstacle rather than the criterion set. (iv) A **verification
-procedure** for hand-compiled bibliographies and coded graphs, with reported yield,
-which is the subject of Section 2.1.
+**What was searched, and what was not found.** Before claiming anything here, ten
+bibliographic searches were run against Crossref and OpenAlex for prior art on the
+specific measures: transitive closure or reachability over citation networks as an
+importance ranking; dependency or prerequisite graphs of scientific knowledge;
+foundational-paper detection; redundancy and degeneracy of bibliometric indicators; and
+popularity-versus-importance measures. The searches returned the concept literature
+cited above, the disruption and PageRank families, and graph-theory papers on transitive
+closure algorithms — but **nothing that computes transitive reach over a citation graph
+as an importance ranking, and nothing on degeneracy in a composite ranking**. That is
+the basis for the claim below, and it is weak evidence, because a bibliographic search
+establishes absence only of what it would have found.
+
+**What is new here.** Four things, in descending order of confidence.
+
+(i) A **degeneracy check** for composite rankings — count each criterion's distinct
+values before letting it rank — which is one line, general, and caught three
+retractions in this project. No prior art was found for this and it is the contribution
+most likely to be useful to someone else, because it applies to any ranking built from
+several measures.
+
+(ii) The **measurement** of how far apart the two orderings are: zero overlap in the top
+twelve across two corpora, and a negative correlation between the coded measures of
+consequence and necessity. The *distinction* is old; the *arithmetic* is not, so far as
+the searches found.
+
+(iii) A **documented failure** of the prestige repair to necessity. Rank-by-citer-quality
+is the obvious fix and it is what the PageRank family does; Section 5.3 reports that it
+correlates 0.65 with raw citations and returns the usage ranking. A negative result about
+the standard repair is worth more than another positive result about it.
+
+(iv) A **verification procedure** for hand-compiled bibliographies and coded graphs, with
+reported yield, which is the subject of Section 2.1 — and which produced two of the
+withdrawals in Section 10.
+
+**What is explicitly not new**, listed so that it is not mistaken for a contribution:
+that citations are not quality [bornmann2008]; that a work's citations decay as it is
+absorbed into common knowledge, which is obliteration by incorporation
+[garfield1975, mccain2014]; that citation edges carry distinguishable functions
+[teufel2006]; that disrupting and consolidating work differ [funk2017]; and that
+degree, closeness and betweenness are different things [freeman1979]. This paper
+measures a consequence of the second and third of those; it did not find them.
 
 
 ---
@@ -689,13 +748,25 @@ The classification weakness was flagged when the table was first written — a t
 works in 520 is a lower bound biased toward titles that advertise their genre. What was
 not anticipated is that fixing it would *invert* the finding rather than sharpen it.
 
-### 5.5 The citation record's bias against necessity grows over time
+### 5.5 A weak replication of obliteration by incorporation
 
-Section 5.4 measured *how often* things are cited. The corpus also carries each
-work's citation history by year, which allows a different question: is a work still
-accruing citations at its historical rate, or has it been displaced? The
-`momentum` criterion is the mean annual rate over the last five years divided by the
-lifetime mean annual rate, so 1.0 is "still on trend" and a value below 1.0 is decay.
+**This section is not a discovery, and it is the weakest thing in the paper.** What it
+measures is **obliteration by incorporation**, the phenomenon Merton described and
+Garfield named [garfield1975]: a result that becomes bedrock stops being cited, because
+there is no need to cite Newton to use calculus. McCain measured it properly in 2014 by
+searching a full-text database for a *concept* appearing without a citation to its
+origin [mccain2014] — observing the absence directly. This section instead infers it
+from a citation-rate proxy, which is cruder, and Section 1.1 says so.
+
+What the section adds, if anything, is a number on the size of the effect in one corpus
+and a failed attempt to measure it cleanly. It is kept because the failure is
+informative about instrument choice, not because the phenomenon is news.
+
+Section 5.4 measured *how often* things are cited. The corpus also carries each work's
+citation history by year, which allows a different question: is a work still accruing
+citations at its historical rate, or has it been absorbed? The `momentum` criterion is
+the mean annual rate over the last five years divided by the lifetime mean annual rate,
+so 1.0 is "still on trend" and a value below 1.0 is decay.
 
 The hypothesis that motivated the measure was that a tool that gets superseded loses
 citations while a foundation does not, so theory should have *higher* momentum than
@@ -719,15 +790,13 @@ Momentum by age band shows the expected gradient — 1.47 for works aged under t
 years, 1.12 for ten to nineteen, and about 0.90 from twenty years onward — so the
 measure is behaving sensibly and the method/theory gap is not that gradient.
 
-The interpretation that fits is that a **method is renewed** by each new cohort of
-users — every generation that runs BLAST or fits a mixed-effects model cites it afresh
-— while a **foundation is absorbed**: once a result has passed into a field's common
-knowledge it stops being cited, because there is no need to cite Newton to use
-calculus. Citation would then be a claim about the provenance of a *method* and only
-incidentally about dependence on an *idea*, and the bias documented in Section 5 would
-not merely be present but **compounding** with the age of the work.
+The interpretation that fits is the known one: a **method is renewed** by each new cohort
+of users — every generation that runs BLAST or fits a mixed-effects model cites it afresh
+— while a **foundation is absorbed** into common knowledge and stops being cited. That is
+obliteration by incorporation, and it implies that the citation record's bias against
+foundations compounds with the age of the work rather than being a constant offset.
 
-**That interpretation is not supported, and the reason is decisive.** Every result in
+**The measurement does not survive, and the reason is decisive.** Every result in
 Sections 5.4 and 5.5 rests on classifying works as method or theory, and the
 classification used was based on titles. The corpus now carries abstracts for 338 of
 the 520 seeds, which allows a second classification from the abstract text — and the
@@ -1288,6 +1357,11 @@ is the yield of the procedure described in Section 2.1.
 | ziems2024 | Ziems, C., Held, W., Shaikh, O., Chen, J., Zhang, Z. & Yang, D. (2024). Can large language models transform computational social science? *Computational Linguistics* 50(1). | 10.1162/coli_a_00502 | verified |
 | messeri2024 | Messeri, L. & Crockett, M. J. (2024). Artificial intelligence and illusions of understanding in scientific research. *Nature* 627, 49–58. | 10.1038/s41586-024-07146-0 | verified |
 | turchin2018 | Turchin, P. et al. (2017). Quantitative historical analysis uncovers a single dimension of complexity. *PNAS* 115(2). | 10.1073/pnas.1708800115 | verified |
+| bornmann2008 | Bornmann, L. & Daniel, H.-D. (2008). What do citation counts measure? A review of studies on citing behavior. *Journal of Documentation* 64(1), 45–80. | 10.1108/00220410810844150 | verified |
+| mccain2014 | McCain, K. W. (2014). Assessing obliteration by incorporation in a full-text database: JSTOR, Economics, and the concept of "bounded rationality". *Scientometrics* 101, 1445–1459. | 10.1007/s11192-014-1237-3 | verified |
+| garfield1975 | Garfield, E. (1975). The obliteration phenomenon. *Current Contents* 31, 5–7. | — | **unverified** |
+| deridder2013 | de Ridder, J. (2013). Epistemic dependence and collective scientific knowledge. *Synthese* 191(1). | 10.1007/s11229-013-0283-3 | verified |
+| west2002 | West, R., McIlwaine, A. & Stanbrook, M. (2002). What do citation counts count for in the field of addiction? *Addiction* 97(4). | — | **unverified** |
 | jones2009 | Jones, B. F. (2009). The burden of knowledge and the "death of the Renaissance man". *Review of Economic Studies* 76(1). | — | **unverified** |
 | page1999 | Page, L., Brin, S., Motwani, R. & Winograd, T. (1999). The PageRank citation ranking: bringing order to the web. *Stanford InfoLab TR*. | — | **unverified** |
 

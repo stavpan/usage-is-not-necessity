@@ -58,12 +58,29 @@ On the same 150 coded rows, five measures of importance form **two blocks that o
 
 The developments that changed the world most are, weakly but consistently, the ones the fewest later developments depend on. A composite "impact score" averaging these is cancelling what it set out to measure.
 
+## What is not new here
+
+The distinction this repo is built on is decades old, and it would be dishonest to
+present it as a discovery. That citation counts measure *use* rather than importance is
+the settled position of the field's critical literature — Bornmann & Daniel's review
+(1,297 citations), Seglen, the MacRoberts, Aksnes et al. And the mechanism the paper
+reports in §5.5, that a result stops being cited once it becomes bedrock, is
+**obliteration by incorporation**: Merton described it, Garfield named it in 1975, and
+McCain measured it in 2014 with a better method than ours.
+
+**What is missing from that literature is the arithmetic.** Everyone agrees the two
+quantities differ; nobody has computed both over a citation graph and reported how far
+apart the orderings are, because no standard tool computes the second one at all. The
+contribution is a measurement, not a concept. Section 1.1 lists what was searched for
+prior art and what was not found — and notes that a bibliographic search is weak
+evidence of absence.
+
 ## The landscape tool
 
 Connected Papers, ResearchRabbit, Litmaps, Inciteful and OpenAlex's own graph views all
 show a field's most-cited papers and call that its structure. Every one of them ranks by
-**use**, which this project shows is the wrong column — and *opposed* to the right one.
-So they answer the question confidently and backwards.
+**use** — the column the literature has criticised for fifty years — and none computes
+the other one. So they answer confidently, and one column short.
 
 Point this at a seed paper or a topic and it computes both columns over the local
 citation graph, then leads with the **gap**: the works a field structurally depends on
