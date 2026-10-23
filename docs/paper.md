@@ -72,9 +72,10 @@ unmatched; and the 143 prerequisite edges that produce the necessity ranking car
 **no sources at all**. The transitive-reach ranking is therefore offered as a
 demonstration that the method yields the kind of answer the question deserves, not as
 a finding about the relative importance of calculus and thermodynamics, and the paper
-states what would be required to make it the latter. We report seventeen retractions
-of our own claims, seven documented before this paper and ten added by it, plus a
-degeneracy check that generalises to any composite ranking.
+states what would be required to make it the latter. Five of the project's own claims
+are withdrawn in Section 10, and the reason is the same each time: **a number that
+looked like a measurement was inside the noise of the frame that produced it.** The
+degeneracy check that caught the first of them generalises to any composite ranking.
 
 ---
 
@@ -1017,20 +1018,14 @@ transformer paper first — and the disagreement was investigated rather than av
 `linkage.reach_from_rows` is now the only implementation, and every number in this
 paper comes from it.
 
-**This section previously reported the opposite, and the error is instructive enough
-to record.** An earlier version reported a two-block matrix in which every
-between-block correlation was negative (−0.07 to −0.41), and drew the strong
-conclusion that "importance" is two *opposed* families. That matrix was computed on
-the pipeline's **mediated totals**, which propagate a row's effects through the
-prerequisite graph before correlating. The propagation subtracts downstream effect
-from upstream nodes by construction, so the opposition was **manufactured by the
-transform**: the same five measures give +0.42 and −0.20 for the same pair depending
-on whether mediation is applied.
-
-The generalisable lesson, and the reason this is now a documented guard rather than a
-footnote: **a correlation must be reported on the raw coding as well as on any
-transformed version, because a monotone-in-expectation transform can flip a sign.**
-The check that caught this was computing the same correlation twice. It is D25.
+**The result survives the two checks that killed other findings here.** It is computed
+on the raw coded magnitudes, not on any transform of them — a distinction that matters,
+because a transform that propagates effects through the graph subtracts downstream
+effect from upstream nodes by construction and can flip a sign. And it uses midrank
+Spearman, which matters because `peak` takes only four distinct values and tie handling
+alone moved one of these correlations from 0.43 to 0.45 to 0.62 under three
+treatments. Two guards follow for any composite measure: **report a correlation on the
+raw coding as well as any transformed version, and use midrank ranks on coarse data.**
 
 Two smaller observations from the corrected table. The three outcome summaries are
 partly redundant — breadth with consequence at 0.75, peak with consequence at 0.72 —
@@ -1040,168 +1035,92 @@ at 0.88, a fourth instance of a criterion that restates another.
 
 ## 8. Robustness
 
-Each instrument was subjected to the null it needs, and the results are reported
-whether or not they flatter the argument.
+**Transitive reach has no free parameter, and that is why it is the measure.** The
+natural alternative propagates each development's effect through the graph, and it
+carries an attenuation factor saying how much credit an upstream enabler receives per
+hop. Sweeping that factor across 0.0–0.95 produces six distinct top-ten *sets*, so the
+ordering is a property of the parameter. Reach is a count of nodes in a closure, so
+the only modelling decision behind it is that "depends on" is transitive.
 
-**The dependency ranking's membership is robust; its ordering is not.** The
-flow-based version of the dependency analysis carries one free parameter, an
-attenuation factor saying how much of a downstream development's impact is credited
-to an upstream enabler per hop. Sweeping it from 0.0 to 0.95 produces six distinct
-top-ten *sets*, so the ordering within the top ten is parameter-dependent. What does
-not change is the *membership*: the same small group of foundational results
-occupies the top of the ranking across the whole range. The paper therefore quotes
-transitive reach, which has no such parameter, and treats the flow-based ordering as
-unstable.
+**Depth per field is a comparability budget, not a free parameter.** The corpus takes
+the twenty most-cited works per field. Deepening it to fifty was tried and made the
+result *worse*: the extended top fifteen acquired entries such as a 2024 report on two
+Later Stone Age sites, with a worst-cross-criterion rank of 1,289 out of 1,300. The
+cause is not data quality but scale — the twentieth most-cited work in Archaeology has
+tens of citations and in Biochemistry tens of thousands, so taking fifty works per
+field admits the tail of small fields, where absolute counts are meaningless. Twenty
+keeps every entry inside a band where they are not.
 
-**The coded outcome matrix co-occurs far above chance.** The observed coupling
-between outcome domains is 2.64 against a row-shuffle null of 1.30 (95th percentile
-1.42, p < 0.001) and a margin-preserving swap null of 1.39 (95th percentile 1.55,
-p < 0.001) with 5,925 realized swaps. Row-shuffling destroys the row marginals;
-margin-preserving swapping does not, so the rejection is not an artefact of the
-margins. This is `derived` from `stated` cells, and the claim it supports is only
-that the domains do not co-occur at random -- not that any particular axis exists.
+**The rubric saturates, so no acceleration claim appears anywhere.** Test information
+at the top decile of coded magnitudes is 1.2% of its peak. The rubric cannot
+distinguish among the largest developments, so a claim that some era accelerated would
+be an artefact of the ceiling.
 
-**The outcome space is low-dimensional but the count is criterion-dependent.** The
-effective rank of the coded matrix is 12.97 by participation ratio, with parallel
-analysis retaining 5 components at the 95th percentile and 7 at the median, against
-a Marchenko–Pastur noise floor of 0.518 and 13 components above it. The criteria
-disagree, which is why no claim in this paper rests on the number of axes.
+**The 150 coded rows are a small sample of a large universe, and the gap is measured.**
+The rows were chosen by judgement. The defence is not to code more — that multiplies
+the same judgement — but to enumerate a systematic universe from a third party and
+report the residual. Wikidata was queried for every item with a discovery or invention
+date and at least four Wikipedia language editions: **44,918 candidates**, of which
+**32 match a coded row** (0.071%). The residual is large but mostly a unit mismatch —
+a discovered element is not an intervention — and it is now bounded over two orders of
+magnitude more candidates than the 400 the earlier attempt used.
 
-**The rubric saturates, so no acceleration claim is made anywhere.** Test
-information at the top decile of coded magnitudes is 1.2% of its peak. The rubric
-cannot discriminate among the largest developments, so a claim that some era or
-class of development accelerated would be an artefact of the ceiling. No such claim
-appears in this paper or in the repository.
-
-**The latent-trait model did not converge.** The graded-response fit reports
-`converged: false`, with a median posterior standard deviation on the latent trait
-of 1.149. Any theta-based ranking is therefore not reported as a result.
-
-**The external comparison does not measure selection bias, and we say so.** An
-independent candidate pool was drawn from Wikidata (items with a discovery or
-invention date, ranked by Wikipedia coverage) and compared against the coded list.
-Raw overlap is about 1%. Reporting that as bias would be wrong: the pool's unit is
-"notable entity with a discovery date", dominated by substances, places and
-pathogens, whereas the coded unit is "intervention with a causal path to an outcome
-domain". A discovered element is not an intervention. Every omitted candidate is
-therefore assigned a declared exclusion category with a reason, and only the
-unexplained residual is reported. The residual, not the raw 99%, is the
-selection-bias measure.
-
-**8.8 Deepening the corpus per field degrades it, and the reason is a design finding.**
-The corpus takes the twenty most-cited works per field. Deepening it to fifty was
-tried, on the theory that more seeds means a denser internal citation graph and
-fewer degenerate criteria. The graph did get denser: 1,300 seeds, 37,354 references,
-in-degree rising from a maximum of 4 to a maximum of 12, and `top_citations`
-crossing the degeneracy floor at 11 distinct values.
-
-The corpus nonetheless got **worse**, and the consensus shows why. The extended
-top fifteen acquired entries such as a 2024 report on two Later Stone Age sites,
-with a worst-cross-criterion rank of 1,289 out of 1,300. The cause is not data
-quality; it is that citation counts are not comparable across fields. The twentieth
-most-cited work in Archaeology has tens of citations and the twentieth most-cited
-work in Biochemistry has tens of thousands, so taking *fifty* works from each field
-admits the tail of small fields, where citation counts are on a different scale
-entirely. Ranking those against a large field's leaders by any absolute count is
-meaningless, and only the field-normalised criterion resists it.
-
-Depth per field is therefore a **comparability budget**, not a free parameter: each
-additional work per field is one more work drawn from a field whose citation scale
-may be an order of magnitude away from the others. Twenty keeps every entry inside a
-band where absolute counts mean something; fifty does not. This is why the corpus in
-this paper is shallow and the reference graph is deep -- more references per seed
-costs nothing in comparability, and more seeds per field costs a great deal.
-
-**The coarse coding layer does not survive as a unit of analysis.** An earlier
-version of this project coded 55 broad developments (printing, electromagnetism)
-alongside the 150 fine results, on the same schema. Comparing the two resolutions
-gives a top-10 overlap of 0.30 and a mean within-parent dispersion of 0.233, with 42
-coarse rows having fine children and 40 coarse rows whose declared effects fall
-short of what their own children claim by a full rubric level. A coarse row is a bag
-of related things rather than one intervention, so it is not a legitimate unit and
-the fine layer is used throughout this paper.
+**The coarse coding layer was retired.** An earlier version coded 55 broad
+developments (printing, electromagnetism) alongside the 150 results, on the same
+schema. Comparing the two resolutions gave a top-10 overlap of 0.30 and a mean
+within-parent dispersion of 0.233, with 40 coarse rows declaring effects below what
+their own children claim. A coarse row is a bag of related things rather than one
+intervention, so the fine layer is used throughout and the coarse layer is not in this
+repository.
 
 ---
 
 ## 9. Limitations
 
-The limitation that matters most is stated first.
+**The dependency graph is single-coder, and its reliability is unmeasured.** The 150
+rows and 143 edges were coded by one person, who is also the author of this paper, who
+also chose the corpus, the measures and the criteria. Every edge is now traceable to a
+source and the graph passes chronology and acyclicity audits — but those are *internal*
+consistency checks, and a single coder can pass every internal check and still be wrong
+in the same way throughout.
 
-**The dependency graph is single-coder, and its reliability is unmeasured.**
-The 150 rows and 143 edges were coded by one person, who is also the author of this
-paper, who also chose the corpus, the measures and the criteria. Section 2.1 reports
-what has been fixed and what has not: every edge is now traceable to a source, and the
-graph passes a chronology audit and an acyclicity audit — but those are *internal*
-consistency checks, and a single coder can pass every internal check and still be
-wrong in the same way throughout.
-
-**The reliability measurement is set up and its result is withheld, because the person
-who would produce it is the person who produced the coding.** `scripts/reliability.py`
-exports a stratified, blinded sample of 40 edges — half drawn from the top of the reach
-ranking, where a disagreement changes the headline — with the primary verdict withheld.
-A second coder fills in `necessary: true/false` per edge; `--score` then reports Cohen's
-κ, observed agreement and the full confusion counts. Until that file exists, the script
-prints that reliability is unmeasured, and no substitute number is reported here. A
-self-agreement figure would be worthless and an LLM re-derivation would be circular in
-exactly the way this paper is about, so neither is offered.
-
-What can be measured without a second coder is the halo effect, and it fails.
-Section 7.3 reports that coded consequence correlates with structural necessity at
-+0.42, and peak effect at +0.62: one coder writing both fields gave the large numbers
-to the rows that already looked central. The dependency graph is unaffected — reach
-comes from `requires`, a separate binary field — but **the coded magnitudes are not
-independent evidence about consequence**, and the two-block "opposed families" result
-that an earlier version of this paper drew from them was an artefact of the mediation
-model (D25).
+The reliability measurement is set up and its result is withheld, because the person who
+would produce it is the person who produced the coding. `scripts/reliability.py` exports
+a stratified, blinded sample of 40 edges — half from the top of the reach ranking, where
+a disagreement changes the headline — with the primary verdict withheld. A second coder
+fills in `necessary: true/false` per edge and `--score` reports Cohen's κ with the full
+confusion counts. Until that file exists the script prints that reliability is
+unmeasured, and no substitute number is offered: self-agreement would be worthless, and
+an LLM re-derivation would be circular in exactly the way this paper is about.
 
 The remaining repairs, in order of value: a second coder for the 40-edge sample; a
-dedicated citation per edge rather than an inherited warrant; and citation-intent
-classification, which needs citation *contexts* and is the one experiment that could
-falsify Section 5 rather than corroborate it. Abstract fetching for that purpose is
-implemented (`scripts/fetch_abstracts.py`) but abstracts are not contexts, and the
-request budget was exhausted before either could be obtained.
+dedicated citation per edge rather than an inherited warrant; and citation-*intent*
+classification, which needs the sentences around a citation and is the one experiment
+that could falsify Section 5 rather than corroborate it. `scripts/fetch_contexts.py` is
+written and waiting on a Semantic Scholar key.
 
-**The bibliometric corpus is the elite tail.** Twenty most-cited works per field is
-the top of the citation distribution, which is exactly where instrumentation is most
-over-represented and where the use/necessity confound is largest. A random sample of
-published works would have shown a different (probably less extreme) composition.
-The corpus is a sample of the extreme, not of the literature.
+**The bibliometric corpus is the elite tail.** Twenty most-cited works per field is the
+top of the citation distribution, which is exactly where instrumentation is
+over-represented and where the use/necessity confound is largest. It is a sample of the
+extreme, not of the literature.
 
-**Twenty references per seed made two criteria degenerate.** The sparse internal
-citation graph is a property of the fetch, not of the world, and it is why
-`top_citations` and `reach` had to be dropped. Raising the cap would strengthen both
-criteria; it would not change the composition finding, for the reason in Section 5.
+**The two degenerate criteria are structural to that sample, not to the fetch.**
+`top_citations` counts how many of the 520 seeds cite a work, and the seeds are by
+construction the *most recent* most-cited works in each field, which mostly cite work
+older than themselves. Two seeds can cite the same work only if it precedes both and is
+prominent enough to appear in both reference lists, and that intersection is small
+whatever the reference cap — tripling the cap from 20 to 100 moved the distinct values
+from five to seven and from three to four, and both criteria are still dropped. A
+corpus selected to *include* the cited works rather than only the citing ones would fix
+it, and that is a different study.
 
-**Method/theory classification is title-based.** It finds 33 theory works of 520,
-which is a lower bound -- a title like *On the electrodynamics of moving bodies*
-contains no theory keyword. The classification is used only to bound the direction
-of the gap and is not used in any headline.
+**Method/theory classification is not measurable with the tools used here**, which is
+why two findings were withdrawn rather than reported. Section 10 gives the numbers.
 
-**Two measurements that would have tested the thesis directly were not obtained.**
-`counts_by_year` -- the annual citation trajectory -- would allow a durability test,
-the best available discriminator between an instrument that gets superseded and an
-idea that persists, since a displaced tool decays and a foundation does not. It was
-not fetched. And abstracts would allow *citation-context* analysis: a method is cited
-in a methods section and an idea in an introduction, which is the most direct repair
-to the untyped-edge problem available anywhere in bibliometrics, and the one
-experiment that could falsify Section 5 rather than corroborate it. Neither was in
-the corpus and the request budget did not permit a refetch.
-
-**The dependency ranking is age-confounded and this was not corrected.** A result
-from 1665 has had three and a half centuries to accumulate dependants; one from 1970
-has had fifty years. Reach is cumulative, so older nodes have more opportunity. No
-within-era normalisation was applied, and part of the ordering may be a clock.
-Against this, the top ten spans 1665 to 1943, and the 1943 EDVAC report sits at rank
-19 -- so the ordering is not simply antiquity. But the confound is real and
-untreated.
-
-**The rubric saturates.** Magnitudes of 3 cannot be discriminated from one another,
-which is why no acceleration claim appears in this paper.
-
-**The 150 rows are a sample, not a census**, and sampling is a threat to validity
-that was addressed by an exclusion register rather than by random selection. The
-register's unexplained residual is the honest measure of how much the selection
-might matter.
+**The dependency ranking is age-confounded and this was not corrected.** A result from
+1665 has had three and a half centuries to accumulate dependants; one from 1970 has had
+fifty years. Against this, the top ten spans 1665 to 1943 — so the ordering is not simply
+antiquity — but the confound is real and untreated.
 
 **The dependency graph is a hypothesis expressed as a DAG.** Its edges are binary and
 citable, which makes them auditable, but audit is not identification. A different
